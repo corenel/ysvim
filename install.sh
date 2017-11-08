@@ -20,7 +20,7 @@ YSVIM_PATHOGEN=0
 
 VIM_HOME="$HOME/.vim"
 VIM_CFG="$HOME/.vimrc"
-NVIM_HOME="$HOME/.vim"
+NVIM_HOME="$HOME/.config/nvim"
 NVIM_CFG="$HOME/.config/nvim/init.vim"
 
 # Custom Functions
@@ -71,17 +71,29 @@ init_config() {
 }
 
 install_plugins() {
+  if [[ $1 == "vim" ]]; then
+    INS_HOME=$VIM_HOME
+  elif [[ $1 == "nvim" ]]; then
+    INS_HOME=$NVIM_HOME
+  else
+    echo "not set vim or nvim"
+    exit 1
+  fi
+
   if [[ $YSVIM_PLUG -eq 1 ]]; then
-    # install plugins via Vim-Plug
-    for exe in "$@"; do
-        eval "$exe +PlugInstall +qall"
-    done
-    ret="$?"
-    echo "Installed plugins via Vim-Plug successfully"
+    # install Vim-Plug
+    curl -LSso "$INS_HOME/autoload/plug.vim" --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    mkdir -p $INS_HOME/plugged
   elif [[ $YSVIM_DEIN -eq 1 ]]; then
-    #statements
+    # install Dein.vim
+    git clone https://github.com/Shougo/dein.vim $INS_HOME/dein/repos/github.com/Shougo/dein.vim
   elif [[ $YSVIM_PATHOGEN -eq 1 ]]; then
-    #statements
+    # install pathogen
+    curl -LSso $INS_HOME/autoload/pathogen.vim --create-dirs \
+      https://tpo.pe/pathogen.vim
+    # install plugins
+    mkdir -p $INS_HOME/bundle
   else
     echo "No chosen plugin manager."
   fi
@@ -96,9 +108,6 @@ install_for_vim() {
   # symbol link
   ln -sf "$YSVIM_HOME/init.vim" $VIM_CFG
 
-  # install plug
-  curl -fLo "$VIM_HOME/autoload/plug.vim" --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   install_plugins "vim"
 }
 
@@ -112,8 +121,6 @@ install_for_nvim() {
   ln -sf "$YSVIM_HOME/init.vim" $NVIM_CFG
 
   # install plug
-  curl -fLo "$HOME/.local/share/nvim/site/autoload/plug.vim" --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   install_plugins "nvim"
 }
 

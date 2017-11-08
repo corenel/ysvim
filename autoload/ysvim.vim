@@ -8,67 +8,33 @@ scriptencoding utf8
 
 " Init {{{
 
-    " Platform-specific settings {{{
-
-        let g:MAC = has('macunix')
-        let g:LINUX = has('unix') && !has('macunix') && !has('win32unix')
-        let g:WINDOWS = has('win32') || has('win64')
-
-        if g:WINDOWS
-            echo 'Not tested on Windows.'
-            set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
-        endif
-
-    " }}} Platform-specific settings
-
-    " Framework setiings {{{
-
-        let g:ysvim_dir = $HOME . '/.ysvim'
-        let g:ysvim_version = '0.1.0'
-        lockvar g:ysvim_version
-
-        " Create frameworkj root directory if not exists
-        if !isdirectory(expand(g:ysvim_root))
-            call mkdir(g:ysvim_root, 'p')
-        endif
-
-        let g:ysvim_nvim = has('nvim') && exists('*jobwait') && !g:WINDOWS
-        let g:ysvim_vim8 = exists('*job_start')
-        let g:ysvim_gui = has('gui_running')
-        let g:ysvim_tmux = !empty($TMUX)
-
-    " }}} Framework setiings
-
-    " Plugin manager {{{
-
-        " Use Pathgon for plugin management.
-        " let g:ysvim_pathogen_enable = 1
-        " let g:ysvim_pathogen_dir = g:ysvim_dir . '/bundle/vim-pathogen/autoload/pathogen.vim'
-        " runtime g:ysvim_pathogen_dir
-        " call pathogen#infect()
-        " call pathogen#helptags()
-
-        " Use Vim-Plug
-        let g:ysvim_plug_enable = 1
-        let g:ysvim_plug_dir = g:ysvim_dir.'/plugged'
-        let g:ysvim_plug_vim = g:ysvim_plug_dir . '/plug.vim/vim-plug/plug.vim'
-        let g:ysvim_plug_vim_dir = g:ysvim_plug_dir . '/plug.vim/vim-plug'
-        set runtimepath+=g:ysvim_plug_vim_dir
-
-        " Use Dein.vim
-        " let g:ysvim_dein_enable = 1
-        " let g:ysvim_dein_repo = 'https://github.com/Shougo/dein.vim.git'
-        " let g:ysvim_dein_dir = g:ysvim_dir . '/dein'
-        " let g:ysvim_dein_vim_dir = g:ysvim_dein_dir . '/repos/github.com/Shougo/dein.vim'
-        " if !isdirectory(expand(g:ysvim_dein_dir))
-        "     call mkdir(g:ysvim_dein_dir, 'p')
-        "     exec '!git clone ' . g:ysvim_dein_repo . ' ' . g:ysvim_dein_vim_dir
-        " endif
-        " set runtimepath+=g:ysvim_dein_dir
-
-    " }}} Plugin manager
+    let g:ysvim_nvim = has('nvim') && exists('*jobwait') && !g:ysvim_windows
+    let g:ysvim_vim8 = exists('*job_start')
+    let g:ysvim_gui = has('gui_running')
+    let g:ysvim_tmux = !empty($TMUX)
 
 " }}} Init
+
+" Plugin manager {{{
+
+    " Use Pathgon for plugin management.
+    let g:ysvim_pathogen_enable = 1
+    let g:ysvim_pathogen_home = g:ysvim_home . '/bundle'
+    let g:ysvim_pathogen_vim = g:ysvim_pathogen_home . '/vim-pathogen/autoload/pathogen.vim'
+
+    " Use Vim-Plug
+    let g:ysvim_plug_enable = 1
+    let g:ysvim_plug_home = g:ysvim_home.'/plugged'
+    let g:ysvim_plug_vim = g:ysvim_plug_home . '/plug.vim/vim-plug/plug.vim'
+    let g:ysvim_plug_vim_dir = g:ysvim_plug_home . '/plug.vim/vim-plug'
+
+    " Use Dein.vim
+    let g:ysvim_dein_enable = 1
+    let g:ysvim_dein_home = g:ysvim_home . '/dein'
+    let g:ysvim_dein_vim = g:ysvim_dein_dir . '/repos/github.com/Shougo/dein.vim/autoload/dein.vim'
+    let g:ysvim_dein_vim_dir = g:ysvim_dein_dir . '/repos/github.com/Shougo/dein.vim'
+
+" }}} Plugin manager
 
 " General {{{
 
