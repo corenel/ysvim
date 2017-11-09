@@ -192,7 +192,7 @@ scriptencoding utf8
             let g:undotree_SetFocusWhenToggle = 1
             nmap <silent> <Leader>u :UndotreeToggle<CR>
 
-            call ysvim#uitl#check_dir(g:ysvim_home . '/.tmp/undotree')
+            call ysvim#util#check_dir(g:ysvim_home . '/.tmp/undotree')
             if has('persistent_undo')
                 let &undodir = g:ysvim_home . '/.tmp/undotree'
                 set undofile
@@ -211,7 +211,7 @@ scriptencoding utf8
             let g:UltiSnipsEditSplit = 'context'
 
             " set custom dir
-            call ysvim#uitl#check_dir(g:ysvim_home . '/.tmp/ultisnips')
+            call ysvim#util#check_dir(g:ysvim_home . '/.tmp/ultisnips')
             let g:UltiSnipsSnippetsDir = g:ysvim_home . '/.tmp/ultisnips'
         endif
 
