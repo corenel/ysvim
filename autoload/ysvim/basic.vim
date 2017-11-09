@@ -580,7 +580,7 @@ scriptencoding utf8
         endfunction
         command! ProseMode call ProseMode()
 
-        " Exit if the last window is a controlling one (NERDTree, qf). {{{2
+        " Exit if the last window is a controlling one (NERDTree, qf).
         function! s:CloseIfOnlyControlWinLeft()
             if winnr('$') != 1
                 return
@@ -600,7 +600,6 @@ scriptencoding utf8
             autocmd!
             autocmd BufEnter * call s:CloseIfOnlyControlWinLeft()
         augroup END
-        " }}}2
 
         " }}} Custom commands and functions
 
