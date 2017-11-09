@@ -418,6 +418,7 @@ scriptencoding utf8
     nmap \a :set formatoptions-=a<CR>:echo "autowrap disabled"<CR>
     nmap \c :CLEAN<CR>:TEOL<CR>
     nmap \e :NERDTreeToggle<CR>
+    nmap \r :NERDTreeFind<CR>
     nmap \f mt:Goyo<CR>'tzz
     nmap \g :Gstatus<CR>
     nmap \h :nohlsearch<CR>
@@ -578,6 +579,28 @@ scriptencoding utf8
             " colors solarized
         endfunction
         command! ProseMode call ProseMode()
+
+        " Exit if the last window is a controlling one (NERDTree, qf). {{{2
+        function! s:CloseIfOnlyControlWinLeft()
+            if winnr('$') != 1
+                return
+            endif
+            " Alt Source: https://github.com/scrooloose/nerdtree/issues/21#issuecomment-3348390
+            " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+            if (exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1)
+                    \ || &buftype ==? 'quickfix'
+                " NOTE: problematic with Unite's directory, when opening a file:
+                " :Unite from startify, then quitting Unite quits Vim; also with TMRU from
+                " startify.
+                    " \ || &ft == 'startify'
+                q
+            endif
+        endfunction
+        augroup CloseIfOnlyControlWinLeft
+            autocmd!
+            autocmd BufEnter * call s:CloseIfOnlyControlWinLeft()
+        augroup END
+        " }}}2
 
         " }}} Custom commands and functions
 
