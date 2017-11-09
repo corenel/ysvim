@@ -136,10 +136,10 @@ scriptencoding utf8
             " Replaces Ctrl-P, FuzzyFinder and Command-T
             set runtimepath+=/usr/local/opt/fzf
             set runtimepath+=~/.fzf
-            nmap <Leader>b :Buffers<CR>
-            nmap <Leader>t :Tags<CR>
-            nmap <Leader>f :Files<CR>
-            nmap <Leader>a :Ag<CR>
+            nmap <Leader>fb :Buffers<CR>
+            nmap <Leader>ft :Tags<CR>
+            nmap <Leader>ff :Files<CR>
+            nmap <Leader>fa :Ag<CR>
         endif
 
         " }}} fzf

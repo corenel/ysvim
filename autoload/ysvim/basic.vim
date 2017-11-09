@@ -506,9 +506,6 @@ scriptencoding utf8
     " Alt-W to delete a buffer and remove it from the list but keep the window via bufkill.vim
     nmap <Esc>w :BD<CR>
 
-    " Quickly fix spelling errors choosing the first result
-    nmap <Leader>z z=1<CR><CR>
-
     " Fix annoyances in the QuickFix window, like scrolling too much
     augroup quickfix
         autocmd!
@@ -603,7 +600,7 @@ scriptencoding utf8
 " Filetype triggers {{{
 
 " Reset all autocommands
-augroup vimrc
+augroup custom_filetype
     autocmd!
     au BufNewFile,BufRead *.ini     setf conf
     au BufNewFile,BufRead *.md      setlocal ft=markdown
