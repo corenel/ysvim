@@ -172,5 +172,6 @@ install() {
 # Main
 check "git"
 update_repo
+init_ysvimrc
 install
 echo "$YSVIM_NAME installed successfully!"
