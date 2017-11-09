@@ -205,10 +205,10 @@ scriptencoding utf8
 
         if g:ysvim_vim8 || g:ysvim_nvim
             " settings for ultisnips
-            let g:UltiSnipsExpandTrigger = '<Tab>'
-            let g:UltiSnipsJumpForwardTrigger = '<C-n>'
-            let g:UltiSnipsJumpBackwardTrigger = '<C-p>'
-            let g:UltiSnipsEditSplit = 'context'
+            " let g:UltiSnipsExpandTrigger = '<Tab>'
+            " let g:UltiSnipsJumpForwardTrigger = '<C-n>'
+            " let g:UltiSnipsJumpBackwardTrigger = '<C-p>'
+            " let g:UltiSnipsEditSplit = 'context'
 
             " set custom dir
             call ysvim#util#check_dir(g:ysvim_home . '/.tmp/ultisnips')
@@ -394,16 +394,20 @@ scriptencoding utf8
             " don't give |ins-completion-menu| messages.  For example,
             " " '-- XXX completion (YYY)', 'match 1 of 2', 'The only match',
             set shortmess+=c
+
             " When the <Enter> key is pressed while the popup menu is visible, it only hides the menu.
             " Use this mapping to hide the menu and also start a new line.
-            inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+            " inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+
             " Here is an example for expanding snippet in the popup menu with <Enter> key. Suppose you
             " use the <C-U> key for expanding snippet.
             imap <expr> <CR>  (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)" : "\<CR>")
             imap <expr> <Plug>(expand_or_nl) (cm#completed_is_snippet() ? "\<C-U>":"\<CR>")
+
             " When using CTRL-C key to leave insert mode, it does not trigger the autocmd InsertLeave.
             " You should use CTRL-[, or map the <c-c> to <ESC>.
             inoremap <c-c> <ESC>
+
             " Use <TAB> to select the popup menu:
             inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
             inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"\
