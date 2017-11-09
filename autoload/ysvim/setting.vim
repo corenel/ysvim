@@ -413,7 +413,7 @@ scriptencoding utf8
             inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"\
 
             " settings for ultisnips
-            let g:ultisnipsexpandtrigger            = '<plug>(ultisnips_expand)'
+            let g:UltiSnipsExpandTrigger            = '<plug>(ultisnips_expand)'
             let g:UltiSnipsJumpForwardTrigger       = '<c-j>'
             let g:UltiSnipsJumpBackwardTrigger      = '<c-k>'
             let g:UltiSnipsRemoveSelectModeMappings = 0
