@@ -1,0 +1,26 @@
+" Name:     ys-vim: sensible vim and neovim configuration
+" Desc:     My custom config for Vim8 and NeoVim, partly referred to ashfinal/vimrc-config, statico/dotfiles and liuchengxu/space-vim.
+" Author:   corenel <xxdsox@gmail.com>
+" URL:      https://github.com/corenel/ysvim
+" License:  MIT license
+
+scriptencoding utf8
+
+" Custom Initialization {{{
+
+    function! CustomInit()
+        " Add csutom plugins and their settings
+        " let g:ysvim_leader = "\<Space>"
+        " let g:ysvim_localleader = ','
+
+    endfunction
+
+" }}} Custom Initialization
+
+" Custom Configuration {{{
+    function! CustomConfig()
+        " Override default settings
+        " Or modify leader key and local leader key
+
+    endfunction
+" }}} Custom Configuration

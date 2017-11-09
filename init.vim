@@ -12,7 +12,6 @@
 
     if g:ysvim_windows
         echo 'Not tested on Windows.'
-        set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
     endif
 
 " }}} Platform-specific Initialization
@@ -20,10 +19,11 @@
 " Global Setiings {{{
 
     let g:ysvim_home = $HOME . '/.ysvim'
+    let g:ysvim_config = $HOME.'/.ysvimrc'
     let g:ysvim_version = '0.1.0'
     lockvar g:ysvim_version
 
-    set runtimepath+=g:ysvim_home
+    let &runtimepath .= &runtimepath . ',' . g:ysvim_home
 
 " }}} Global Setiings
 

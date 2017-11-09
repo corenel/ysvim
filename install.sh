@@ -25,7 +25,7 @@ NVIM_CFG="$HOME/.config/nvim/init.vim"
 
 # Custom Functions
 exists() {
-  which $1 >/dev/null 2>&1
+  command -v $1 >/dev/null 2>&1
 }
 
 check() {
@@ -38,7 +38,7 @@ check() {
 
 update_repo() {
   # clone or update git repo
-  if [ -d $YSVIM_HOME/.git ]; then
+  if [[ -d $YSVIM_HOME/.git ]]; then
     echo "Updating dotfiles using existing git..."
     cd $YSVIM_HOME
     git pull --quiet --rebase origin master
@@ -52,11 +52,11 @@ update_repo() {
 clean() {
   # bakcup file or directory
   dst=$1
-  if [ -e $dst ]; then
+  if [[ -e $dst ]]; then
     # Rename files with a ".old" extension.
     echo "$dst already exists, renaming to $dst.old"
     backup=$dst.old
-    if [ -e $backup ]; then
+    if [[ -e $backup ]]; then
       echo "Error: $backup already exists. Please delete or rename it."
       exit 1
     fi
@@ -64,32 +64,38 @@ clean() {
   fi
 }
 
-init_config() {
+init_ysvimrc() {
   if [[ ! -e $YSVIM_CFG ]]; then
-    cp $YSVIM_HOME/.ysvimrc.example $YSVIM_CFG
+    cp -v $YSVIM_HOME/.ysvimrc.example $YSVIM_CFG
   fi
 }
 
 install_plugins() {
-  if [[ $1 == "vim" ]]; then
-    INS_HOME=$VIM_HOME
-  elif [[ $1 == "nvim" ]]; then
-    INS_HOME=$NVIM_HOME
-  else
-    echo "not set vim or nvim"
-    exit 1
-  fi
+
+  # if [[ $1 == "vim" ]]; then
+  #   INS_HOME=$VIM_HOME
+  # elif [[ $1 == "nvim" ]]; then
+  #   INS_HOME=$NVIM_HOME
+  # else
+  #   echo "not set vim or nvim"
+  #   exit 1
+  # fi
+
+  INS_HOME=$YSVIM_HOME
 
   if [[ $YSVIM_PLUG -eq 1 ]]; then
     # install Vim-Plug
+    echo '==> Downloading Vim-Plug ......'
     curl -LSso "$INS_HOME/autoload/plug.vim" --create-dirs \
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     mkdir -p $INS_HOME/plugged
   elif [[ $YSVIM_DEIN -eq 1 ]]; then
     # install Dein.vim
+    echo "==> Downloading Dein.vim ..."
     git clone https://github.com/Shougo/dein.vim $INS_HOME/dein/repos/github.com/Shougo/dein.vim
   elif [[ $YSVIM_PATHOGEN -eq 1 ]]; then
     # install pathogen
+    echo "==> Downloading Pathogen ..."
     curl -LSso $INS_HOME/autoload/pathogen.vim --create-dirs \
       https://tpo.pe/pathogen.vim
     # install plugins
@@ -125,10 +131,10 @@ install_for_nvim() {
 }
 
 install() {
-  if [[ check "vim" && check "nvim" ]] ; then
+  if exists "vim" && exists "nvim" ; then
     echo "Find both 'vim' and 'nvim' in your system"
     while true; do
-      echo "Install $YSVIM_NAME for:\n\t[0]vim\n\t[1]nvim\n\t[2]both vim and nvim"
+      echo -e "Install $YSVIM_NAME for:\n\t[0]vim\n\t[1]nvim\n\t[2]both vim and nvim"
       read -r -p "(Choose 0, 1 or 2):" opt
       case $opt in
         0)
@@ -166,6 +172,5 @@ install() {
 # Main
 check "git"
 update_repo
-init_config
 install
 echo "$YSVIM_NAME installed successfully!"
