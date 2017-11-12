@@ -211,8 +211,7 @@ scriptencoding utf8
             " let g:UltiSnipsEditSplit = 'context'
 
             " set custom dir
-            call ysvim#util#check_dir(g:ysvim_home . '/.tmp/ultisnips')
-            let g:UltiSnipsSnippetsDir = g:ysvim_home . '/.tmp/ultisnips'
+            " let g:UltiSnipsSnippetDirectories=['UltiSnips']
         endif
 
         " }}} ultisnips

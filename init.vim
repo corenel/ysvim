@@ -24,6 +24,7 @@
     lockvar g:ysvim_version
 
     let &runtimepath .= &runtimepath . ',' . g:ysvim_home
+    let &runtimepath .= &runtimepath . ',' . g:ysvim_home . '/after'
 
 " }}} Global Setiings
 
