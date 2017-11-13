@@ -64,6 +64,8 @@ scriptencoding utf8
                                     " Colors for window borders
         set formatoptions=tcqn1     " t - autowrap normal text
                                     " c - autowrap comments
+                                    " r - auto insert comments leader  in insert mode
+                                    " o - auto insert comments leader in normal mode
                                     " q - gq formats comments
                                     " n - autowrap lists
                                     " 1 - break _before_ single-letter words
@@ -96,7 +98,8 @@ scriptencoding utf8
         set wrap
         " set iskeyword+=-
         set whichwrap+=<,>,h,l,[,]
-        set linebreak               " Break long lines by word, not char
+        " set linebreak               " Break long lines by word, not char
+        " set nolist
 
         " }}} Indent
 
