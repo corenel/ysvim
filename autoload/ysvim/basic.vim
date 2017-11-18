@@ -33,18 +33,23 @@ scriptencoding utf8
 
         silent! set mouse=nvc       " Use the mouse, but not in insert mode
 
-        " Enable clipboard if possible
-        " if has('clipboard')
-        "     if has('unnamedplus') " When possible use + register for copy-paste
-        "         set clipboard=unnamed,unnamedplus
-        "     else " On mac and Windows, use * register for copy-paste
-        "         set clipboard=unnamed
-        "     endif
-        " endif
+        if g:ysvim_nvim
+            set clipboard+=unnamedplus
+        elseif g:ysvim_vim8
+            " Enable clipboard if possible
+            if has('clipboard')
+                if has('unnamedplus') " When possible use + register for copy-paste
+                    set clipboard=unnamed,unnamedplus
+                else " On mac and Windows, use * register for copy-paste
+                    set clipboard=unnamed
+                endif
+            endif
 
-        if $TMUX ==# ''
-            set clipboard+=unnamed
+            " if $TMUX ==# ''
+            "     set clipboard+=unnamed
+            " endif
         endif
+
 
         " set viminfo
         let &viminfo.='100,n'.g:ysvim_home.'/files/info/viminfo'
