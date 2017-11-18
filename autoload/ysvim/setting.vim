@@ -430,6 +430,17 @@ scriptencoding utf8
                     \ 'cm_refresh': {'omnifunc': 'vimtex#complete#omnifunc'},
                     \ })
             augroup END
+
+            " Add preview to see docstrings in the complete window.
+            let g:cm_completeopt = 'menu,menuone,noinsert,noselect,preview'
+
+            " Close the prevew window automatically on InsertLeave
+            " https://github.com/davidhalter/jedi-vim/blob/eba90e615d73020365d43495fca349e5a2d4f995/ftplugin/python/jedi.vim#L44
+            augroup ncm_preview
+                autocmd!
+                autocmd CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+                " autocmd! InsertLeave <buffer> if pumvisible() == 0|pclose|endif
+            augroup END
         endif
 
         " }}} nvim-completion-manager

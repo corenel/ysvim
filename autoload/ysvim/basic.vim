@@ -574,7 +574,7 @@ scriptencoding utf8
         function! ProseMode()
             call goyo#execute(0, [])
             set spell noci nosi noai nolist noshowmode noshowcmd
-            set complete+=s
+            " set complete+=s
             " set background=light
             " if !has('gui_running')
             "     let g:solarized_termcolors=256
