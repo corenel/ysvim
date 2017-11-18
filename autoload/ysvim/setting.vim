@@ -332,7 +332,6 @@ scriptencoding utf8
             \   'vim': ['vint'],
             \   'xml': ['xmllint'],
             \   'yaml': ['yamllint'],
-            \   'text': ['write-good'],
             \   'markdown' : ['mdl'],
             \}
 

@@ -274,9 +274,6 @@ scriptencoding utf8
 
         " Navigation {{{
 
-        " Map jk to enter normal mode
-        imap jk <Esc>
-
         " Make cursor always on center of screen by default
         " if !exists('noalwayscenter')
         "     " Calculate proper scrolloff
@@ -288,13 +285,6 @@ scriptencoding utf8
         "     " Use <Enter> to keep center in insert mode, need proper scrolloff
         "     inoremap <CR> <CR><C-o>zz
         " endif
-
-        " Turn off linewise keys. Normally, the `j' and `k' keys move the cursor down one entire line. with
-        " line wrapping on, this can cause the cursor to actually skip a few lines on the screen because
-        " it's moving from line N to line N+1 in the file. I want this to act more visually -- I want `down'
-        " to mean the next line on the screen
-        nmap j gj
-        nmap k gk
 
         set scroll=4                " Number of lines to scroll with ^U/^D
         set scrolloff=15            " Keep cursor away from this many chars top/bot
@@ -431,6 +421,16 @@ scriptencoding utf8
     nmap \v :Startify<CR>
     nmap \x :cclose<CR>
     nmap \z :w<CR>:!open %<CR><CR>
+
+    " Turn off linewise keys. Normally, the `j' and `k' keys move the cursor down one entire line. with
+    " line wrapping on, this can cause the cursor to actually skip a few lines on the screen because
+    " it's moving from line N to line N+1 in the file. I want this to act more visually -- I want `down'
+    " to mean the next line on the screen
+    nmap j gj
+    nmap k gk
+
+    " Map jk to enter normal mode
+    imap jk <Esc>
 
     " You don't know what you're missing if you don't use this.
     nmap <C-e> :e#<CR>

@@ -1,0 +1,29 @@
+snippet args "Add fucntion for parsing arguments" b
+def parse_arg():
+    """Parse arguments."""
+
+    # define arguments
+    parser = argparse.ArgumentParser(description='${1:demo project}')
+    parser.add_argument(
+        'filepath',
+        type=str,
+        help='path for input file')
+    parser.add_argument(
+        '--output', '-o',
+        type=str,
+        default=None,
+        help='path for output result')
+    ${0}
+
+    # parse arguments
+    args = parser.parse_args()
+
+    # print arguments
+    args_dict = vars(args)
+    print("--- args ---")
+    for k, v in args_dict.items():
+        print("[{}]: {}".format(str(k), str(v)))
+    print("--- end  ---")
+
+    return args
+endsnippet
