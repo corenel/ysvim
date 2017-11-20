@@ -52,6 +52,7 @@ scriptencoding utf8
                 Plug 'tpope/vim-unimpaired'
                 Plug 'wellle/targets.vim'
                 Plug 'Xuyuanp/nerdtree-git-plugin'
+                Plug 'raimondi/delimitmate'
 
             " }}} Enhancement
 
