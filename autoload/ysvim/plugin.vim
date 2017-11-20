@@ -51,6 +51,7 @@ scriptencoding utf8
                 Plug 'tpope/vim-surround'
                 Plug 'tpope/vim-unimpaired'
                 Plug 'wellle/targets.vim'
+                Plug 'Xuyuanp/nerdtree-git-plugin'
 
             " }}} Enhancement
 
