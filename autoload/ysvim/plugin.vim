@@ -53,6 +53,7 @@ scriptencoding utf8
                 Plug 'wellle/targets.vim'
                 Plug 'Xuyuanp/nerdtree-git-plugin'
                 Plug 'raimondi/delimitmate'
+                Plug 'christoomey/vim-tmux-navigator'
 
             " }}} Enhancement
 

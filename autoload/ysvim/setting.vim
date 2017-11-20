@@ -313,6 +313,26 @@ scriptencoding utf8
 
         " }}} vimux
 
+        " vim-tmux-navigator {{{
+
+        if g:ysvim_vim8 || g:ysvim_nvim
+            " disbale default key bindings of plugin
+            " let g:tmux_navigator_no_mappings = 1
+            " nnoremap <silent> <C-w><C-h> :TmuxNavigateLeft<cr>
+            " nnoremap <silent> <C-w><C-j> :TmuxNavigateDown<cr>
+            " nnoremap <silent> <C-w><C-k> :TmuxNavigateUp<cr>
+            " nnoremap <silent> <C-w><C-k> :TmuxNavigateRight<cr>
+            " nnoremap <silent> <C-w><C-k> :TmuxNavigatePrevious<cr>
+
+            " Write all buffers before navigating from Vim to tmux pane
+            let g:tmux_navigator_save_on_switch = 2
+
+            " Disable tmux navigator when zooming the Vim pane
+            let g:tmux_navigator_disable_when_zoomed = 1
+        endif
+
+        " }}} vim-tmux-navigator
+
     " }}} Enhancement
 
     " Intellisense {{{
