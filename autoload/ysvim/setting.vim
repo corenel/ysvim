@@ -502,7 +502,7 @@ scriptencoding utf8
                 \ ]
 
             " virtualenv
-            let g:pymode_virtualenv = 0
+            let g:pymode_virtualenv = 1
             let g:pymode_virtualenv_path = $VIRTUAL_ENV
 
             " use ale instead of pymode_lint
