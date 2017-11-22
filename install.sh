@@ -165,7 +165,6 @@ install() {
       install_for_neovim
   else
       echo "You must have 'vim' or 'nvim' installed to continue"
-      exit 0
   fi
 }
 
