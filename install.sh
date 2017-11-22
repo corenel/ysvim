@@ -162,7 +162,7 @@ install() {
   elif exists "nvim"; then
       echo "Find 'nvim' in your system"
       echo "Starting to install $YSVIM_NAME for 'nvim'"
-      install_for_neovim
+      install_for_nvim
   else
       echo "You must have 'vim' or 'nvim' installed to continue"
   fi
