@@ -164,15 +164,25 @@ scriptencoding utf8
 
         " Ayu color scheme
         if g:ysvim_color ==# 'ayu'
+            let g:ayucolor='dark'   " for dark version of theme
+            colorscheme ayu
+        endif
+
+        if g:ysvim_color ==# 'gruvbox'
+            colorscheme gruvbox
+            let g:gruvbox_contrast_dark = 'hard'
+        endif
+
+
+        if g:ysvim_color ==# 'gruvbox' || g:ysvim_color ==# 'ayu'
             set termguicolors     " enable true colors support
             " Correct RGB escape codes for vim inside tmux
             if !has('nvim') && $TERM ==# 'screen-256color'
                 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
                 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
             endif
-            let g:ayucolor='dark'   " for dark version of theme
-            colorscheme ayu
         endif
+
 
         if !has('gui_running')
             if $TERM ==# 'xterm-256color' || $TERM ==# 'screen-256color' || $COLORTERM ==# 'gnome-terminal'
@@ -218,45 +228,45 @@ scriptencoding utf8
             highlight link Folded Ignore
             highlight clear LineNr
             highlight! def link LineNr Ignore
+
+            " Turn off horrible coloring for CDATA in XML
+            highlight def link xmlCdata NONE
+
+            " taglist.vim's filenames is linked to LineNr by default, which is too dark
+            highlight def link MyTagListFileName Statement
+            highlight def link MyTagListTagName Question
+
+            " Custom search colors
+            highlight clear Search
+            highlight Search term=NONE cterm=NONE ctermfg=white ctermbg=black
+
+            " Make hilighted matching parents less annoying
+            highlight clear MatchParen
+            highlight link MatchParen Search
+
+            " Custom colors for NERDTree
+            highlight def link NERDTreeRO NERDTreeFile
+
+            " Make trailing spaces very visible
+            highlight SpecialKey ctermbg=Yellow guibg=Yellow
+
+            " Make menu selections visible
+            highlight PmenuSel ctermfg=black ctermbg=magenta
+
+            " The sign column slows down remote terminals
+            highlight clear SignColumn
+            highlight link SignColumn Ignore
+
+            " Markdown could be more fruit salady
+            highlight link markdownH1 PreProc
+            highlight link markdownH2 PreProc
+            highlight link markdownLink Character
+            highlight link markdownBold String
+            highlight link markdownItalic Statement
+            highlight link markdownCode Delimiter
+            highlight link markdownCodeBlock Delimiter
+            highlight link markdownListMarker Todo
         endif
-
-        " Turn off horrible coloring for CDATA in XML
-        highlight def link xmlCdata NONE
-
-        " taglist.vim's filenames is linked to LineNr by default, which is too dark
-        highlight def link MyTagListFileName Statement
-        highlight def link MyTagListTagName Question
-
-        " Custom search colors
-        highlight clear Search
-        highlight Search term=NONE cterm=NONE ctermfg=white ctermbg=black
-
-        " Make hilighted matching parents less annoying
-        highlight clear MatchParen
-        highlight link MatchParen Search
-
-        " Custom colors for NERDTree
-        highlight def link NERDTreeRO NERDTreeFile
-
-        " Make trailing spaces very visible
-        highlight SpecialKey ctermbg=Yellow guibg=Yellow
-
-        " Make menu selections visible
-        highlight PmenuSel ctermfg=black ctermbg=magenta
-
-        " The sign column slows down remote terminals
-        highlight clear SignColumn
-        highlight link SignColumn Ignore
-
-        " Markdown could be more fruit salady
-        highlight link markdownH1 PreProc
-        highlight link markdownH2 PreProc
-        highlight link markdownLink Character
-        highlight link markdownBold String
-        highlight link markdownItalic Statement
-        highlight link markdownCode Delimiter
-        highlight link markdownCodeBlock Delimiter
-        highlight link markdownListMarker Todo
 
         " }}} Color
 

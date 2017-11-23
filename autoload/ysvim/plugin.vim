@@ -22,6 +22,7 @@ scriptencoding utf8
                 Plug 'tomasr/molokai'
                 Plug 'altercation/vim-colors-solarized'
                 Plug 'ayu-theme/ayu-vim'
+                Plug 'morhetz/gruvbox'
 
             " }}} Appearance
 
