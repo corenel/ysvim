@@ -166,7 +166,7 @@ scriptencoding utf8
         if g:ysvim_color ==# 'ayu'
             set termguicolors     " enable true colors support
             " Correct RGB escape codes for vim inside tmux
-            if $TERM ==# 'screen-256color'
+            if !has('nvim') && $TERM ==# 'screen-256color'
                 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
                 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
             endif
@@ -218,7 +218,6 @@ scriptencoding utf8
             highlight link Folded Ignore
             highlight clear LineNr
             highlight! def link LineNr Ignore
-
         endif
 
         " Turn off horrible coloring for CDATA in XML
