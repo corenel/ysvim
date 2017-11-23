@@ -21,6 +21,7 @@ scriptencoding utf8
                 Plug 'mhinz/vim-startify'
                 Plug 'tomasr/molokai'
                 Plug 'altercation/vim-colors-solarized'
+                Plug 'ayu-theme/ayu-vim'
 
             " }}} Appearance
 

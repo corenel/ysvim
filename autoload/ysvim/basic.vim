@@ -59,7 +59,6 @@ scriptencoding utf8
         " Encoding {{{
 
         set encoding=utf8           " UTF-8 by default
-        scriptencoding utf8
         set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
         set termencoding=utf-8
 
@@ -154,8 +153,25 @@ scriptencoding utf8
 
         " Make sure colored syntax mode is on, and make it Just Work with 256-color terminals.
         set background=dark
-        let g:rehash256 = 1 " Something to do with Molokai?
-        colorscheme molokai
+
+        " Molokai color scheme
+        if g:ysvim_color ==# 'molokai'
+            let g:rehash256 = 1 " Something to do with Molokai?
+            colorscheme molokai
+        endif
+
+        " Ayu color scheme
+        if g:ysvim_color ==# 'ayu'
+            set termguicolors     " enable true colors support
+            " Correct RGB escape codes for vim inside tmux
+            if $TERM ==# 'screen-256color'
+                let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+                let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+            endif
+            let g:ayucolor='dark'   " for dark version of theme
+            colorscheme ayu
+        endif
+
         if !has('gui_running')
             if $TERM ==# 'xterm-256color' || $TERM ==# 'screen-256color' || $COLORTERM ==# 'gnome-terminal'
                 set t_Co=256
@@ -175,36 +191,40 @@ scriptencoding utf8
                 set t_ut=
             endif
         endif
+
         syntax on
 
-        " Window splits & ruler are too bright, so change to white on grey (non-GUI)
-        highlight StatusLine       cterm=NONE ctermbg=blue ctermfg=white
-        highlight StatusLineTerm   cterm=NONE ctermbg=blue ctermfg=white
-        highlight StatusLineNC     cterm=NONE ctermbg=black ctermfg=white
-        highlight StatusLineTermNC cterm=NONE ctermbg=black ctermfg=white
-        highlight VertSplit        cterm=NONE ctermbg=black ctermfg=white
+        if g:colors_name ==# 'molokai'
+            " Window splits & ruler are too bright, so change to white on grey (non-GUI)
+            highlight StatusLine       cterm=NONE ctermbg=blue ctermfg=white
+            highlight StatusLineTerm   cterm=NONE ctermbg=blue ctermfg=white
+            highlight StatusLineNC     cterm=NONE ctermbg=black ctermfg=white
+            highlight StatusLineTermNC cterm=NONE ctermbg=black ctermfg=white
+            highlight VertSplit        cterm=NONE ctermbg=black ctermfg=white
 
-        " taglist.vim's filenames is linked to LineNr by default, which is too dark
-        highlight def link MyTagListFileName Statement
-        highlight def link MyTagListTagName Question
+            " Some custom spell-checking colors
+            highlight SpellBad     term=underline cterm=underline ctermbg=NONE ctermfg=205
+            highlight SpellCap     term=underline cterm=underline ctermbg=NONE ctermfg=33
+            highlight SpellRare    term=underline cterm=underline ctermbg=NONE ctermfg=217
+            highlight SpellLocal   term=underline cterm=underline ctermbg=NONE ctermfg=72
+
+            " The Ignore color should be... ignorable
+            silent! highlight Ignore cterm=bold ctermfg=black ctermbg=bg
+            highlight clear FoldColumn
+            highlight def link FoldColumn Ignore
+            highlight clear Folded
+            highlight link Folded Ignore
+            highlight clear LineNr
+            highlight! def link LineNr Ignore
+
+        endif
 
         " Turn off horrible coloring for CDATA in XML
         highlight def link xmlCdata NONE
 
-        " Some custom spell-checking colors
-        highlight SpellBad     term=underline cterm=underline ctermbg=NONE ctermfg=205
-        highlight SpellCap     term=underline cterm=underline ctermbg=NONE ctermfg=33
-        highlight SpellRare    term=underline cterm=underline ctermbg=NONE ctermfg=217
-        highlight SpellLocal   term=underline cterm=underline ctermbg=NONE ctermfg=72
-
-        " The Ignore color should be... ignorable
-        silent! highlight Ignore cterm=bold ctermfg=black ctermbg=bg
-        highlight clear FoldColumn
-        highlight def link FoldColumn Ignore
-        highlight clear Folded
-        highlight link Folded Ignore
-        highlight clear LineNr
-        highlight! def link LineNr Ignore
+        " taglist.vim's filenames is linked to LineNr by default, which is too dark
+        highlight def link MyTagListFileName Statement
+        highlight def link MyTagListTagName Question
 
         " Custom search colors
         highlight clear Search

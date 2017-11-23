@@ -9,6 +9,9 @@ scriptencoding utf8
 " Custom Initialization {{{
 
     function! CustomInit()
+        " Set color scheme
+        let g:ysvim_color = 'molokai'
+
         " Add csutom plugins and their settings
         " let g:ysvim_leader = "\<Space>"
         " let g:ysvim_localleader = ','
