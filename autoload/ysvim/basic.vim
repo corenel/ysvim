@@ -154,6 +154,8 @@ scriptencoding utf8
         " Make sure colored syntax mode is on, and make it Just Work with 256-color terminals.
         set background=dark
 
+        let g:ysvim_color = get(g:, 'ysvim_color', 'molokai')
+
         " Molokai color scheme
         if g:ysvim_color ==# 'molokai'
             let g:rehash256 = 1 " Something to do with Molokai?
