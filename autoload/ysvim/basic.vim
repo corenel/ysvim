@@ -162,57 +162,61 @@ scriptencoding utf8
         " Color {{{
 
         " Custom colors
-        " let g:ysvim_brown = '905532'
-        " let g:ysvim_aqua =  '3AFFDB'
-        " let g:ysvim_blue = '689FB6'
-        " let g:ysvim_darkBlue = '44788E'
-        " let g:ysvim_purple = '834F79'
-        " let g:ysvim_lightPurple = '834F79'
-        " let g:ysvim_red = 'AE403F'
-        " let g:ysvim_beige = 'F5C06F'
-        " let g:ysvim_yellow = 'F09F17'
-        " let g:ysvim_orange = 'D4843E'
-        " let g:ysvim_darkOrange = 'F16529'
-        " let g:ysvim_pink = 'CB6F6F'
-        " let g:ysvim_salmon = 'EE6E73'
-        " let g:ysvim_green = '8FAA54'
-        " let g:ysvim_lightGreen = '31B53E'
-        " let g:ysvim_white = 'FFFFFF'
-        " let g:ysvim_rspec_red = 'FE405F'
-        " let g:ysvim_git_orange = 'F54D27'
+        let g:ysvim_brown = '905532'
+        let g:ysvim_aqua =  '3AFFDB'
+        let g:ysvim_blue = '689FB6'
+        let g:ysvim_darkBlue = '44788E'
+        let g:ysvim_purple = '834F79'
+        let g:ysvim_lightPurple = '834F79'
+        let g:ysvim_red = 'AE403F'
+        let g:ysvim_beige = 'F5C06F'
+        let g:ysvim_yellow = 'F09F17'
+        let g:ysvim_orange = 'D4843E'
+        let g:ysvim_darkOrange = 'F16529'
+        let g:ysvim_pink = 'CB6F6F'
+        let g:ysvim_salmon = 'EE6E73'
+        let g:ysvim_green = '8FAA54'
+        let g:ysvim_lightGreen = '31B53E'
+        let g:ysvim_white = 'FFFFFF'
+        let g:ysvim_rspec_red = 'FE405F'
+        let g:ysvim_git_orange = 'F54D27'
 
         " Make sure colored syntax mode is on, and make it Just Work with 256-color terminals.
         set background=dark
 
         let g:ysvim_color = get(g:, 'ysvim_color', 'molokai')
 
-        " Molokai color scheme
+        " molokai color scheme
         if g:ysvim_color ==# 'molokai'
             let g:rehash256 = 1 " Something to do with Molokai?
             colorscheme molokai
         endif
 
-        " Ayu color scheme
-        if g:ysvim_color ==# 'ayu'
-            let g:ayucolor='dark'   " for dark version of theme
-            colorscheme ayu
-        endif
-
-        if g:ysvim_color ==# 'gruvbox'
-            colorscheme gruvbox
-            let g:gruvbox_contrast_dark = 'hard'
-        endif
-
-
+        " gruvbox / ayu color scheme
         if g:ysvim_color ==# 'gruvbox' || g:ysvim_color ==# 'ayu'
-            set termguicolors     " enable true colors support
-            " Correct RGB escape codes for vim inside tmux
+            " enable true colors support
+            set termguicolors
+
+            " correct RGB escape codes for vim inside tmux
             if !has('nvim') && $TERM ==# 'screen-256color'
                 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
                 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
             endif
-        endif
 
+
+            " ayu color scheme
+            if g:ysvim_color ==# 'ayu'
+                let g:ayucolor='dark'   " for dark version of theme
+                colorscheme ayu
+            endif
+
+            " gruvbox color scheme
+            if g:ysvim_color ==# 'gruvbox'
+                colorscheme gruvbox
+                let g:gruvbox_contrast_dark = 'hard'
+                let g:gruvbox_sign_column = 'bg0'
+            endif
+        endif
 
         if !has('gui_running')
             if $TERM ==# 'xterm-256color' || $TERM ==# 'screen-256color' || $COLORTERM ==# 'gnome-terminal'
@@ -237,12 +241,7 @@ scriptencoding utf8
         syntax on
 
         if g:colors_name ==# 'molokai'
-            " Window splits & ruler are too bright, so change to white on grey (non-GUI)
-            highlight StatusLine       cterm=NONE ctermbg=blue ctermfg=white
-            highlight StatusLineTerm   cterm=NONE ctermbg=blue ctermfg=white
-            highlight StatusLineNC     cterm=NONE ctermbg=black ctermfg=white
-            highlight StatusLineTermNC cterm=NONE ctermbg=black ctermfg=white
-            highlight VertSplit        cterm=NONE ctermbg=black ctermfg=white
+            silent! highlight Ignore ctermfg=black ctermbg=bg cterm=bold
 
             " Some custom spell-checking colors
             highlight SpellBad     term=underline cterm=underline ctermbg=NONE ctermfg=205
@@ -250,39 +249,15 @@ scriptencoding utf8
             highlight SpellRare    term=underline cterm=underline ctermbg=NONE ctermfg=217
             highlight SpellLocal   term=underline cterm=underline ctermbg=NONE ctermfg=72
 
-            " The Ignore color should be... ignorable
-            silent! highlight Ignore cterm=bold ctermfg=black ctermbg=bg
-            highlight clear FoldColumn
-            highlight def link FoldColumn Ignore
-            highlight clear Folded
-            highlight link Folded Ignore
-            highlight clear LineNr
-            highlight! def link LineNr Ignore
-
-            " taglist.vim's filenames is linked to LineNr by default, which is too dark
-            highlight def link MyTagListFileName Statement
-            highlight def link MyTagListTagName Question
-
             " Custom search colors
             highlight clear Search
             highlight Search term=NONE cterm=NONE ctermfg=white ctermbg=black
-
-            " Make hilighted matching parents less annoying
-            highlight clear MatchParen
-            highlight link MatchParen Search
-
-            " Custom colors for NERDTree
-            highlight def link NERDTreeRO NERDTreeFile
 
             " Make trailing spaces very visible
             highlight SpecialKey ctermbg=Yellow guibg=Yellow
 
             " Make menu selections visible
             highlight PmenuSel ctermfg=black ctermbg=magenta
-
-            " The sign column slows down remote terminals
-            highlight clear SignColumn
-            highlight link SignColumn Ignore
 
             " Markdown could be more fruit salady
             highlight link markdownH1 PreProc
@@ -293,10 +268,46 @@ scriptencoding utf8
             highlight link markdownCode Delimiter
             highlight link markdownCodeBlock Delimiter
             highlight link markdownListMarker Todo
+
+            " Window splits & ruler are too bright, so change to white on grey (non-GUI)
+            highlight StatusLine       cterm=NONE ctermbg=blue ctermfg=white
+            highlight StatusLineTerm   cterm=NONE ctermbg=blue ctermfg=white
+            highlight StatusLineNC     cterm=NONE ctermbg=black ctermfg=white
+            highlight StatusLineTermNC cterm=NONE ctermbg=black ctermfg=white
+            highlight VertSplit        cterm=NONE ctermbg=black ctermfg=white
         endif
+
+        " set custom ignore color pattern
+        if g:ysvim_color ==# 'gruvbox'
+            silent! highlight Ignore guifg=#928374 ctermfg=244 guibg=NONE ctermbg=NONE gui=bold cterm=bold
+        endif
+
+        if g:ysvim_color ==# 'ayu'
+            silent! highlight Ignore guifg=#3E4B59 ctermfg=244 guibg=NONE ctermbg=NONE gui=bold cterm=bold
+        endif
+
+        " The Ignore color should be... ignorable
+        highlight clear FoldColumn
+        highlight def link FoldColumn Ignore
+        highlight clear Folded
+        highlight link Folded Ignore
+        highlight clear LineNr
+        highlight! def link LineNr Ignore
 
         " Turn off horrible coloring for CDATA in XML
         highlight def link xmlCdata NONE
+
+        " The sign column slows down remote terminals
+        highlight clear SignColumn
+        highlight link SignColumn Ignore
+
+        " Make hilighted matching parents less annoying
+        highlight clear MatchParen
+        highlight link MatchParen Search
+
+        " taglist.vim's filenames is linked to LineNr by default, which is too dark
+        highlight def link MyTagListFileName Statement
+        highlight def link MyTagListTagName Question
 
         " }}} Color
 

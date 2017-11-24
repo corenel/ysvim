@@ -8,7 +8,6 @@ scriptencoding utf8
 
 " Plugin Settings {{{
 
-    
     " Vim-Plug {{{
 
         nnoremap <Leader>pi :PlugInstall<CR>
