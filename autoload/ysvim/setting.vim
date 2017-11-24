@@ -8,9 +8,17 @@ scriptencoding utf8
 
 " Plugin Settings {{{
 
+    
+    " Vim-Plug {{{
+
+        nnoremap <Leader>pi :PlugInstall<CR>
+        nnoremap <Leader>pu :PlugUpdate<CR>
+
+    " }}} Vim-Plug
+
     " Appearance {{{
 
-        " Lightline {{{
+        " Lightline.vim {{{
 
         if g:ysvim_vim8 || g:ysvim_nvim
             let g:lightline = {
@@ -48,11 +56,11 @@ scriptencoding utf8
             set guioptions-=e  " Don't use GUI tabline
 
             function! LightlineFileformat()
-            return winwidth(0) > 70 ? &fileformat : ''
+                return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
             endfunction
 
             function! LightlineFiletype()
-            return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+                return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
             endfunction
 
             function! LightlineLinterWarnings() abort
@@ -89,9 +97,9 @@ scriptencoding utf8
             endfunction
         endif
 
-        " }}} Lightline
+        " }}} Lightline.vim
 
-        " startify {{{
+        " vim-startify {{{
 
         if g:ysvim_vim8 || g:ysvim_nvim
             augroup startifycustom:
@@ -101,10 +109,13 @@ scriptencoding utf8
 
             let g:startify_bookmarks = [
                 \ {'c': g:ysvim_home},
+                \ {'d': '$HOME/.dotfiles'},
                 \ {'z': '$HOME/.zshrc'},
+                \ {'u': '$HOME/.zshrc.custom'},
+                \ {'m': '$HOME/.tmux.conf'},
                 \ {'h': '$HOME/.ssh/config'},
                 \ {'o': '$HOME/Dropbox/Documents/Orgzly/'},
-                \ {'w': '$HOME/Workspace/'}
+                \ {'w': '$HOME/Workspace/'},
                 \ ]
 
             let g:startify_session_dir        = g:ysvim_home . '/.tmp/session'
@@ -114,17 +125,80 @@ scriptencoding utf8
             let g:startify_files_number       = 8
 
 
-            hi StartifyBracket ctermfg=240
-            hi StartifyFile    ctermfg=147
-            hi StartifyFooter  ctermfg=240
-            hi StartifyHeader  ctermfg=114
-            hi StartifyNumber  ctermfg=215
-            hi StartifyPath    ctermfg=245
-            hi StartifySlash   ctermfg=240
-            hi StartifySpecial ctermfg=240
+            if g:colors_name ==# 'molokai'
+                hi StartifyBracket ctermfg=240
+                hi StartifyFile    ctermfg=147
+                hi StartifyFooter  ctermfg=240
+                hi StartifyHeader  ctermfg=114
+                hi StartifyNumber  ctermfg=215
+                hi StartifyPath    ctermfg=245
+                hi StartifySlash   ctermfg=240
+                hi StartifySpecial ctermfg=240
+            endif
         endif
 
-        " }}} startify
+        " }}} vim-startify
+
+        " vim-devicons {{{
+
+        if g:ysvim_vim8 || g:ysvim_nvim
+            " loading the plugin
+            let g:webdevicons_enable = 1
+            " adding the flags to NERDTree
+            let g:webdevicons_enable_nerdtree = 1
+            " turn on/off file node glyph decorations (not particularly useful)
+            let g:WebDevIconsUnicodeDecorateFileNodes = 1
+            let g:DevIconsEnableFoldersOpenClose = 1
+            " use double-width(1) or single-width(0) glyphs
+            " only manipulates padding, has no effect on terminal or set(guifont) font
+            let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
+            " whether or not to show the nerdtree brackets around flags
+            let g:webdevicons_conceal_nerdtree_brackets = 1
+            " the amount of space to use after the glyph character (default ' ')
+            let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+            " Force extra padding in NERDTree so that the filetype icons line up vertically
+            let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
+            " specify OS to decide an icon for unix fileformat (not defined by default)
+            " this is useful for avoiding unnecessary system() call.
+            " let g:WebDevIconsOS = 'Darwin'
+        endif
+
+        " }}} vim-devicons
+
+        " vim-nerdtree-syntax-highlight {{{
+
+        if g:ysvim_vim8 || g:ysvim_nvim
+            " Disable Highlighting
+            " let g:NERDTreeDisableFileExtensionHighlight = 1
+            " let g:NERDTreeDisableExactMatchHighlight = 1
+            " let g:NERDTreeDisablePatternMatchHighlight = 1
+
+            " Highlight full name (not only icons). You need to add this if you don't have vim-devicons and want highlight.
+            " let g:NERDTreeFileExtensionHighlightFullName = 1
+            " let g:NERDTreeExactMatchHighlightFullName = 1
+            " let g:NERDTreePatternMatchHighlightFullName = 1
+
+            " Highlight folders using exact match
+            let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
+            let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
+
+            " Disable Highlight for specific file extension
+            " If you have vim-devicons you can customize your icons for each file type.
+            " let g:NERDTreeExtensionHighlightColor = {} "this line is needed to avoid error
+            " let g:NERDTreeExtensionHighlightColor['css'] = '' "assigning it to an empty string will skip highlight
+            "
+            " Disable uncommon file extensions highlighting (this is a good idea if you are experiencing lag when scrolling)
+            let g:NERDTreeLimitedSyntax = 1
+
+            " Disable all default file extensions highlighting (you can use this to easily customize which extensions you want to highlight)
+            " let g:NERDTreeSyntaxDisableDefaultExtensions = 1
+
+            " Customize which file extensions are enabled (you only need this if you set g:NERDTreeLimitedSyntax or g:NERDTreeSyntaxDisableDefaultExtensions)
+            " set g:NERDTreeExtensionHighlightColor if you want a custom color instead of the default one
+            " let g:NERDTreeSyntaxEnabledExtensions = ['hbs', 'lhs'] " enable highlight to .hbs and .lhs files with default colors
+        endif
+
+        " }}} vim-nerdtree-syntax-highlight
 
     " }}} Appearance
 

@@ -28,24 +28,41 @@ scriptencoding utf8
 
             " Enhancement {{{
 
-                Plug 'SirVer/ultisnips'
+                " Git
+                Plug 'tpope/vim-fugitive'
                 Plug 'airblade/vim-gitgutter'
+
+                " NerdTree
+                Plug 'scrooloose/nerdtree'
+                Plug 'Xuyuanp/nerdtree-git-plugin'
+                " you should load nerdtree-git-plugin before VimDevIcons.
+                Plug 'ryanoasis/vim-devicons'
+                Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+                " Tmux
                 Plug 'benmills/vimux'
-                Plug 'haya14busa/incsearch.vim'
+                Plug 'christoomey/vim-tmux-navigator'
+
+                " Snippets
+                Plug 'SirVer/ultisnips'
                 Plug 'honza/vim-snippets'
+
+                " Utils
+                Plug 'haya14busa/incsearch.vim'
+                Plug 'terryma/vim-multiple-cursors'
+                Plug 'tpope/vim-commentary'
                 Plug 'junegunn/fzf.vim'
                 Plug 'junegunn/goyo.vim'
                 Plug 'majutsushi/tagbar'
                 Plug 'mbbill/undotree'
                 Plug 'mileszs/ack.vim'
+
+                " Misc
                 Plug 'nathanaelkane/vim-indent-guides'
                 Plug 'qpkorr/vim-bufkill'
-                Plug 'scrooloose/nerdtree'
+                Plug 'raimondi/delimitmate'
                 Plug 'sheerun/vim-polyglot'
-                Plug 'terryma/vim-multiple-cursors'
-                Plug 'tpope/vim-commentary'
                 Plug 'tpope/vim-eunuch'
-                Plug 'tpope/vim-fugitive'
                 Plug 'tpope/vim-repeat'
                 Plug 'tpope/vim-rhubarb'
                 Plug 'tpope/vim-sleuth'
@@ -53,9 +70,6 @@ scriptencoding utf8
                 Plug 'tpope/vim-surround'
                 Plug 'tpope/vim-unimpaired'
                 Plug 'wellle/targets.vim'
-                Plug 'Xuyuanp/nerdtree-git-plugin'
-                Plug 'raimondi/delimitmate'
-                Plug 'christoomey/vim-tmux-navigator'
 
             " }}} Enhancement
 

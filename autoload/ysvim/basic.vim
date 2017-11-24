@@ -137,6 +137,16 @@ scriptencoding utf8
         " Ignore certain files in tab-completion
         set wildignore=*.class,*.o,*~,*.pyc,*.swp,*.bak,*.pyo,*/.DS_Store,.vscode,.git,node_modules
 
+        " font setting
+        if g:ysvim_linux
+            set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline\ Nerd\ Font\ Complete\ 14
+        endif
+
+        if g:ysvim_macos || g:ysvim_windows
+            set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline\ Nerd\ Font\ Complete:h14
+        endif
+
+
         " }}} Show
 
         " Scrollbar {{{
@@ -150,6 +160,26 @@ scriptencoding utf8
         " }}} Scrollbar
 
         " Color {{{
+
+        " Custom colors
+        " let g:ysvim_brown = '905532'
+        " let g:ysvim_aqua =  '3AFFDB'
+        " let g:ysvim_blue = '689FB6'
+        " let g:ysvim_darkBlue = '44788E'
+        " let g:ysvim_purple = '834F79'
+        " let g:ysvim_lightPurple = '834F79'
+        " let g:ysvim_red = 'AE403F'
+        " let g:ysvim_beige = 'F5C06F'
+        " let g:ysvim_yellow = 'F09F17'
+        " let g:ysvim_orange = 'D4843E'
+        " let g:ysvim_darkOrange = 'F16529'
+        " let g:ysvim_pink = 'CB6F6F'
+        " let g:ysvim_salmon = 'EE6E73'
+        " let g:ysvim_green = '8FAA54'
+        " let g:ysvim_lightGreen = '31B53E'
+        " let g:ysvim_white = 'FFFFFF'
+        " let g:ysvim_rspec_red = 'FE405F'
+        " let g:ysvim_git_orange = 'F54D27'
 
         " Make sure colored syntax mode is on, and make it Just Work with 256-color terminals.
         set background=dark
@@ -229,9 +259,6 @@ scriptencoding utf8
             highlight clear LineNr
             highlight! def link LineNr Ignore
 
-            " Turn off horrible coloring for CDATA in XML
-            highlight def link xmlCdata NONE
-
             " taglist.vim's filenames is linked to LineNr by default, which is too dark
             highlight def link MyTagListFileName Statement
             highlight def link MyTagListTagName Question
@@ -267,6 +294,9 @@ scriptencoding utf8
             highlight link markdownCodeBlock Delimiter
             highlight link markdownListMarker Todo
         endif
+
+        " Turn off horrible coloring for CDATA in XML
+        highlight def link xmlCdata NONE
 
         " }}} Color
 
@@ -423,7 +453,7 @@ scriptencoding utf8
     " Key Mappings {{{
 
     " Map ; to : and save a million keystrokes
-    map ; :
+    nnoremap ; :
 
     " For any plugins that use this, make their keymappings use comma
     " let g:mapleader = ','
@@ -446,7 +476,7 @@ scriptencoding utf8
     nmap \A :set formatoptions+=a<CR>:echo "autowrap enabled"<CR>
     nmap \a :set formatoptions-=a<CR>:echo "autowrap disabled"<CR>
     nmap \c :CLEAN<CR>:TEOL<CR>
-    nmap \e :NERDTreeToggle<CR>
+    nmap \e :NERDTreeToggle %:p:h<CR>
     nmap \r :NERDTreeFind<CR>
     nmap \f mt:Goyo<CR>'tzz
     nmap \g :Gstatus<CR>

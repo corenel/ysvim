@@ -11,8 +11,8 @@ scriptencoding utf8
     function! CustomInit()
         " Set color scheme
         " let g:ysvim_color = 'ayu'
-        " let g:ysvim_color = 'gruvbox'
-        let g:ysvim_color = 'molokai'
+        let g:ysvim_color = 'gruvbox'
+        " let g:ysvim_color = 'molokai'
 
         " Add csutom plugins and their settings
         " let g:ysvim_leader = "\<Space>"
