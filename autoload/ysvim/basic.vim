@@ -311,16 +311,16 @@ scriptencoding utf8
         " Navigation {{{
 
         " Make cursor always on center of screen by default
-        " if !exists('noalwayscenter')
-        "     " Calculate proper scrolloff
-        "     augroup centercursor:
-        "       autocmd!
-        "       autocmd VimEnter,WinEnter,VimResized,InsertLeave * :let &scrolloff = float2nr(floor(winheight(0)/2)+1)
-        "       autocmd InsertEnter * :let &scrolloff = float2nr(floor(winheight(0)/2))
-        "     augroup END
-        "     " Use <Enter> to keep center in insert mode, need proper scrolloff
-        "     inoremap <CR> <CR><C-o>zz
-        " endif
+        if !exists('noalwayscenter')
+            " Calculate proper scrolloff
+            augroup centercursor:
+              autocmd!
+              autocmd VimEnter,WinEnter,VimResized,InsertLeave * :let &scrolloff = float2nr(floor(winheight(0)/2)+1)
+              autocmd InsertEnter * :let &scrolloff = float2nr(floor(winheight(0)/2))
+            augroup END
+            " Use <Enter> to keep center in insert mode, need proper scrolloff
+            inoremap <CR> <CR><C-o>zz
+        endif
 
         set scroll=4                " Number of lines to scroll with ^U/^D
         set scrolloff=15            " Keep cursor away from this many chars top/bot
@@ -480,7 +480,7 @@ scriptencoding utf8
     nmap <C-b> :tabprev<CR>
 
     " Add new line without entering insert mode
-    nmap <S-Enter> O<Esc>
+    nmap <S-CR> O<Esc>
     nmap <CR> o<Esc>
 
     " Emacs-like bindings in insert mode
@@ -504,12 +504,6 @@ scriptencoding utf8
     " Use the space key to toggle folds
     " nnoremap <space> za
     " vnoremap <space> zf
-
-    " Super fast window movement shortcuts
-    " nmap <C-j> <C-W>j
-    " nmap <C-k> <C-W>k
-    " nmap <C-h> <C-W>h
-    " nmap <C-l> <C-W>l
 
     " Ctrl-a: Go to begin of line
     inoremap <C-a> <Home>
