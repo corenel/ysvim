@@ -173,9 +173,9 @@ scriptencoding utf8
             " let g:NERDTreeDisablePatternMatchHighlight = 1
 
             " Highlight full name (not only icons). You need to add this if you don't have vim-devicons and want highlight.
-            " let g:NERDTreeFileExtensionHighlightFullName = 1
-            " let g:NERDTreeExactMatchHighlightFullName = 1
-            " let g:NERDTreePatternMatchHighlightFullName = 1
+            let g:NERDTreeFileExtensionHighlightFullName = 1
+            let g:NERDTreeExactMatchHighlightFullName = 1
+            let g:NERDTreePatternMatchHighlightFullName = 1
 
             " Highlight folders using exact match
             let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
