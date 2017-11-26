@@ -230,13 +230,24 @@ scriptencoding utf8
 
         if g:ysvim_vim8 || g:ysvim_nvim
             " Styling to use · instead of +/-
-            let g:gitgutter_sign_added = '∙'
-            let g:gitgutter_sign_modified = '∙'
-            let g:gitgutter_sign_removed = '∙'
-            let g:gitgutter_sign_modified_removed = '∙'
+            " let g:gitgutter_sign_added = '∙'
+            " let g:gitgutter_sign_modified = '∙'
+            " let g:gitgutter_sign_removed = '∙'
+            " let g:gitgutter_sign_modified_removed = '∙'
         endif
 
         " }}} GitGutter
+
+        " gv.vim {{{
+
+        if g:ysvim_vim8 || g:ysvim_nvim
+            " open commit browser
+            nnoremap <Leader>gv :GV<CR>
+            " only list commits that affects the current file
+            nnoremap <Leader>gh :GV!<CR>
+        endif
+
+        " }}} gv.vim
 
         " " SuperTab {{{
 
@@ -341,50 +352,50 @@ scriptencoding utf8
 
         " }}} tagbar
 
-        " vimux {{{
+        " " vimux {{{
 
-        if g:ysvim_vim8 || g:ysvim_nvim
-            " Run the current file with python3
-            augroup vimuxruncmd:
-                autocmd!
-                autocmd Filetype python nnoremap <buffer> <Leader>rr :update<Bar>:call VimuxRunCommandInDir("clear; python3 " . bufname("%"), 0)<CR>
-            augroup END
+        " if g:ysvim_vim8 || g:ysvim_nvim
+        "     " Run the current file with python3
+        "     augroup vimuxruncmd:
+        "         autocmd!
+        "         autocmd Filetype python nnoremap <buffer> <Leader>rr :update<Bar>:call VimuxRunCommandInDir("clear; python3 " . bufname("%"), 0)<CR>
+        "     augroup END
 
-            " Run REPL with python3
-            map <Leader>rp :call VimuxRunCommand("clear; python3", 0)<CR>
+        "     " Run REPL with python3
+        "     map <Leader>rp :call VimuxRunCommand("clear; python3", 0)<CR>
 
-            " Prompt for a command to run
-            map <Leader>vp :VimuxPromptCommand<CR>
+        "     " Prompt for a command to run
+        "     map <Leader>vp :VimuxPromptCommand<CR>
 
-            " Run last command executed by VimuxRunCommand
-            map <Leader>vl :VimuxRunLastCommand<CR>
+        "     " Run last command executed by VimuxRunCommand
+        "     map <Leader>vl :VimuxRunLastCommand<CR>
 
-            " Inspect runner pane
-            map <Leader>vi :VimuxInspectRunner<CR>
+        "     " Inspect runner pane
+        "     map <Leader>vi :VimuxInspectRunner<CR>
 
-            " Close vim tmux runner opened by VimuxRunCommand
-            map <Leader>vq :VimuxCloseRunner<CR>
+        "     " Close vim tmux runner opened by VimuxRunCommand
+        "     map <Leader>vq :VimuxCloseRunner<CR>
 
-            " Interrupt any command running in the runner pane
-            map <Leader>vx :VimuxInterruptRunner<CR>
+        "     " Interrupt any command running in the runner pane
+        "     map <Leader>vx :VimuxInterruptRunner<CR>
 
-            " Zoom the runner pane (use <bind-key> z to restore runner pane)
-            map <Leader>vz :call VimuxZoomRunner()<CR>
+        "     " Zoom the runner pane (use <bind-key> z to restore runner pane)
+        "     map <Leader>vz :call VimuxZoomRunner()<CR>
 
-            " Toggle pane
-            map <Leader>vt :call VimuxTogglePane()<CR>
+        "     " Toggle pane
+        "     map <Leader>vt :call VimuxTogglePane()<CR>
 
-            " Always use vertical split pane
-            let g:VimuxOrientation = 'v'
+        "     " Always use vertical split pane
+        "     let g:VimuxOrientation = 'v'
 
-            " Always create new pane
-            let g:VimuxUseNearest = 0
+        "     " Always create new pane
+        "     let g:VimuxUseNearest = 0
 
-            " Vimux height percent
-            let g:VimuxHeight = '20'
-        endif
+        "     " Vimux height percent
+        "     let g:VimuxHeight = '20'
+        " endif
 
-        " }}} vimux
+        " " }}} vimux
 
         " vim-tmux-navigator {{{
 
@@ -405,6 +416,51 @@ scriptencoding utf8
         endif
 
         " }}} vim-tmux-navigator
+
+        " codi.vim {{{
+
+        if g:ysvim_vim8 || g:ysvim_nvim
+            let g:codi#interpreters = {
+                \ 'python': {
+                    \ 'bin': 'python3',
+                    \ 'prompt': '^\(>>>\|\.\.\.\) ',
+                    \ },
+                \ }
+            " activates Codi for the current buffer
+            nnoremap <Leader>ca :Codi<CR>
+            " toggles Codi for the current buffer
+            nnoremap <Leader>cs :Codi!<CR>
+            " deactivates Codi for the current buffer
+            nnoremap <Leader>cd :Codi!<CR>
+        endif
+
+        " }}} codi.vim
+
+        " tabular {{{
+
+        if g:ysvim_vim8 || g:ysvim_nvim
+            if exists(':Tabularize')
+                " align =
+                nmap <Leader>a= :Tabularize /=<CR>
+                vmap <Leader>a= :Tabularize /=<CR>
+                " align :
+                nmap <Leader>a; :Tabularize /:\zs<CR>
+                vmap <Leader>a; :Tabularize /:\zs<CR>
+                " align |
+                nmap <Leader>a| :Tabularize /|<CR>
+                vmap <Leader>a| :Tabularize /|<CR>
+            endif
+        endif
+
+        " }}} tabular
+
+        " vim-table-mode {{{
+
+        if g:ysvim_vim8 || g:ysvim_nvim
+            let g:table_mode_corner='|'
+        endif
+
+        " }}} vim-table-mode
 
     " }}} Enhancement
 
@@ -444,7 +500,7 @@ scriptencoding utf8
 
             nmap <Leader>en <Plug>(ale_next)
             nmap <Leader>ep <Plug>(ale_previous)
-            nnoremap <Leader>ts :ALEToggle<CR>
+            nnoremap <Leader>es :ALEToggle<CR>
         endif
 
         " }}} ALE
@@ -510,22 +566,9 @@ scriptencoding utf8
             let g:UltiSnipsRemoveSelectModeMappings = 0
             inoremap <silent> <c-u> <c-r>=cm#sources#ultisnips#trigger_or_popup("\<Plug>(ultisnips_expand)")<cr>
 
-            " If 'omnifunc' is the only available option, you may register it as a source for NCM.
-            augroup custom_cm_setup
-                autocmd!
-                autocmd User CmSetup call cm#register_source({
-                    \ 'name' : 'vimtex',
-                    \ 'priority': 8,
-                    \ 'scoping': 1,
-                    \ 'scopes': ['tex'],
-                    \ 'abbreviation': 'tex',
-                    \ 'cm_refresh_patterns': g:vimtex#re#ncm,
-                    \ 'cm_refresh': {'omnifunc': 'vimtex#complete#omnifunc'},
-                    \ })
-            augroup END
-
             " Add preview to see docstrings in the complete window.
-            let g:cm_completeopt = 'menu,menuone,noinsert,noselect,preview'
+            " let g:cm_completeopt = 'menu,menuone,noinsert,noselect,preview'
+            let g:cm_completeopt = 'menu,menuone,noinsert,noselect'
 
             " Close the prevew window automatically on InsertLeave
             " https://github.com/davidhalter/jedi-vim/blob/eba90e615d73020365d43495fca349e5a2d4f995/ftplugin/python/jedi.vim#L44
@@ -564,36 +607,32 @@ scriptencoding utf8
 
         " }}} vim-autoformat
 
-        " python-mode {{{
+        " " python-mode {{{
 
-        if g:ysvim_vim8 || g:ysvim_nvim
-            " general settings
-            let g:pymode_python = 'python3'
-            let g:pymode_paths = [
-                \ '/usr/local/lib/python3.6/site-packages',
-                \ '/usr/local/lib/python3.5/dist-packages'
-                \ ]
+        " if g:ysvim_vim8 || g:ysvim_nvim
+        "     " general settings
+        "     let g:pymode_python = 'python3'
+        "     let g:pymode_paths = [
+        "         \ '/usr/local/lib/python3.6/site-packages',
+        "         \ '/usr/local/lib/python3.5/dist-packages'
+        "         \ ]
 
-            " virtualenv
-            let g:pymode_virtualenv = 1
-            let g:pymode_virtualenv_path = $VIRTUAL_ENV
+        "     " virtualenv
+        "     let g:pymode_virtualenv = 1
+        "     let g:pymode_virtualenv_path = $VIRTUAL_ENV
 
-            " use ale instead of pymode_lint
-            let g:pymode_lint = 0
+        "     " use ale instead of pymode_lint
+        "     let g:pymode_lint = 0
 
-            " use rope for refactoring
-            let g:pymode_rope = 1
-            let g:pymode_rope_lookup_project = 0
-            let g:pymode_rope_autoimport = 1
-            let g:pymode_rope_complete_on_dot = 0
-        endif
+        "     " use rope for refactoring
+        "     let g:pymode_rope = 1
+        "     let g:pymode_rope_lookup_project = 0
+        "     let g:pymode_rope_autoimport = 1
+        "     let g:pymode_rope_complete_on_dot = 0
+        " endif
 
 
-        " }}} python-mode
-
-    " }}} Intellisense
-
-    " Feature {{{
+        " " }}} python-mode
 
         " vimtex {{{
 
@@ -637,6 +676,23 @@ scriptencoding utf8
                     \ ],
                     \}
 
+            " If 'omnifunc' is the only available option, you may register it as a source for NCM.
+            augroup custom_cm_setup
+                autocmd!
+                if exists(':VimtexCompile')
+                    autocmd User CmSetup call cm#register_source({
+                        \ 'name' : 'vimtex',
+                        \ 'priority': 8,
+                        \ 'scoping': 1,
+                        \ 'scopes': ['tex'],
+                        \ 'abbreviation': 'tex',
+                        \ 'cm_refresh_patterns': g:vimtex#re#ncm,
+                        \ 'cm_refresh': {'omnifunc': 'vimtex#complete#omnifunc'},
+                        \ })
+                endif
+            augroup END
+
+
         endif
 
         " }}} vimtex
@@ -649,6 +705,65 @@ scriptencoding utf8
 
         " }}} vim-orgmode
 
-    " }}} Feature
+        " ncm-clang {{{
+
+        if g:ysvim_nvim
+            augroup ncm_clang_custom
+                autocmd BufEnter *.cpp,*.h,*.hpp,*.hxx let g:ale_cpp_clang_options = join(ncm_clang#compilation_info()['args'], ' ')
+            augroup END
+        endif
+
+        " }}} ncm-clang
+
+        " clang-complete {{{
+
+        if g:ysvim_vim8 || g:ysvim_nvim
+            let g:clang_make_default_keymappings = 0
+            let g:clang_auto_user_options = ''
+
+            func! g:WrapClangGoTo()
+                let cwd = getcwd()
+                let info = ncm_clang#compilation_info()
+                exec 'cd ' . info['directory']
+                try
+                    let b:clang_user_options = join(info['args'], ' ')
+                    call g:ClangGotoDeclaration()
+                catch
+                endtry
+                " restore
+                exec 'cd ' . cwd
+            endfunc
+
+            augroup clang_complete_custom
+                autocmd!
+                autocmd FileType c,cpp nnoremap <buffer> gd :call WrapClangGoTo()<CR>
+            augroup END
+        endif
+
+        " }}} clang-complete
+
+        " vim-markdown {{{
+
+        if g:ysvim_vim8 || g:ysvim_nvim
+            let g:vim_markdown_initial_foldlevel=100
+        endif
+
+        " }}} vim-markdown
+
+        " jedi.vim {{{
+
+        if g:ysvim_vim8 || g:ysvim_nvim
+            let g:jedi#auto_initialization = 0
+            let g:jedi#auto_vim_configuration = 0
+            let g:jedi#show_call_signatures = 0
+            augroup custom_jedi_vim
+                autocmd!
+                autocmd FileType python nmap <buffer> <C-]> :call jedi#goto_definitions()<CR>
+            augroup END
+        endif
+
+        " }}} jedi.vim
+
+    " }}} Intellisense
 
 " }}} Plugin Settings

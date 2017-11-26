@@ -215,6 +215,9 @@ scriptencoding utf8
                 colorscheme gruvbox
                 let g:gruvbox_contrast_dark = 'hard'
                 let g:gruvbox_sign_column = 'bg0'
+                " A black background would be better for remote terminal 
+                " due to the low FPS
+                hi Normal ctermbg=none
             endif
         endif
 
@@ -467,9 +470,7 @@ scriptencoding utf8
     nnoremap ; :
 
     " For any plugins that use this, make their keymappings use comma
-    " let g:mapleader = ','
-    " let g:maplocalleader = ','
-    let g:mapleader = get(g:, 'ysvim_leader', "\<Space>")
+    let g:mapleader = get(g:, 'ysvim_leader', ',')
     let g:maplocalleader = get(g:, 'ysvim_localleader', ',')
 
     " Useful macros I use the most
@@ -543,8 +544,8 @@ scriptencoding utf8
     cnoremap <C-g>  <C-c>
 
     " Use the space key to toggle folds
-    " nnoremap <space> za
-    " vnoremap <space> zf
+    nnoremap <space> za
+    vnoremap <space> zf
 
     " Ctrl-a: Go to begin of line
     inoremap <C-a> <Home>

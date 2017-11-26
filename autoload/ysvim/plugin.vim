@@ -19,6 +19,9 @@ scriptencoding utf8
 
                 Plug 'itchyny/lightline.vim'
                 Plug 'mhinz/vim-startify'
+                Plug 'junegunn/goyo.vim'
+
+                " Color Schemes
                 Plug 'tomasr/molokai'
                 Plug 'altercation/vim-colors-solarized'
                 Plug 'ayu-theme/ayu-vim'
@@ -30,45 +33,60 @@ scriptencoding utf8
 
                 " Git
                 Plug 'tpope/vim-fugitive'
+                Plug 'junegunn/gv.vim'
                 Plug 'airblade/vim-gitgutter'
 
                 " NerdTree
                 Plug 'scrooloose/nerdtree'
                 Plug 'Xuyuanp/nerdtree-git-plugin'
-                " you should load nerdtree-git-plugin before VimDevIcons.
-                Plug 'ryanoasis/vim-devicons'
+                Plug 'ryanoasis/vim-devicons' "load nerdtree-git-plugin before VimDevIcons loads.
                 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
                 " Tmux
-                Plug 'benmills/vimux'
+                " Plug 'benmills/vimux'
                 Plug 'christoomey/vim-tmux-navigator'
 
                 " Snippets
                 Plug 'SirVer/ultisnips'
                 Plug 'honza/vim-snippets'
 
-                " Utils
+                " Search
                 Plug 'haya14busa/incsearch.vim'
+                Plug 'mileszs/ack.vim'
+                Plug 'junegunn/fzf.vim'
+
+                " Editing
+                Plug 'godlygeek/tabular'
+                Plug 'mbbill/undotree'
+                Plug 'nathanaelkane/vim-indent-guides'
+                Plug 'sheerun/vim-polyglot'
                 Plug 'terryma/vim-multiple-cursors'
                 Plug 'tpope/vim-commentary'
-                Plug 'junegunn/fzf.vim'
-                Plug 'junegunn/goyo.vim'
-                Plug 'majutsushi/tagbar'
-                Plug 'mbbill/undotree'
-                Plug 'mileszs/ack.vim'
-
-                " Misc
-                Plug 'nathanaelkane/vim-indent-guides'
-                Plug 'qpkorr/vim-bufkill'
-                Plug 'raimondi/delimitmate'
-                Plug 'sheerun/vim-polyglot'
                 Plug 'tpope/vim-eunuch'
                 Plug 'tpope/vim-repeat'
                 Plug 'tpope/vim-rhubarb'
                 Plug 'tpope/vim-sleuth'
-                Plug 'tpope/vim-speeddating'
+                Plug 'tpope/vim-speeddating', {'for': 'org'}
                 Plug 'tpope/vim-surround'
                 Plug 'tpope/vim-unimpaired'
+
+                if g:ysvim_nvim
+                    Plug 'roxma/vim-paste-easy'
+                endif
+
+                if g:ysvim_vim8
+                    Plug 'tmux-plugins/vim-tmux-focus-events'
+                endif
+                Plug 'roxma/vim-tmux-clipboard'
+
+                " Utils
+                Plug 'majutsushi/tagbar'
+                Plug 'metakirby5/codi.vim'
+                Plug 'roxma/vim-window-resize-easy'
+
+                " Misc
+                Plug 'qpkorr/vim-bufkill'
+                Plug 'raimondi/delimitmate'
                 Plug 'wellle/targets.vim'
 
             " }}} Enhancement
@@ -82,18 +100,24 @@ scriptencoding utf8
                     Plug 'maralla/completor.vim'
                 elseif  g:ysvim_nvim
                     Plug 'roxma/nvim-completion-manager'
-                    Plug 'roxma/ncm-clang'
                 endif
 
+                " Languages specific plugins
+                " Plug 'python-mode/python-mode', {'for': 'python'}
+                Plug 'davidhalter/jedi-vim', {'for': 'python'}
+                Plug 'jceb/vim-orgmode', {'for': 'org'}
+                Plug 'lervag/vimtex', {'for': ['bib', 'tex']}
+                if  g:ysvim_nvim
+                    Plug 'roxma/ncm-clang', {'for': ['c', 'cpp']}
+                endif
+                Plug 'Rip-Rip/clang_complete', {'for': ['c', 'cpp']}
+                Plug 'roxma/ncm-github'
+                Plug 'dhruvasagar/vim-table-mode', {'for': 'markdown'}
+                Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+                Plug 'mzlogin/vim-markdown-toc', {'for': 'markdown'}
+                Plug 'lervag/neco-vim', {'for': 'vim'}
+
             " }}} Intellisense
-
-            " Feature {{{
-
-                Plug 'jceb/vim-orgmode'
-                Plug 'lervag/vimtex'
-                Plug 'python-mode/python-mode'
-
-            " }}} Feature
 
             call plug#end()
         endif
