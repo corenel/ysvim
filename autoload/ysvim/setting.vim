@@ -607,32 +607,33 @@ scriptencoding utf8
 
         " }}} vim-autoformat
 
-        " " python-mode {{{
+        " python-mode {{{
 
-        " if g:ysvim_vim8 || g:ysvim_nvim
-        "     " general settings
-        "     let g:pymode_python = 'python3'
-        "     let g:pymode_paths = [
-        "         \ '/usr/local/lib/python3.6/site-packages',
-        "         \ '/usr/local/lib/python3.5/dist-packages'
-        "         \ ]
+        if g:ysvim_vim8 || g:ysvim_nvim
+            " general settings
+            let g:pymode_python = 'python3'
+            let g:pymode_paths = [
+                \ '/usr/local/lib/python3.6/site-packages',
+                \ '/usr/local/lib/python3.5/dist-packages'
+                \ ]
 
-        "     " virtualenv
-        "     let g:pymode_virtualenv = 1
-        "     let g:pymode_virtualenv_path = $VIRTUAL_ENV
+            " virtualenv
+            let g:pymode_virtualenv = 1
+            let g:pymode_virtualenv_path = $VIRTUAL_ENV
 
-        "     " use ale instead of pymode_lint
-        "     let g:pymode_lint = 0
+            " use ale instead of pymode_lint
+            let g:pymode_lint = 0
 
-        "     " use rope for refactoring
-        "     let g:pymode_rope = 1
-        "     let g:pymode_rope_lookup_project = 0
-        "     let g:pymode_rope_autoimport = 1
-        "     let g:pymode_rope_complete_on_dot = 0
-        " endif
+            " use rope for refactoring
+            " DISABLE ropr and USE jedi.vim INSTEAD
+            let g:pymode_rope = 0
+            let g:pymode_rope_lookup_project = 0
+            let g:pymode_rope_autoimport = 1
+            let g:pymode_rope_complete_on_dot = 0
+        endif
 
 
-        " " }}} python-mode
+        " }}} python-mode
 
         " vimtex {{{
 
@@ -753,13 +754,21 @@ scriptencoding utf8
         " jedi.vim {{{
 
         if g:ysvim_vim8 || g:ysvim_nvim
+            " don't initialize
             let g:jedi#auto_initialization = 0
             let g:jedi#auto_vim_configuration = 0
             let g:jedi#show_call_signatures = 0
-            augroup custom_jedi_vim
-                autocmd!
-                autocmd FileType python nmap <buffer> <C-]> :call jedi#goto_definitions()<CR>
-            augroup END
+
+            let g:jedi#force_py_version = 3
+
+            " key bindings
+            let g:jedi#goto_command = '<leader>jc'
+            let g:jedi#goto_assignments_command = '<leader>jg'
+            let g:jedi#goto_definitions_command = '<leader>jd'
+            let g:jedi#documentation_command = '<leader>jk'
+            let g:jedi#usages_command = '<leader>jn'
+            let g:jedi#completions_command = '<C-Space>'
+            let g:jedi#rename_command = '<leader>jr'
         endif
 
         " }}} jedi.vim

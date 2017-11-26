@@ -103,7 +103,7 @@ scriptencoding utf8
                 endif
 
                 " Languages specific plugins
-                " Plug 'python-mode/python-mode', {'for': 'python'}
+                Plug 'python-mode/python-mode', {'for': 'python'}
                 Plug 'davidhalter/jedi-vim', {'for': 'python'}
                 Plug 'jceb/vim-orgmode', {'for': 'org'}
                 Plug 'lervag/vimtex', {'for': ['bib', 'tex']}
