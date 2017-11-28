@@ -117,7 +117,7 @@ scriptencoding utf8
                 \ {'w': '$HOME/Workspace/'},
                 \ ]
 
-            let g:startify_session_dir        = g:ysvim_home . '/.tmp/session'
+            let g:startify_session_dir        = g:ysvim_cache . '/session'
             let g:startify_change_to_vcs_root = 1
             let g:startify_update_oldfiles    = 1
             let g:startify_change_to_dir      = 1
@@ -276,9 +276,9 @@ scriptencoding utf8
             let g:undotree_SetFocusWhenToggle = 1
             nmap <silent> <Leader>u :UndotreeToggle<CR>
 
-            call ysvim#util#check_dir(g:ysvim_home . '/.tmp/undotree')
+            call ysvim#util#check_dir(g:ysvim_cache . '/undotree')
             if has('persistent_undo')
-                let &undodir = g:ysvim_home . '/.tmp/undotree'
+                let &undodir = g:ysvim_cache . '/undotree'
                 set undofile
             endif
         endif
@@ -348,6 +348,8 @@ scriptencoding utf8
 
         if g:ysvim_vim8 || g:ysvim_nvim
             nmap \s :TagbarToggle<CR>
+            " The tags are not sorted according to their name
+            let g:tagbar_sort = 0
         endif
 
         " }}} tagbar
@@ -461,6 +463,14 @@ scriptencoding utf8
         endif
 
         " }}} vim-table-mode
+
+        " NerdTree {{{
+
+        if g:ysvim_vim8 || g:ysvim_nvim
+            let g:NERDTreeQuitOnOpen=1
+        endif
+
+        " }}} NerdTree
 
     " }}} Enhancement
 

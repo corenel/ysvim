@@ -409,10 +409,6 @@ scriptencoding utf8
         set undofile
         set undolevels=1000
 
-        if !isdirectory(expand(g:ysvim_home . '/undotree'))
-            call mkdir(g:ysvim_home . '/undotree', 'p')
-        endif
-        set undodir=~/.vim/undotree
         " }}} History
 
         " Search {{{

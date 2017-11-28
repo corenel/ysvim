@@ -19,6 +19,7 @@
 " Global Setiings {{{
 
     let g:ysvim_home = $HOME . '/.ysvim'
+    let g:ysvim_cache = g:ysvim_home . '/cache'
     let g:ysvim_config = $HOME.'/.ysvimrc'
     let g:ysvim_version = '0.1.0'
     lockvar g:ysvim_version

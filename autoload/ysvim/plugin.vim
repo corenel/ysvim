@@ -53,6 +53,7 @@ scriptencoding utf8
                 " Search
                 Plug 'haya14busa/incsearch.vim'
                 Plug 'mileszs/ack.vim'
+                Plug 'junegunn/fzf', { 'do': './install --no-key-bindings --no-completion --no-update-rc' } " only install fzf for vim
                 Plug 'junegunn/fzf.vim'
 
                 " Editing
@@ -103,18 +104,37 @@ scriptencoding utf8
                 endif
 
                 " Languages specific plugins
+                " Python
                 Plug 'python-mode/python-mode', {'for': 'python'}
                 Plug 'davidhalter/jedi-vim', {'for': 'python'}
-                Plug 'jceb/vim-orgmode', {'for': 'org'}
-                Plug 'lervag/vimtex', {'for': ['bib', 'tex']}
+                " C++
                 if  g:ysvim_nvim
                     Plug 'roxma/ncm-clang', {'for': ['c', 'cpp']}
                 endif
                 Plug 'Rip-Rip/clang_complete', {'for': ['c', 'cpp']}
+                " HTML
+                Plug 'othree/html5.vim', {'for': 'html'}
+                Plug 'mattn/emmet-vim', {'for': 'html'}
+                Plug 'mustache/vim-mustache-handlebars', {'for': 'html'}
+                " CSS
+                Plug 'calebeby/ncm-css', {'for': ['html', 'css']}
+                " Javascript
+                Plug 'ternjs/tern_for_vim', { 'do': 'npm install' } " only install ternjs for vim
+                Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
+                " Typescript
+                Plug 'mhartington/nvim-typescript', {'for': 'typescript'}
+                Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
+                " Org-mode
+                Plug 'jceb/vim-orgmode', {'for': 'org'}
+                " LaTex
+                Plug 'lervag/vimtex', {'for': ['bib', 'tex']}
+                " Github repos and users
                 Plug 'roxma/ncm-github'
+                " Markdown
                 Plug 'dhruvasagar/vim-table-mode', {'for': 'markdown'}
                 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
                 Plug 'mzlogin/vim-markdown-toc', {'for': 'markdown'}
+                " Vim Script
                 Plug 'lervag/neco-vim', {'for': 'vim'}
 
             " }}} Intellisense
