@@ -207,8 +207,8 @@ scriptencoding utf8
 
         if g:ysvim_vim8 || g:ysvim_nvim
             " Replaces Ctrl-P, FuzzyFinder and Command-T
-            set runtimepath+=/usr/local/opt/fzf
-            set runtimepath+=~/.fzf
+            " set runtimepath+=/usr/local/opt/fzf
+            " set runtimepath+=~/.fzf
             nmap <Leader>fb :Buffers<CR>
             nmap <Leader>ft :Tags<CR>
             nmap <Leader>ff :Files<CR>
