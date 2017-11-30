@@ -603,16 +603,18 @@ scriptencoding utf8
         " vim-autoformat {{{
 
         if g:ysvim_vim8 || g:ysvim_nvim
-            let g:formatter_yapf_style = 'google'
             let g:formatters_python = ['yapf']
+            let g:formatter_yapf_style = 'google'
             let g:formatters_c = ['clangformat']
             let g:formatters_cpp = ['clangformat']
             " let g:autoformat_verbosemode = 1
-            augroup vimautoformat:
-                autocmd!
-                autocmd BufWrite *.py :Autoformat
-                autocmd BufWrite *.c,*.h,*.cpp,*.hpp :Autoformat
-            augroup End
+            " augroup vimautoformat:
+            "     autocmd!
+            "     autocmd BufWrite *.py :Autoformat
+            "     autocmd BufWrite *.c,*.h,*.cpp,*.hpp :Autoformat
+            " augroup End
+            nnoremap <Leader>a :Autoformat<CR>
+            vnoremap <Leader>a :Autoformat<CR>
         endif
 
         " }}} vim-autoformat
