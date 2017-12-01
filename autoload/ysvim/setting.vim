@@ -767,9 +767,9 @@ scriptencoding utf8
 
         if g:ysvim_vim8 || g:ysvim_nvim
             " don't initialize
-            let g:jedi#auto_initialization = 0
+            " let g:jedi#auto_initialization = 0
             let g:jedi#auto_vim_configuration = 0
-            let g:jedi#show_call_signatures = 0
+            " let g:jedi#show_call_signatures = 0
 
             let g:jedi#force_py_version = 3
 
@@ -784,6 +784,33 @@ scriptencoding utf8
         endif
 
         " }}} jedi.vim
+
+        " vim-javascript {{{
+
+        if g:ysvim_vim8 || g:ysvim_nvim
+            let g:javascript_plugin_jsdoc = 1
+
+            " augroup javascript_folding
+            "     au!
+            "     au FileType javascript setlocal foldmethod=syntax
+            " augroup END
+
+            " define conceal characters
+            let g:javascript_conceal_function             = 'ƒ'
+            let g:javascript_conceal_null                 = 'ø'
+            let g:javascript_conceal_this                 = '@'
+            let g:javascript_conceal_return               = '⇚'
+            let g:javascript_conceal_undefined            = '¿'
+            let g:javascript_conceal_NaN                  = 'ℕ'
+            let g:javascript_conceal_prototype            = '¶'
+            let g:javascript_conceal_static               = '•'
+            let g:javascript_conceal_super                = 'Ω'
+            let g:javascript_conceal_arrow_function       = '⇒'
+            " let g:javascript_conceal_noarg_arrow_function = '🞅'
+            " let g:javascript_conceal_underscore_arrow_function = '🞅'
+        endif
+
+        " }}} vim-javascript
 
     " }}} Intellisense
 

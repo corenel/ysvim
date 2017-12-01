@@ -490,6 +490,7 @@ scriptencoding utf8
     nmap \g :Gstatus<CR>
     nmap \h :nohlsearch<CR>
     nmap \i vip:sort<CR>
+    nmap \l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
     nmap \o :set paste!<CR>:set paste?<CR>
     nmap \p :ProseMode<CR>
     nmap \v :Startify<CR>

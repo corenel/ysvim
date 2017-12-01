@@ -121,6 +121,7 @@ scriptencoding utf8
                 " Javascript
                 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' } " only install ternjs for vim
                 Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
+                Plug 'pangloss/vim-javascript', {'for': 'javascript'}
                 " Typescript
                 Plug 'mhartington/nvim-typescript', {'for': 'typescript'}
                 Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
