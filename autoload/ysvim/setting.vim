@@ -288,14 +288,22 @@ scriptencoding utf8
         " ultisnips {{{
 
         if g:ysvim_vim8 || g:ysvim_nvim
-            " settings for ultisnips
-            " let g:UltiSnipsExpandTrigger = '<Tab>'
-            " let g:UltiSnipsJumpForwardTrigger = '<C-n>'
-            " let g:UltiSnipsJumpBackwardTrigger = '<C-p>'
-            " let g:UltiSnipsEditSplit = 'context'
+            " with ncm
+            let g:UltiSnipsExpandTrigger            = '<plug>(ultisnips_expand)'
+            let g:UltiSnipsJumpForwardTrigger       = '<c-j>'
+            let g:UltiSnipsJumpBackwardTrigger      = '<c-k>'
+            let g:UltiSnipsRemoveSelectModeMappings = 0
+            inoremap <silent> <c-u> <c-r>=cm#sources#ultisnips#trigger_or_popup("\<Plug>(ultisnips_expand)")<cr>
+
 
             " set custom dir
             " let g:UltiSnipsSnippetDirectories=['UltiSnips']
+
+            let g:ultisnips_javascript = {
+                \ 'keyword-spacing': 'always',
+                \ 'semi': 'never',
+                \ 'space-before-function-paren': 'always',
+                \ }
         endif
 
         " }}} ultisnips
@@ -569,13 +577,6 @@ scriptencoding utf8
             inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
             inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"\
 
-            " settings for ultisnips
-            let g:UltiSnipsExpandTrigger            = '<plug>(ultisnips_expand)'
-            let g:UltiSnipsJumpForwardTrigger       = '<c-j>'
-            let g:UltiSnipsJumpBackwardTrigger      = '<c-k>'
-            let g:UltiSnipsRemoveSelectModeMappings = 0
-            inoremap <silent> <c-u> <c-r>=cm#sources#ultisnips#trigger_or_popup("\<Plug>(ultisnips_expand)")<cr>
-
             " Add preview to see docstrings in the complete window.
             " let g:cm_completeopt = 'menu,menuone,noinsert,noselect,preview'
             let g:cm_completeopt = 'menu,menuone,noinsert,noselect'
@@ -811,6 +812,27 @@ scriptencoding utf8
         endif
 
         " }}} vim-javascript
+
+        " tern_for_vim {{{
+
+        if g:ysvim_vim8 || g:ysvim_nvim
+            " usr tern key mappings
+            " *<LocalLeader>tD*   |:TernDoc|
+            " *<LocalLeader>tb*   |:TernDocBrowse|
+            " *<LocalLeader>tt*   |:TernType|
+            " *<LocalLeader>td*   |:TernDef|
+            " *<LocalLeader>tpd*  |:TernDefPreview|
+            " *<LocalLeader>tsd*  |:TernDefSplit|
+            " *<LocalLeader>ttd*  |:TernDefTab|
+            " *<LocalLeader>tr*   |:TernRefs|
+            " *<LocalLeader>tR*   |:TernRename|
+            let g:tern_map_keys = 1
+
+            " show args hints
+            let g:tern_show_argument_hints = 'on_move'
+        endif
+
+        " }}} tern_for_vim
 
     " }}} Intellisense
 

@@ -690,16 +690,3 @@ scriptencoding utf8
     " }}} Misc
 
 " }}} General
-
-" Filetype triggers {{{
-
-" Reset all autocommands
-augroup custom_filetype
-    autocmd!
-    au BufNewFile,BufRead *.ini     setf conf
-    au BufNewFile,BufRead *.md      setlocal ft=markdown
-    au BufNewFile,BufRead *.plist   setf xml
-    au BufNewFile,BufRead COMMIT_EDITMSG setlocal nolist nonumber
-    au BufNewFile,BufRead Makefile setlocal nolist
-augroup END
-" }}} Filetype triggers
