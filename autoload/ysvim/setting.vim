@@ -651,6 +651,8 @@ scriptencoding utf8
         " vimtex {{{
 
         if g:ysvim_vim8 || g:ysvim_nvim
+            let g:polyglot_disabled = ['latex']
+
             "tex preview config
             let g:texflavor = 'latex'
             let g:vimtexviewmethod = 'general'
