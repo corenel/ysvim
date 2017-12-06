@@ -655,12 +655,11 @@ scriptencoding utf8
 
             "tex preview config
             let g:texflavor = 'latex'
-            let g:vimtexviewmethod = 'general'
-            let g:vimtexenabled = 1
-            let g:vimtexcompleteimgusetail = 1
-            let g:vimtexviewgeneralviewer = 'open'
+            let g:vimtex_view_method = 'skim'
+            let g:vimtex_view_enabled = 1
+            let g:vimtex_view_general_viewer = 'open'
             let g:vimtex_fold_enabled = 1
-            let g:vimtexviewgeneraloptions = '-r @line @pdf @tex'
+            let g:vimtex_view_general_options = '-r @line @pdf @tex'
             let g:vimtex_quickfix_mode = 2
             let g:vimtex_quickfix_open_on_warning = 0
             let g:vimtex_quickfix_latexlog = {
@@ -682,13 +681,13 @@ scriptencoding utf8
                     \ },
                     \}
             let g:vimtex_compiler_latexmk = {
-                    \ 'callback' : 0,
                     \ 'options' : [
+                    \   '-pdf',
                     \   '-verbose',
                     \   '-file-line-error',
                     \   '-synctex=1',
-                    \   '-shell-escape',
                     \   '-interaction=nonstopmode',
+                    \   '-shell-escape',
                     \ ],
                     \}
 
