@@ -59,7 +59,7 @@ scriptencoding utf8
         " Encoding {{{
 
         set encoding=utf8           " UTF-8 by default
-        set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+        set fileencodings=utf8,chinese,taiwan,japan,korea,ansi
         set termencoding=utf-8
 
         set fileformats=unix,mac,dos  " Prefer Unix
@@ -143,7 +143,7 @@ scriptencoding utf8
         endif
 
         if g:ysvim_macos || g:ysvim_windows
-            set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline\ Nerd\ Font\ Complete:h14
+            set guifont=MesloLGMDZ\ Nerd\ Font:h14
         endif
 
 
@@ -215,7 +215,7 @@ scriptencoding utf8
                 colorscheme gruvbox
                 let g:gruvbox_contrast_dark = 'hard'
                 let g:gruvbox_sign_column = 'bg0'
-                " A black background would be better for remote terminal 
+                " A black background would be better for remote terminal
                 " due to the low FPS
                 hi Normal ctermbg=none
             endif
