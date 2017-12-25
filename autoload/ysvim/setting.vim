@@ -202,28 +202,28 @@ scriptencoding utf8
 
     " Enhancement {{{
 
-        " fzf {{{
+        " " fzf {{{
 
-        if g:ysvim_vim8 || g:ysvim_nvim
-            " Replaces Ctrl-P, FuzzyFinder and Command-T
-            " set runtimepath+=/usr/local/opt/fzf
-            " set runtimepath+=~/.fzf
-            nmap <Leader>fb :Buffers<CR>
-            nmap <Leader>ft :Tags<CR>
-            nmap <Leader>ff :Files<CR>
-            nmap <Leader>fa :Ag<CR>
-        endif
+        " if g:ysvim_vim8 || g:ysvim_nvim
+        "     " Replaces Ctrl-P, FuzzyFinder and Command-T
+        "     " set runtimepath+=/usr/local/opt/fzf
+        "     " set runtimepath+=~/.fzf
+        "     nmap <Leader>fb :Buffers<CR>
+        "     nmap <Leader>ft :Tags<CR>
+        "     nmap <Leader>ff :Files<CR>
+        "     nmap <Leader>fa :Ag<CR>
+        " endif
 
-        " }}} fzf
+        " " }}} fzf
 
-        " ack.vim {{{
+        " " ack.vim {{{
 
-        if g:ysvim_vim8 || g:ysvim_nvim
-            " Tell ack.vim to use ag (the Silver Searcher) instead
-            let g:ackprg = 'ag --vimgrep'
-        endif
+        " if g:ysvim_vim8 || g:ysvim_nvim
+        "     " Tell ack.vim to use ag (the Silver Searcher) instead
+        "     let g:ackprg = 'ag --vimgrep'
+        " endif
 
-        " }}} ack.vim
+        " " }}} ack.vim
 
         " GitGutter {{{
 
@@ -237,16 +237,16 @@ scriptencoding utf8
 
         " }}} GitGutter
 
-        " gv.vim {{{
+        " " gv.vim {{{
 
-        if g:ysvim_vim8 || g:ysvim_nvim
-            " open commit browser
-            nnoremap <Leader>gv :GV<CR>
-            " only list commits that affects the current file
-            nnoremap <Leader>gh :GV!<CR>
-        endif
+        " if g:ysvim_vim8 || g:ysvim_nvim
+        "     " open commit browser
+        "     nnoremap <Leader>gv :GV<CR>
+        "     " only list commits that affects the current file
+        "     nnoremap <Leader>gh :GV!<CR>
+        " endif
 
-        " }}} gv.vim
+        " " }}} gv.vim
 
         " " SuperTab {{{
 
@@ -426,24 +426,24 @@ scriptencoding utf8
 
         " }}} vim-tmux-navigator
 
-        " codi.vim {{{
+        " " codi.vim {{{
 
-        if g:ysvim_vim8 || g:ysvim_nvim
-            let g:codi#interpreters = {
-                \ 'python': {
-                    \ 'bin': 'python3',
-                    \ 'prompt': '^\(>>>\|\.\.\.\) ',
-                    \ },
-                \ }
-            " activates Codi for the current buffer
-            nnoremap <Leader>ca :Codi<CR>
-            " toggles Codi for the current buffer
-            nnoremap <Leader>cs :Codi!<CR>
-            " deactivates Codi for the current buffer
-            nnoremap <Leader>cd :Codi!<CR>
-        endif
+        " if g:ysvim_vim8 || g:ysvim_nvim
+        "     let g:codi#interpreters = {
+        "         \ 'python': {
+        "             \ 'bin': 'python3',
+        "             \ 'prompt': '^\(>>>\|\.\.\.\) ',
+        "             \ },
+        "         \ }
+        "     " activates Codi for the current buffer
+        "     nnoremap <Leader>ca :Codi<CR>
+        "     " toggles Codi for the current buffer
+        "     nnoremap <Leader>cs :Codi!<CR>
+        "     " deactivates Codi for the current buffer
+        "     nnoremap <Leader>cd :Codi!<CR>
+        " endif
 
-        " }}} codi.vim
+        " " }}} codi.vim
 
         " tabular {{{
 
@@ -463,13 +463,13 @@ scriptencoding utf8
 
         " }}} tabular
 
-        " vim-table-mode {{{
+        " " vim-table-mode {{{
 
-        if g:ysvim_vim8 || g:ysvim_nvim
-            let g:table_mode_corner='|'
-        endif
+        " if g:ysvim_vim8 || g:ysvim_nvim
+        "     let g:table_mode_corner='|'
+        " endif
 
-        " }}} vim-table-mode
+        " " }}} vim-table-mode
 
         " NerdTree {{{
 
@@ -522,74 +522,74 @@ scriptencoding utf8
 
         " }}} ALE
 
-        " completor.vim {{{
+        " " completor.vim {{{
 
-        if g:ysvim_vim8
-            let g:completor_python_binary = '/usr/local/bin/python3'
-            let g:completor_clang_binary = '/usr/bin/clang'
-            let g:completor_tex_omni_trigger = '\\\\(:?'
-                    \ .  '\w*cite\w*(?:\s*\[[^]]*\]){0,2}\s*{[^}]*'
-                    \ . '|\w*ref(?:\s*\{[^}]*|range\s*\{[^,}]*(?:}{)?)'
-                    \ . '|hyperref\s*\[[^]]*'
-                    \ . '|includegraphics\*?(?:\s*\[[^]]*\]){0,2}\s*\{[^}]*'
-                    \ . '|(?:include(?:only)?|input)\s*\{[^}]*'
-                    \ . '|\w*(gls|Gls|GLS)(pl)?\w*(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
-                    \ . '|includepdf(\s*\[[^]]*\])?\s*\{[^}]*'
-                    \ . '|includestandalone(\s*\[[^]]*\])?\s*\{[^}]*'
-                    \ .')$'
+        " if g:ysvim_vim8
+        "     let g:completor_python_binary = '/usr/local/bin/python3'
+        "     let g:completor_clang_binary = '/usr/bin/clang'
+        "     let g:completor_tex_omni_trigger = '\\\\(:?'
+        "             \ .  '\w*cite\w*(?:\s*\[[^]]*\]){0,2}\s*{[^}]*'
+        "             \ . '|\w*ref(?:\s*\{[^}]*|range\s*\{[^,}]*(?:}{)?)'
+        "             \ . '|hyperref\s*\[[^]]*'
+        "             \ . '|includegraphics\*?(?:\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+        "             \ . '|(?:include(?:only)?|input)\s*\{[^}]*'
+        "             \ . '|\w*(gls|Gls|GLS)(pl)?\w*(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+        "             \ . '|includepdf(\s*\[[^]]*\])?\s*\{[^}]*'
+        "             \ . '|includestandalone(\s*\[[^]]*\])?\s*\{[^}]*'
+        "             \ .')$'
 
-            " set completeopt-=noselect
-            " set pumheight=10
-            " automatically open and close the popup menu / preview window
-            " if !exists('g:noautoclosepum')
-            "     autocmd CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-            " endif
+        "     " set completeopt-=noselect
+        "     " set pumheight=10
+        "     " automatically open and close the popup menu / preview window
+        "     " if !exists('g:noautoclosepum')
+        "     "     autocmd CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+        "     " endif
 
-            " inoremap <expr> <Tab> pumvisible() ? '\<C-n>' : '\<Tab>'
-            " inoremap <expr> <S-Tab> pumvisible() ? '\<C-p>' : '\<S-Tab>'
-            " inoremap <expr> <CR> (pumvisible() ? '\<c-y>\<cr>' : '\<CR>')
-        endif
+        "     " inoremap <expr> <Tab> pumvisible() ? '\<C-n>' : '\<Tab>'
+        "     " inoremap <expr> <S-Tab> pumvisible() ? '\<C-p>' : '\<S-Tab>'
+        "     " inoremap <expr> <CR> (pumvisible() ? '\<c-y>\<cr>' : '\<CR>')
+        " endif
 
-        " }}} completor.vim
+        " " }}} completor.vim
 
-        " nvim-completion-manager {{{
+        " " nvim-completion-manager {{{
 
-        if g:ysvim_nvim
-            " don't give |ins-completion-menu| messages.  For example,
-            " " '-- XXX completion (YYY)', 'match 1 of 2', 'The only match',
-            set shortmess+=c
+        " if g:ysvim_nvim
+        "     " don't give |ins-completion-menu| messages.  For example,
+        "     " " '-- XXX completion (YYY)', 'match 1 of 2', 'The only match',
+        "     set shortmess+=c
 
-            " When the <Enter> key is pressed while the popup menu is visible, it only hides the menu.
-            " Use this mapping to hide the menu and also start a new line.
-            " inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+        "     " When the <Enter> key is pressed while the popup menu is visible, it only hides the menu.
+        "     " Use this mapping to hide the menu and also start a new line.
+        "     " inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 
-            " Here is an example for expanding snippet in the popup menu with <Enter> key. Suppose you
-            " use the <C-U> key for expanding snippet.
-            imap <expr> <CR>  (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)" : "\<CR>")
-            imap <expr> <Plug>(expand_or_nl) (cm#completed_is_snippet() ? "\<C-U>":"\<CR>")
+        "     " Here is an example for expanding snippet in the popup menu with <Enter> key. Suppose you
+        "     " use the <C-U> key for expanding snippet.
+        "     imap <expr> <CR>  (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)" : "\<CR>")
+        "     imap <expr> <Plug>(expand_or_nl) (cm#completed_is_snippet() ? "\<C-U>":"\<CR>")
 
-            " When using CTRL-C key to leave insert mode, it does not trigger the autocmd InsertLeave.
-            " You should use CTRL-[, or map the <c-c> to <ESC>.
-            inoremap <c-c> <ESC>
+        "     " When using CTRL-C key to leave insert mode, it does not trigger the autocmd InsertLeave.
+        "     " You should use CTRL-[, or map the <c-c> to <ESC>.
+        "     inoremap <c-c> <ESC>
 
-            " Use <TAB> to select the popup menu:
-            inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-            inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"\
+        "     " Use <TAB> to select the popup menu:
+        "     inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+        "     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"\
 
-            " Add preview to see docstrings in the complete window.
-            " let g:cm_completeopt = 'menu,menuone,noinsert,noselect,preview'
-            let g:cm_completeopt = 'menu,menuone,noinsert,noselect'
+        "     " Add preview to see docstrings in the complete window.
+        "     " let g:cm_completeopt = 'menu,menuone,noinsert,noselect,preview'
+        "     let g:cm_completeopt = 'menu,menuone,noinsert,noselect'
 
-            " Close the prevew window automatically on InsertLeave
-            " https://github.com/davidhalter/jedi-vim/blob/eba90e615d73020365d43495fca349e5a2d4f995/ftplugin/python/jedi.vim#L44
-            augroup ncm_preview
-                autocmd!
-                autocmd CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-                " autocmd! InsertLeave <buffer> if pumvisible() == 0|pclose|endif
-            augroup END
-        endif
+        "     " Close the prevew window automatically on InsertLeave
+        "     " https://github.com/davidhalter/jedi-vim/blob/eba90e615d73020365d43495fca349e5a2d4f995/ftplugin/python/jedi.vim#L44
+        "     augroup ncm_preview
+        "         autocmd!
+        "         autocmd CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+        "         " autocmd! InsertLeave <buffer> if pumvisible() == 0|pclose|endif
+        "     augroup END
+        " endif
 
-        " }}} nvim-completion-manager
+        " " }}} nvim-completion-manager
 
         " " vim-cpp-enhanced-highlight {{{
 
@@ -630,7 +630,7 @@ scriptencoding utf8
                 \ ]
 
             " virtualenv
-            let g:pymode_virtualenv = 1
+            let g:pymode_virtualenv = 0
             let g:pymode_virtualenv_path = $VIRTUAL_ENV
 
             " use ale instead of pymode_lint
@@ -711,23 +711,23 @@ scriptencoding utf8
 
         " }}} vimtex
 
-        " vim-orgmode {{{
+        " " vim-orgmode {{{
 
-        if g:ysvim_vim8 || g:ysvim_nvim
-            let g:org_todo_keywords = ['TODO', 'NEXT', '|', 'DONE']
-        endif
+        " if g:ysvim_vim8 || g:ysvim_nvim
+        "     let g:org_todo_keywords = ['TODO', 'NEXT', '|', 'DONE']
+        " endif
 
-        " }}} vim-orgmode
+        " " }}} vim-orgmode
 
-        " ncm-clang {{{
+        " " ncm-clang {{{
 
-        if g:ysvim_nvim
-            augroup ncm_clang_custom
-                autocmd BufEnter *.cpp,*.h,*.hpp,*.hxx let g:ale_cpp_clang_options = join(ncm_clang#compilation_info()['args'], ' ')
-            augroup END
-        endif
+        " if g:ysvim_nvim
+        "     augroup ncm_clang_custom
+        "         autocmd BufEnter *.cpp,*.h,*.hpp,*.hxx let g:ale_cpp_clang_options = join(ncm_clang#compilation_info()['args'], ' ')
+        "     augroup END
+        " endif
 
-        " }}} ncm-clang
+        " " }}} ncm-clang
 
         " clang-complete {{{
 
@@ -786,53 +786,53 @@ scriptencoding utf8
 
         " }}} jedi.vim
 
-        " vim-javascript {{{
+        " " vim-javascript {{{
 
-        if g:ysvim_vim8 || g:ysvim_nvim
-            let g:javascript_plugin_jsdoc = 1
+        " if g:ysvim_vim8 || g:ysvim_nvim
+        "     let g:javascript_plugin_jsdoc = 1
 
-            " augroup javascript_folding
-            "     au!
-            "     au FileType javascript setlocal foldmethod=syntax
-            " augroup END
+        "     " augroup javascript_folding
+        "     "     au!
+        "     "     au FileType javascript setlocal foldmethod=syntax
+        "     " augroup END
 
-            " define conceal characters
-            let g:javascript_conceal_function             = 'ƒ'
-            let g:javascript_conceal_null                 = 'ø'
-            let g:javascript_conceal_this                 = '@'
-            let g:javascript_conceal_return               = '⇚'
-            let g:javascript_conceal_undefined            = '¿'
-            let g:javascript_conceal_NaN                  = 'ℕ'
-            let g:javascript_conceal_prototype            = '¶'
-            let g:javascript_conceal_static               = '•'
-            let g:javascript_conceal_super                = 'Ω'
-            let g:javascript_conceal_arrow_function       = '⇒'
-            " let g:javascript_conceal_noarg_arrow_function = '🞅'
-            " let g:javascript_conceal_underscore_arrow_function = '🞅'
-        endif
+        "     " define conceal characters
+        "     let g:javascript_conceal_function             = 'ƒ'
+        "     let g:javascript_conceal_null                 = 'ø'
+        "     let g:javascript_conceal_this                 = '@'
+        "     let g:javascript_conceal_return               = '⇚'
+        "     let g:javascript_conceal_undefined            = '¿'
+        "     let g:javascript_conceal_NaN                  = 'ℕ'
+        "     let g:javascript_conceal_prototype            = '¶'
+        "     let g:javascript_conceal_static               = '•'
+        "     let g:javascript_conceal_super                = 'Ω'
+        "     let g:javascript_conceal_arrow_function       = '⇒'
+        "     " let g:javascript_conceal_noarg_arrow_function = '🞅'
+        "     " let g:javascript_conceal_underscore_arrow_function = '🞅'
+        " endif
 
-        " }}} vim-javascript
+        " " }}} vim-javascript
 
-        " tern_for_vim {{{
+        " " tern_for_vim {{{
 
-        if g:ysvim_vim8 || g:ysvim_nvim
-            " usr tern key mappings
-            " *<LocalLeader>tD*   |:TernDoc|
-            " *<LocalLeader>tb*   |:TernDocBrowse|
-            " *<LocalLeader>tt*   |:TernType|
-            " *<LocalLeader>td*   |:TernDef|
-            " *<LocalLeader>tpd*  |:TernDefPreview|
-            " *<LocalLeader>tsd*  |:TernDefSplit|
-            " *<LocalLeader>ttd*  |:TernDefTab|
-            " *<LocalLeader>tr*   |:TernRefs|
-            " *<LocalLeader>tR*   |:TernRename|
-            let g:tern_map_keys = 1
+        " if g:ysvim_vim8 || g:ysvim_nvim
+        "     " usr tern key mappings
+        "     " *<LocalLeader>tD*   |:TernDoc|
+        "     " *<LocalLeader>tb*   |:TernDocBrowse|
+        "     " *<LocalLeader>tt*   |:TernType|
+        "     " *<LocalLeader>td*   |:TernDef|
+        "     " *<LocalLeader>tpd*  |:TernDefPreview|
+        "     " *<LocalLeader>tsd*  |:TernDefSplit|
+        "     " *<LocalLeader>ttd*  |:TernDefTab|
+        "     " *<LocalLeader>tr*   |:TernRefs|
+        "     " *<LocalLeader>tR*   |:TernRename|
+        "     let g:tern_map_keys = 1
 
-            " show args hints
-            let g:tern_show_argument_hints = 'on_move'
-        endif
+        "     " show args hints
+        "     let g:tern_show_argument_hints = 'on_move'
+        " endif
 
-        " }}} tern_for_vim
+        " " }}} tern_for_vim
 
     " }}} Intellisense
 

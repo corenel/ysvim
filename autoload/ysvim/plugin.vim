@@ -89,9 +89,8 @@ scriptencoding utf8
                 Plug 'qpkorr/vim-bufkill'
                 Plug 'raimondi/delimitmate'
                 Plug 'wellle/targets.vim'
-
             " }}} Enhancement
-
+            "
             " Intellisense {{{
 
                 Plug 'w0rp/ale'
@@ -100,7 +99,8 @@ scriptencoding utf8
                 if g:ysvim_vim8
                     Plug 'maralla/completor.vim'
                 elseif  g:ysvim_nvim
-                    Plug 'roxma/nvim-completion-manager'
+                    " Plug 'roxma/nvim-completion-manager'
+                    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
                 endif
 
                 " Languages specific plugins
@@ -109,22 +109,22 @@ scriptencoding utf8
                 Plug 'davidhalter/jedi-vim', {'for': 'python'}
                 " C++
                 if  g:ysvim_nvim
-                    Plug 'roxma/ncm-clang', {'for': ['c', 'cpp']}
+                    " Plug 'roxma/ncm-clang', {'for': ['c', 'cpp']}
                 endif
                 Plug 'Rip-Rip/clang_complete', {'for': ['c', 'cpp']}
                 " HTML
-                Plug 'othree/html5.vim', {'for': 'html'}
-                Plug 'mattn/emmet-vim', {'for': 'html'}
-                Plug 'mustache/vim-mustache-handlebars', {'for': 'html'}
+                " Plug 'othree/html5.vim', {'for': 'html'}
+                " Plug 'mattn/emmet-vim', {'for': 'html'}
+                " Plug 'mustache/vim-mustache-handlebars', {'for': 'html'}
                 " CSS
-                Plug 'calebeby/ncm-css', {'for': ['html', 'css']}
+                " Plug 'calebeby/ncm-css', {'for': ['html', 'css']}
                 " Javascript
-                Plug 'ternjs/tern_for_vim', { 'do': 'npm install' } " only install ternjs for vim
-                Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
-                Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+                " Plug 'ternjs/tern_for_vim', { 'do': 'npm install' } " only install ternjs for vim
+                " Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
+                " Plug 'pangloss/vim-javascript', {'for': 'javascript'}
                 " Typescript
-                Plug 'mhartington/nvim-typescript', {'for': 'typescript'}
-                Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
+                " Plug 'mhartington/nvim-typescript', {'for': 'typescript'}
+                " Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
                 " Org-mode
                 " Plug 'jceb/vim-orgmode', {'for': 'org'}
                 " LaTex
@@ -132,9 +132,9 @@ scriptencoding utf8
                 " Github repos and users
                 " Plug 'roxma/ncm-github', {'for': 'markdown'}
                 " Markdown
-                Plug 'dhruvasagar/vim-table-mode', {'for': 'markdown'}
+                " Plug 'dhruvasagar/vim-table-mode', {'for': 'markdown'}
                 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
-                Plug 'mzlogin/vim-markdown-toc', {'for': 'markdown'}
+                " Plug 'mzlogin/vim-markdown-toc', {'for': 'markdown'}
                 " Vim Script
                 Plug 'lervag/neco-vim', {'for': 'vim'}
 
