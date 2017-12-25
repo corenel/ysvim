@@ -113,7 +113,6 @@ scriptencoding utf8
                 \ {'u': '$HOME/.zshrc.custom'},
                 \ {'m': '$HOME/.tmux.conf'},
                 \ {'h': '$HOME/.ssh/config'},
-                \ {'o': '$HOME/Dropbox/Documents/Orgzly/'},
                 \ {'w': '$HOME/Workspace/'},
                 \ ]
 

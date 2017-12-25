@@ -19,12 +19,12 @@ scriptencoding utf8
 
                 Plug 'itchyny/lightline.vim'
                 Plug 'mhinz/vim-startify'
-                Plug 'junegunn/goyo.vim'
+                " Plug 'junegunn/goyo.vim'
 
                 " Color Schemes
-                Plug 'tomasr/molokai'
-                Plug 'altercation/vim-colors-solarized'
-                Plug 'ayu-theme/ayu-vim'
+                " Plug 'tomasr/molokai'
+                " Plug 'altercation/vim-colors-solarized'
+                " Plug 'ayu-theme/ayu-vim'
                 Plug 'morhetz/gruvbox'
 
             " }}} Appearance
@@ -33,7 +33,7 @@ scriptencoding utf8
 
                 " Git
                 Plug 'tpope/vim-fugitive'
-                Plug 'junegunn/gv.vim'
+                " Plug 'junegunn/gv.vim'
                 Plug 'airblade/vim-gitgutter'
 
                 " NerdTree
@@ -67,7 +67,7 @@ scriptencoding utf8
                 Plug 'tpope/vim-repeat'
                 Plug 'tpope/vim-rhubarb'
                 Plug 'tpope/vim-sleuth'
-                Plug 'tpope/vim-speeddating', {'for': 'org'}
+                " Plug 'tpope/vim-speeddating', {'for': 'org'}
                 Plug 'tpope/vim-surround'
                 Plug 'tpope/vim-unimpaired'
 
@@ -82,8 +82,8 @@ scriptencoding utf8
 
                 " Utils
                 Plug 'majutsushi/tagbar'
-                Plug 'metakirby5/codi.vim'
-                Plug 'roxma/vim-window-resize-easy'
+                " Plug 'metakirby5/codi.vim'
+                " Plug 'roxma/vim-window-resize-easy'
 
                 " Misc
                 Plug 'qpkorr/vim-bufkill'
@@ -126,11 +126,11 @@ scriptencoding utf8
                 Plug 'mhartington/nvim-typescript', {'for': 'typescript'}
                 Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
                 " Org-mode
-                Plug 'jceb/vim-orgmode', {'for': 'org'}
+                " Plug 'jceb/vim-orgmode', {'for': 'org'}
                 " LaTex
                 Plug 'lervag/vimtex', {'for': ['bib', 'tex']}
                 " Github repos and users
-                Plug 'roxma/ncm-github'
+                " Plug 'roxma/ncm-github', {'for': 'markdown'}
                 " Markdown
                 Plug 'dhruvasagar/vim-table-mode', {'for': 'markdown'}
                 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
