@@ -20,13 +20,13 @@ scriptencoding utf8
     let g:ysvim_pathogen_vim_dir = g:ysvim_pathogen_home . '/vim-pathogen'
 
     " Use Vim-Plug
-    let g:ysvim_plug_enable = 1
+    let g:ysvim_plug_enable = 0
     let g:ysvim_plug_home = g:ysvim_home . '/plugged'
     let g:ysvim_plug_vim = g:ysvim_plug_home . '/plug.vim/vim-plug/plug.vim'
     let g:ysvim_plug_vim_dir = g:ysvim_plug_home . '/plug.vim/vim-plug'
 
     " Use Dein.vim
-    let g:ysvim_dein_enable = 0
+    let g:ysvim_dein_enable = 1
     let g:ysvim_dein_home = g:ysvim_home . '/dein'
     let g:ysvim_dein_vim = g:ysvim_dein_home . '/repos/github.com/Shougo/dein.vim/autoload/dein.vim'
     let g:ysvim_dein_vim_dir = g:ysvim_dein_home . '/repos/github.com/Shougo/dein.vim'
@@ -45,7 +45,7 @@ scriptencoding utf8
             call ysvim#util#check_vim_plug(g:ysvim_plug_vim)
             call ysvim#plugin#load_vim_plug()
         elseif g:ysvim_dein_enable ==# 1
-            call ysvim#util#check_dein(g:ysvim_plug_vim_dir)
+            call ysvim#util#check_dein(g:ysvim_dein_vim_dir)
             call ysvim#plugin#load_dein()
         elseif g:ysvim_pathogen_enable ==# 1
             call ysvim#util#check_pathogen(g:ysvim_pathogen_vim)

@@ -149,11 +149,138 @@ scriptencoding utf8
     " Use Dein.vim {{{
 
     function ysvim#plugin#load_dein()
+        " Set dein.vim variables
+        let g:dein#types#git#clone_depth = 1
+
+        " Check and load dein.vim
         if filereadable(expand(g:ysvim_dein_vim))
-            set runtimepath+=$HOME/.ysvim/dein/repos/github.com/Shougo/dein.vim/autoload/dein.vim
-            if dein#load_state(expand(g:ysvim_dein_dir))
-                call dein#begin(expand(g:ysvim_dein_dir))
-                call dein#add(expand(g:ysvim_dein_vim_dir))
+            " Add dein to &runtimepath
+            execute 'set runtimepath^=' . g:ysvim_dein_vim_dir
+            " set runtimepath+=$HOME/.ysvim/dein/repos/github.com/Shougo/dein.vim/autoload/dein.vim
+
+            " Load plugins
+            if dein#load_state(expand(g:ysvim_dein_home))
+                call dein#begin(expand(g:ysvim_dein_home))
+
+                " Dein:
+                call dein#add('Shougo/dein.vim')
+
+                " Appearance {{{
+
+                    call dein#add('itchyny/lightline.vim')
+                    call dein#add('mhinz/vim-startify')
+
+                    " Color Schemes:
+                    " call dein#add("'tomasr/molokai')
+                    " call dein#add('altercation/vim-colors-solarized')
+                    " call dein#add('ayu-theme/ayu-vim')
+                    call dein#add('morhetz/gruvbox')
+
+                    " Icons:
+                    "" load nerdtree-git-plugin before VimDevIcons loads.
+                    call dein#add('Xuyuanp/nerdtree-git-plugin')
+                    call dein#add('ryanoasis/vim-devicons')
+
+                " }}} Appearance
+
+                " Enhancement {{{
+
+                    " Operator:
+                    call dein#add('kana/vim-operator-user')
+                    call dein#add('kana/vim-textobj-function')
+                    call dein#add('kana/vim-textobj-user')
+                    call dein#add('kana/vim-operator-replace',
+                            \ {'on_map': '<Plug>', 'depends': 'vim-operator-user'})
+                    call dein#add('rhysd/vim-operator-surround',
+                            \ {'on_map': '<Plug>', 'depends': 'vim-operator-user'})
+
+                    " Git:
+                    call dein#add('airblade/vim-gitgutter')
+                    " call dein#add('junegunn/gv.vim')
+                    call dein#add('airblade/vim-gitgutter')
+
+
+                    " NerdTree:
+                    call dein#add('scrooloose/nerdtree')
+                    call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
+
+                    " Tmux:
+                    " Plug 'benmills/vimux'
+                    Plug 'christoomey/vim-tmux-navigator'
+
+                    " Linter Formatter:
+                    call dein#add('neomake/neomake')
+                    call dein#add('sbdchd/neoformat', {'on_cmd': 'Neoformat'})
+
+                    " Editing:
+                    call dein#add('mbbill/undotree')
+                    call dein#add('terryma/vim-multiple-cursors')
+                    call dein#add('tpope/vim-commentary')
+                    call dein#add('tpope/vim-repeat')
+                    call dein#add('roxma/vim-paste-easy')
+                    call dein#add('roxma/vim-tmux-clipboard')
+                    call dein#add('majutsushi/tagbar')
+
+                " }}} Enhancement
+
+                " Intellisense {{{
+
+                    " Deoplete:
+                    call dein#add('Shougo/deoplete.nvim')
+                    "" Deopleet Suorces:
+                    call dein#add('Shougo/neco-vim', {'on_ft': ['vim'], 'on_source': ['deoplete.nvim']})
+                    call dein#add('Shougo/neoinclude.vim', {'on_ft': ['c', 'cpp', 'objc', 'objcpp'], 'on_source': ['deoplete.nvim']})
+                    call dein#add('Shougo/neosnippet-snippets')
+                    call dein#add('Shougo/neosnippet.vim', {'depends': ['neosnippet-snippets']})
+                    "" Deopleet Support:
+                    " call dein#add('Shougo/echodoc.vim', {'on_event': 'CompleteDone', 'hook_source': 'call echodoc#enable()'})
+                    call dein#add('Shougo/neopairs.vim', {'on_event': 'CompleteDone', 'hook_add': 'let g:neopairs#enable = 1'})
+
+                    " Denite:
+                    call dein#add('Shougo/denite.nvim')
+                    "" Dependency:
+                    call dein#add('nixprime/cpsm')
+                    "" Denite Suorces:
+
+                    " Language Plugin:
+                    "" C Family:
+                    call dein#add('vim-jp/vim-cpp')
+                    call dein#add('octol/vim-cpp-enhanced-highlight')
+                    call dein#add('lyuts/vim-rtags', {'on_ft': ['c', 'cpp', 'objc']})
+                    call dein#add('CoatiSoftware/vim-coati', {'on_ft': ['c', 'cpp', 'objc']})
+
+                    "" Python:
+                    " call dein#add('davidhalter/jedi-vim', {'lazy': 1, 'on_ft': ['python', 'cython', 'pyrex']})
+                    call dein#add('hynek/vim-python-pep8-indent')
+                    call dein#add('nvie/vim-flake8')
+                    " call dein#add('tweekmonster/impsort.vim', {'on_ft': ['python','cython', 'pyrex']})
+
+                    "" TypeScript:
+                    call dein#add('leafgarland/typescript-vim')
+                    call dein#add('HerringtonDarkholme/yats.vim')
+
+                    "" Javascript:
+                    call dein#add('othree/yajs.vim')
+
+                    "" Markdown:
+                    call dein#add('moorereason/vim-markdownfmt', {'on_ft': 'markdown'})
+                    call dein#add('rhysd/vim-gfm-syntax', {'on_ft': 'markdown'})
+
+                    "" Vim:
+                    call dein#add('vim-jp/vimdoc-ja')
+                    call dein#add('vim-jp/syntax-vim-ex')
+
+                    "" Shell:
+                    call dein#add('chrisbra/vim-sh-indent')
+
+                    "" Json:
+                    call dein#add('elzr/vim-json')
+
+                    "" Tmux:
+                    call dein#add('tmux-plugins/vim-tmux')
+
+                " }}} Intellisense
+
                 call dein#end()
                 call dein#save_state()
             endif

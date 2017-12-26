@@ -18,14 +18,18 @@ scriptencoding utf8
 
         set notitle                 " Don't set the title of the Vim window
         set ttyfast                 " Improves smoothness of redrawing
-        set lazyredraw              " Don't redraw while excuting macros
+        set nolazyredraw            " Redraw while excuting macros
+        " set nojoinspaces
+        " set noshiftround
+        set noshowcmd
+        set nostartofline
+        " set nowrapscan
 
+        set belloff=all
         set noerrorbells            " No annoying sound on errors
-        set visualbell t_vb=        " No flashing or beeping at all
+        set novisualbell            " No flashing or beeping at all
 
-        set infercase               " Completion recognizes capitalization
-        set matchtime=2             " Tenths of second to highlight matching partten
-        set modelines=5             " How many lines of head & tail to look for ml's
+        set modelines=1             " How many lines of head & tail to look for ml's
         set suffixes+=.pyc          " Ignore these files when tab-completing
 
         set backspace=indent,eol,start
@@ -33,23 +37,13 @@ scriptencoding utf8
 
         silent! set mouse=nvc       " Use the mouse, but not in insert mode
 
-        if g:ysvim_nvim
-            set clipboard+=unnamedplus
-        elseif g:ysvim_vim8
-            " Enable clipboard if possible
-            if has('clipboard')
-                if has('unnamedplus') " When possible use + register for copy-paste
-                    set clipboard=unnamed,unnamedplus
-                else " On mac and Windows, use * register for copy-paste
-                    set clipboard=unnamed
-                endif
-            endif
+        set clipboard=unnamed,unnamedplus
 
-            " if $TMUX ==# ''
-            "     set clipboard+=unnamed
-            " endif
-        endif
+        set complete=.  " default: .,w,b,u,t
+        set completeopt=menu,longest,noinsert,noselect
 
+        " Terminel settings
+        let g:terminal_scrollback_buffer_size = 100000
 
         " set viminfo
         let &viminfo.='100,n'.g:ysvim_home.'/files/info/viminfo'
@@ -66,15 +60,21 @@ scriptencoding utf8
         set fillchars=vert:\ ,stl:\ ,stlnc:\ ,fold:-,diff:┄
                                     " Unicode chars for diffs/folds, and rely on
                                     " Colors for window borders
-        set formatoptions=tcqn1     " t - autowrap normal text
-                                    " c - autowrap comments
-                                    " r - auto insert comments leader  in insert mode
-                                    " o - auto insert comments leader in normal mode
-                                    " q - gq formats comments
-                                    " n - autowrap lists
-                                    " 1 - break _before_ single-letter words
-                                    " 2 - use indenting from 2nd line of para
+        set formatoptions+=1  " 1 - break _before_ single-letter words
+        " set formatoptions+=1  " 2 - use indenting from 2nd line of para
+        set formatoptions+=c  " Autowrap comments using textwidth
+        set formatoptions+=j  " Delete comment character when joining commented lines
+        set formatoptions+=l  " do not wrap lines that have been longer when starting insert mode already
+        set formatoptions+=n  " Recognize numbered lists
+        " set formatoptions+=o  " Insert comment leader after hitting o or O in normal mode
+        set formatoptions+=q  " Allow formatting of comments with "gq".
+        set formatoptions+=r  " Insert comment leader after hitting <Enter>
+        set formatoptions+=t  " Auto-wrap text using textwidth
+
         set printoptions=paper:letter " US paper
+
+        set helplang& helplang=en   " Hey, if true Vim master, use English help language.
+
 
         " }}} Encoding
 
@@ -84,7 +84,7 @@ scriptencoding utf8
         set smartindent
         set cindent                 " Automatic program indenting
         set cinkeys-=0#             " Comments don't fiddle with indenting
-        set cinoptions=                   " See :h cinoptions-values
+        set cinoptions=             " See :h cinoptions-values
         set copyindent              " Make autoindent use the same chars as prev line
 
         set expandtab               " No tabs
@@ -102,16 +102,20 @@ scriptencoding utf8
         set wrap
         " set iskeyword+=-
         set whichwrap+=<,>,h,l,[,]
-        " set linebreak               " Break long lines by word, not char
-        " set nolist
+        set linebreak               " Break long lines by word, not char
+        set list
 
         " }}} Indent
 
         " Fold {{{
 
-        set foldlevel=0           " Fold all by default
+        set foldlevel=0               " Fold all by default
+        set foldcolumn=0
+        set foldnestmax=1             " maximum fold depth
         silent! set foldmethod=marker " Use braces by default
-        set commentstring=\ \ #%s   " When folds are created, add them to this
+        set commentstring=\ \ #%s     " When folds are created, add them to this
+
+        set nofoldenable
 
         " }}} Fold
 
@@ -130,12 +134,28 @@ scriptencoding utf8
         set cursorline              " Hightlight current line
         set mousehide               " Hide mouse pointer when typing characters
         set guicursor+=a:blinkon0   " No cursor blink
+        set concealcursor=niv
+        set conceallevel=2
 
         set cmdheight=1             " Limit Height of the command bar
         set wildmenu                " Show possible completions on command line
-        set wildmode=list:longest,full " List all options and complete
+        " List all options and complete
+        set wildmode=longest,list:full  " http://stackoverflow.com/a/526940/5228839
         " Ignore certain files in tab-completion
-        set wildignore=*.class,*.o,*~,*.pyc,*.swp,*.bak,*.pyo,*/.DS_Store,.vscode,.git,node_modules
+        set wildignore+=*.jpg,*.jpeg,*.bmp,*.gif,*.png            " image
+        set wildignore+=*.manifest                                " gb
+        set wildignore+=*.o,*.obj,*.exe,*.dll,*.so,*.out,*.class  " compiler
+        set wildignore+=*.swp,*.swo,*.swn,*.bak                   " vim
+        set wildignore+=*/.git,*/.hg,*/.svn                       " vcs
+        set wildignore+=tags,*.tags                               " tags
+        set wildignore+=*.pyc,*.pyo                               " Python
+        set wildignore+=*/.DS_Store                               " macOS
+        set wildignore+=node_modules                              " NodeJS
+
+        set colorcolumn=79
+
+        set previewheight=15
+        set pumheight=25
 
         " font setting
         if g:ysvim_linux
@@ -417,8 +437,14 @@ scriptencoding utf8
         set hlsearch                " Hilight searching
         set ignorecase              " Case insensitive
         set incsearch               " Search as you type
+        set inccommand=nosplit
         set smartcase               " Lets you search for ALL CAPS
         " set nowrapscan              " Don't wrap around when jumping between search result
+        set infercase               " Completion recognizes capitalization
+        set matchtime=2             " Tenths of second to highlight matching partten
+        set maxmempattern=2000000
+
+        " set regexpengine=2
 
         " Disable highlight when <Enter> is pressed
         nnoremap <silent> <BS> :nohlsearch<CR>
@@ -430,7 +456,7 @@ scriptencoding utf8
     " Buffer - BufferSwitch, FileExplorer, StatusLine {{{
 
         set hidden                  " Don't prompt to save hidden windows until exit
-        set autochdir               " Change current working directory automatically
+        set noautochdir             " Don't change current working directory automatically
 
         " BufferSwitch {{{
 
