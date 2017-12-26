@@ -167,8 +167,8 @@ scriptencoding utf8
 
                 " Appearance {{{
 
-                    call dein#add('itchyny/lightline.vim')
-                    call dein#add('mhinz/vim-startify')
+                    call dein#add('itchyny/lightline.vim', {'hook_source': 'call ysvim#config#lightline_vim()'})
+                    call dein#add('mhinz/vim-startify', {'hook_source': 'call ysvim#config#vim_startify()'})
 
                     " Color Schemes:
                     " call dein#add("'tomasr/molokai')
@@ -179,7 +179,7 @@ scriptencoding utf8
                     " Icons:
                     "" load nerdtree-git-plugin before VimDevIcons loads.
                     call dein#add('Xuyuanp/nerdtree-git-plugin')
-                    call dein#add('ryanoasis/vim-devicons')
+                    call dein#add('ryanoasis/vim-devicons', {'hook_source': 'call ysvim#config#vim_devicons()'})
 
                 " }}} Appearance
 
@@ -195,31 +195,31 @@ scriptencoding utf8
                             \ {'on_map': '<Plug>', 'depends': 'vim-operator-user'})
 
                     " Git:
-                    call dein#add('airblade/vim-gitgutter')
+                    " call dein#add('tpope/vim-fugitive')
                     " call dein#add('junegunn/gv.vim')
                     call dein#add('airblade/vim-gitgutter')
 
 
                     " NerdTree:
-                    call dein#add('scrooloose/nerdtree')
-                    call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
+                    call dein#add('scrooloose/nerdtree', {'hook_source': 'call ysvim#config#nerdtree()'})
+                    call dein#add('tiagofumo/vim-nerdtree-syntax-highlight', {'hook_source': 'call ysvim#config#nerdtree_syntax_highlight()'})
 
                     " Tmux:
                     " Plug 'benmills/vimux'
-                    Plug 'christoomey/vim-tmux-navigator'
+                    call dein#add('christoomey/vim-tmux-navigator', {'hook_source': 'call ysvim#config#vim_tmux_navigator()'})
 
                     " Linter Formatter:
                     call dein#add('neomake/neomake')
                     call dein#add('sbdchd/neoformat', {'on_cmd': 'Neoformat'})
 
                     " Editing:
-                    call dein#add('mbbill/undotree')
-                    call dein#add('terryma/vim-multiple-cursors')
+                    call dein#add('mbbill/undotree', {'hook_source': 'call ysvim#config#undotree()'})
+                    call dein#add('terryma/vim-multiple-cursors', {'hook_source': 'call ysvim#config#vim_multiple_cursors()'})
                     call dein#add('tpope/vim-commentary')
                     call dein#add('tpope/vim-repeat')
                     call dein#add('roxma/vim-paste-easy')
                     call dein#add('roxma/vim-tmux-clipboard')
-                    call dein#add('majutsushi/tagbar')
+                    call dein#add('majutsushi/tagbar', {'hook_source': 'call ysvim#config#tagbar()'})
 
                 " }}} Enhancement
 
@@ -250,31 +250,34 @@ scriptencoding utf8
                     call dein#add('CoatiSoftware/vim-coati', {'on_ft': ['c', 'cpp', 'objc']})
 
                     "" Python:
-                    " call dein#add('davidhalter/jedi-vim', {'lazy': 1, 'on_ft': ['python', 'cython', 'pyrex']})
-                    call dein#add('hynek/vim-python-pep8-indent')
-                    call dein#add('nvie/vim-flake8')
-                    " call dein#add('tweekmonster/impsort.vim', {'on_ft': ['python','cython', 'pyrex']})
+                    call dein#add('davidhalter/jedi-vim', {'lazy': 1, 'on_ft': ['python', 'cython', 'pyrex'],'hook_source': 'call ysvim#config#jedi_vim()'})
+                    call dein#add('hynek/vim-python-pep8-indent', {'on_ft': ['python', 'cython', 'pyrex']})
+                    call dein#add('nvie/vim-flake8', {'on_ft': ['python', 'cython', 'pyrex']})
+                    call dein#add('tweekmonster/impsort.vim', {'on_ft': ['python','cython', 'pyrex']})
 
                     "" TypeScript:
-                    call dein#add('leafgarland/typescript-vim')
-                    call dein#add('HerringtonDarkholme/yats.vim')
+                    call dein#add('leafgarland/typescript-vim', {'on_ft': 'typescript'})
+                    call dein#add('HerringtonDarkholme/yats.vim', {'on_ft': 'typescript'})
 
                     "" Javascript:
-                    call dein#add('othree/yajs.vim')
+                    call dein#add('othree/yajs.vim', {'on_ft': 'javascript'})
 
                     "" Markdown:
                     call dein#add('moorereason/vim-markdownfmt', {'on_ft': 'markdown'})
                     call dein#add('rhysd/vim-gfm-syntax', {'on_ft': 'markdown'})
 
                     "" Vim:
-                    call dein#add('vim-jp/vimdoc-ja')
-                    call dein#add('vim-jp/syntax-vim-ex')
+                    call dein#add('vim-jp/vimdoc-ja', {'on_ft': 'vim'})
+                    call dein#add('vim-jp/syntax-vim-ex', {'on_ft': 'vim'})
 
                     "" Shell:
                     call dein#add('chrisbra/vim-sh-indent')
 
+                    "" Tex:
+                    call dein#add('lervag/vimtex', {'on_ft': ['tex', 'latex']})
+
                     "" Json:
-                    call dein#add('elzr/vim-json')
+                    call dein#add('elzr/vim-json', {'on_ft': 'json'})
 
                     "" Tmux:
                     call dein#add('tmux-plugins/vim-tmux')
