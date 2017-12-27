@@ -1,5 +1,5 @@
 " Name:     ys-vim: sensible vim and neovim configuration
-" Desc:     My custom config for Vim8 and NeoVim, partly referred to ashfinal/vimrc-config, statico/dotfiles and liuchengxu/space-vim.
+" Desc:     My custom config for NeoVim, partly referred to ashfinal/vimrc-config, statico/dotfiles and liuchengxu/space-vim.
 " Author:   corenel <xxdsox@gmail.com>
 " URL:      https://github.com/corenel/ysvim
 " License:  MIT license
@@ -49,10 +49,16 @@ function! ysvim#util#check_pathogen(pathogen_path)
     endif
 endfunction
 
-function! ysvim#util#load_config()
+function! ysvim#util#load_basic_config()
     " Load basic config
     let l:ysvim_basic_config = g:ysvim_home . '/autoload/ysvim/basic.vim'
     call ysvim#util#source_file(l:ysvim_basic_config)
+endfunction
+
+function! ysvim#util#load_plugin_config()
+    " Load basic config
+    let l:ysvim_plugin_config = g:ysvim_home . '/autoload/ysvim/config.vim'
+    call ysvim#util#source_file(l:ysvim_plugin_config)
 endfunction
 
 function! ysvim#util#source_file(filepath)

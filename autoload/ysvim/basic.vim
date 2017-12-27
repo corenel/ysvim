@@ -1,5 +1,5 @@
 " Name:     ys-vim: sensible vim and neovim configuration
-" Desc:     My custom config for Vim8 and NeoVim, partly referred to ashfinal/vimrc-config, statico/dotfiles and liuchengxu/space-vim.
+" Desc:     My custom config for  NeoVim, partly referred to ashfinal/vimrc-config, statico/dotfiles and liuchengxu/space-vim.
 " Author:   corenel <xxdsox@gmail.com>
 " URL:      https://github.com/corenel/ysvim
 " License:  MIT license

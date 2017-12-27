@@ -1,1 +1,1 @@
-setlocal textwidth=0 nocin
+setlocal shiftwidth=2 textwidth=0 nocin

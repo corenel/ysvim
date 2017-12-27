@@ -1,5 +1,5 @@
 " Name:     ys-vim: sensible vim and neovim configuration
-" Desc:     My custom config for Vim8 and NeoVim, partly referred to ashfinal/vimrc-config, statico/dotfiles and liuchengxu/space-vim.
+" Desc:     My custom config for NeoVim, partly referred to ashfinal/vimrc-config, statico/dotfiles and liuchengxu/space-vim.
 " Author:   corenel <xxdsox@gmail.com>
 " URL:      https://github.com/corenel/ysvim
 " License:  MIT license
@@ -127,11 +127,11 @@ scriptencoding utf8
                     " call dein#add('tweekmonster/impsort.vim', {'on_ft': ['python','cython', 'pyrex']})
 
                     "" TypeScript:
-                    call dein#add('leafgarland/typescript-vim', {'on_ft': 'typescript'})
-                    call dein#add('HerringtonDarkholme/yats.vim', {'on_ft': 'typescript'})
+                    " call dein#add('leafgarland/typescript-vim', {'on_ft': 'typescript'})
+                    " call dein#add('HerringtonDarkholme/yats.vim', {'on_ft': 'typescript'})
 
                     "" Javascript:
-                    call dein#add('othree/yajs.vim', {'on_ft': 'javascript'})
+                    " call dein#add('othree/yajs.vim', {'on_ft': 'javascript'})
 
                     "" Markdown:
                     call dein#add('moorereason/vim-markdownfmt', {'on_ft': 'markdown'})
