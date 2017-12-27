@@ -75,6 +75,18 @@ scriptencoding utf8
                 let l:all_non_errors = l:counts.total - l:all_errors
                 return l:counts.total == 0 ? '✓ ' : ''
             endfunction
+
+            " Update and show lightline but only if it's visible (e.g., not in Goyo)
+            augroup ale
+                autocmd!
+                autocmd User ALELint call s:MaybeUpdateLightline()
+            augroup END
+
+            function! s:MaybeUpdateLightline()
+                if exists('#lightline')
+                    call lightline#update()
+                end
+            endfunction
         endfunction
 
         " }}} Lightline.vim
@@ -103,8 +115,7 @@ scriptencoding utf8
             let g:startify_change_to_dir      = 1
             let g:startify_files_number       = 8
 
-
-            if g:colors_name ==# 'molokai'
+            if g:ysvim_color ==# 'molokai'
                 hi StartifyBracket ctermfg=240
                 hi StartifyFile    ctermfg=147
                 hi StartifyFooter  ctermfg=240
@@ -278,6 +289,44 @@ scriptencoding utf8
 
         " }}} Gina
 
+        " ale {{{
+
+        function! ysvim#config#ale()
+            let g:ale_sign_warning = '▲'
+            let g:ale_sign_error = '✗'
+            highlight link ALEWarningSign String
+            highlight link ALEErrorSign Title
+            let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+            let g:ale_linters = {
+            \   'sh' : ['shellcheck'],
+            \   'python': ['autopep8', 'flake8', 'isort', 'mypy', 'yapf'],
+            \   'vim': ['vint'],
+            \   'xml': ['xmllint'],
+            \   'yaml': ['yamllint'],
+            \   'markdown' : ['mdl'],
+            \}
+
+            let g:ale_virtualenv_dir_names = ['.env', 'env', 've-py3', 've', 'virtualenv', '.virtualenvs']
+
+            " fix for python3
+            let g:ale_python_autopep8_executable = 'python3'
+            let g:ale_python_autopep8_options = '-m autopep8'
+            let g:ale_python_flake8_executable = 'python3'
+            let g:ale_python_flake8_options = '-m flake8'
+            let g:ale_python_mypy_executable = 'python3'
+            let g:ale_python_mypy_options = '-m mypy'
+            let g:ale_python_isort_executable = 'python3'
+            let g:ale_python_isort_options = '-m isort'
+            let g:ale_python_yapf_executable = 'python3'
+            let g:ale_python_yapf_options = '-m yapf'
+
+            nmap <Leader>en <Plug>(ale_next)
+            nmap <Leader>ep <Plug>(ale_previous)
+            nnoremap <Leader>es :ALEToggle<CR>
+        endfunction
+
+        " }}} ale
     " }}} Enhancement
 
     " Intellisense {{{

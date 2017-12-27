@@ -59,7 +59,7 @@ scriptencoding utf8
                     " Git:
                     " call dein#add('tpope/vim-fugitive')
                     " call dein#add('junegunn/gv.vim')
-                    call dein#add('lambdalisue/gina.vim', {'on_cmd': 'Gina', 'hook_source': "call ysvim#config#gina()"})
+                    call dein#add('lambdalisue/gina.vim', {'on_cmd': 'Gina', 'hook_source': 'call ysvim#config#gina()'})
                     call dein#add('airblade/vim-gitgutter')
 
 
@@ -72,12 +72,15 @@ scriptencoding utf8
                     call dein#add('christoomey/vim-tmux-navigator', {'hook_source': 'call ysvim#config#vim_tmux_navigator()'})
 
                     " Linter Formatter:
-                    call dein#add('neomake/neomake')
+                    " call dein#add('neomake/neomake')
+                    call dein#add('w0rp/ale', {'hook_source': 'call ysvim#config#ale()'})
                     call dein#add('sbdchd/neoformat', {'on_cmd': 'Neoformat'})
 
                     " Editing:
                     call dein#add('mbbill/undotree', {'hook_source': 'call ysvim#config#undotree()'})
-                    call dein#add('terryma/vim-multiple-cursors', { 'on_map' : { 'n' : ['<C-n>', '<C-p>'], 'x' : '<C-n>'}, {'hook_source': 'call ysvim#config#vim_multiple_cursors()'})
+                    call dein#add('terryma/vim-multiple-cursors', {'on_map': {'n': ['<C-n>', '<C-p>'], 'x': '<C-n>'}, 'hook_source': 'call ysvim#config#vim_multiple_cursors()'})
+
+
                     call dein#add('tpope/vim-commentary')
                     call dein#add('tpope/vim-repeat', {'on_map' : '.'})
                     call dein#add('tpope/vim-surround', {'on_map': {'n' : ['cs', 'ds', 'ys'], 'x' : 'S'}, 'depends' : 'vim-repeat'})
@@ -112,16 +115,16 @@ scriptencoding utf8
 
                     " Language Plugin:
                     "" C Family:
-                    call dein#add('vim-jp/vim-cpp')
-                    call dein#add('octol/vim-cpp-enhanced-highlight')
+                    call dein#add('vim-jp/vim-cpp', {'on_ft': ['c', 'cpp', 'objc']})
+                    call dein#add('octol/vim-cpp-enhanced-highlight', {'on_ft': ['c', 'cpp', 'objc']})
                     call dein#add('lyuts/vim-rtags', {'on_ft': ['c', 'cpp', 'objc']})
                     call dein#add('CoatiSoftware/vim-coati', {'on_ft': ['c', 'cpp', 'objc']})
 
                     "" Python:
                     call dein#add('davidhalter/jedi-vim', {'lazy': 1, 'on_ft': ['python', 'cython', 'pyrex'],'hook_source': 'call ysvim#config#jedi_vim()'})
-                    call dein#add('hynek/vim-python-pep8-indent', {'on_ft': ['python', 'cython', 'pyrex']})
-                    call dein#add('nvie/vim-flake8', {'on_ft': ['python', 'cython', 'pyrex']})
-                    call dein#add('tweekmonster/impsort.vim', {'on_ft': ['python','cython', 'pyrex']})
+                    " call dein#add('hynek/vim-python-pep8-indent', {'on_ft': ['python', 'cython', 'pyrex']})
+                    " call dein#add('nvie/vim-flake8', {'on_ft': ['python', 'cython', 'pyrex']})
+                    " call dein#add('tweekmonster/impsort.vim', {'on_ft': ['python','cython', 'pyrex']})
 
                     "" TypeScript:
                     call dein#add('leafgarland/typescript-vim', {'on_ft': 'typescript'})
@@ -139,7 +142,7 @@ scriptencoding utf8
                     call dein#add('vim-jp/syntax-vim-ex', {'on_ft': 'vim'})
 
                     "" Shell:
-                    call dein#add('chrisbra/vim-sh-indent')
+                    call dein#add('chrisbra/vim-sh-indent', {'on_ft': ['sh']})
 
                     "" Tex:
                     call dein#add('lervag/vimtex', {'on_ft': ['tex', 'latex'], 'hook_source': 'call ysvim#config#vimtex()'})
