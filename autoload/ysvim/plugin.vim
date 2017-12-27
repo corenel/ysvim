@@ -77,9 +77,10 @@ scriptencoding utf8
 
                     " Editing:
                     call dein#add('mbbill/undotree', {'hook_source': 'call ysvim#config#undotree()'})
-                    call dein#add('terryma/vim-multiple-cursors', {'hook_source': 'call ysvim#config#vim_multiple_cursors()'})
+                    call dein#add('terryma/vim-multiple-cursors', { 'on_map' : { 'n' : ['<C-n>', '<C-p>'], 'x' : '<C-n>'}, {'hook_source': 'call ysvim#config#vim_multiple_cursors()'})
                     call dein#add('tpope/vim-commentary')
-                    call dein#add('tpope/vim-repeat')
+                    call dein#add('tpope/vim-repeat', {'on_map' : '.'})
+                    call dein#add('tpope/vim-surround', {'on_map': {'n' : ['cs', 'ds', 'ys'], 'x' : 'S'}, 'depends' : 'vim-repeat'})
                     call dein#add('roxma/vim-paste-easy')
                     call dein#add('roxma/vim-tmux-clipboard')
                     call dein#add('majutsushi/tagbar', {'hook_source': 'call ysvim#config#tagbar()'})
