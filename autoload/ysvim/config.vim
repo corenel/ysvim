@@ -352,21 +352,27 @@ scriptencoding utf8
                     \ ],
                     \}
 
+            " Config for Deoplete.vim
+            if !exists('g:deoplete#omni#input_patterns')
+                let g:deoplete#omni#input_patterns = {}
+            endif
+            let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
+
             " If 'omnifunc' is the only available option, you may register it as a source for NCM.
-            augroup custom_cm_setup
-                autocmd!
-                if exists(':VimtexCompile')
-                    autocmd User CmSetup call cm#register_source({
-                        \ 'name' : 'vimtex',
-                        \ 'priority': 8,
-                        \ 'scoping': 1,
-                        \ 'scopes': ['tex'],
-                        \ 'abbreviation': 'tex',
-                        \ 'cm_refresh_patterns': g:vimtex#re#ncm,
-                        \ 'cm_refresh': {'omnifunc': 'vimtex#complete#omnifunc'},
-                        \ })
-                endif
-            augroup END
+            " augroup custom_cm_setup
+            "     autocmd!
+            "     if exists(':VimtexCompile')
+            "         autocmd User CmSetup call cm#register_source({
+            "             \ 'name' : 'vimtex',
+            "             \ 'priority': 8,
+            "             \ 'scoping': 1,
+            "             \ 'scopes': ['tex'],
+            "             \ 'abbreviation': 'tex',
+            "             \ 'cm_refresh_patterns': g:vimtex#re#ncm,
+            "             \ 'cm_refresh': {'omnifunc': 'vimtex#complete#omnifunc'},
+            "             \ })
+            "     endif
+            " augroup END
         endfunction
 
         " }}} vimtex
@@ -396,9 +402,52 @@ scriptencoding utf8
         " Deoplete {{{
 
         function! ysvim#config#deoplete()
+          let g:acp_enableAtStartup = 0
           let g:deoplete#auto_complete_start_length = 1
+          " Use deoplete.
           let g:deoplete#enable_at_startup = 1
+          " Use smartcase.
           let g:deoplete#enable_smart_case = 1
+          " Set minimum syntax keyword length.
+          let g:deoplete#sources#syntax#min_keyword_length = 3
+
+          " Define keyword.
+          if !exists('g:deoplete#keyword_patterns')
+            let g:deoplete#keyword_patterns = {}
+          endif
+          " let g:deoplete#keyword_patterns['default'] = '\h\w*'
+
+          " Recommended key-mappings.
+          " <CR>: close popup and save indent.
+          inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+          function! s:my_cr_function()
+            " return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+            " For no inserting <CR> key.
+            return pumvisible() ? "\<C-y>" : "\<CR>"
+          endfunction
+          " <TAB>: completion.
+          inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+          " <C-h>, <BS>: close popup and delete backword char.
+          inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+          inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
+          " Close popup by <Space>.
+          " inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
+          " Enable omni completion.
+          autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+          autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+          autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+          autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+          autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+          " Enable heavy omni completion.
+          if !exists('g:deoplete#omni#input_patterns')
+            let g:deoplete#omni#input_patterns = {}
+          endif
+          "let g:deoplete#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+          "let g:deoplete#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+          "let g:deoplete#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
           call deoplete#custom#set('_', 'converters', ['converter_auto_paren', 'converter_remove_overlap'])
           call deoplete#custom#set('_', 'min_pattern_length', 1)
           call deoplete#custom#set('buffer', 'rank', 100)
@@ -406,10 +455,6 @@ scriptencoding utf8
           call deoplete#custom#set('jedi', 'matchers', ['matcher_fuzzy'])
           call deoplete#custom#set('neosnippet', 'disabled_syntaxes', ['goComment'])"
           call deoplete#custom#set('vim', 'disabled_syntaxes', ['Comment'])
-
-          imap <expr><TAB> pumvisible() ? "\<C-n>" : (neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>")
-          imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-          imap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>\<Plug>AutoPairsReturn"
         endfunction
 
         " }}} Deoplete
