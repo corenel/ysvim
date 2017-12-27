@@ -134,7 +134,7 @@ scriptencoding utf8
         set cursorline              " Hightlight current line
         set mousehide               " Hide mouse pointer when typing characters
         set guicursor+=a:blinkon0   " No cursor blink
-        set concealcursor=niv
+        set concealcursor=niv       " Conceal neosnippet markers
         set conceallevel=2
 
         set cmdheight=1             " Limit Height of the command bar
@@ -165,7 +165,6 @@ scriptencoding utf8
         if g:ysvim_macos || g:ysvim_windows
             set guifont=MesloLGMDZ\ Nerd\ Font:h14
         endif
-
 
         " }}} Show
 
@@ -204,7 +203,7 @@ scriptencoding utf8
         " Make sure colored syntax mode is on, and make it Just Work with 256-color terminals.
         set background=dark
 
-        let g:ysvim_color = get(g:, 'ysvim_color', 'molokai')
+        let g:ysvim_color = get(g:, 'ysvim_color', 'gruvbox')
 
         " molokai color scheme
         if g:ysvim_color ==# 'molokai'
@@ -212,8 +211,8 @@ scriptencoding utf8
             colorscheme molokai
         endif
 
-        " gruvbox / ayu color scheme
-        if g:ysvim_color ==# 'gruvbox' || g:ysvim_color ==# 'ayu'
+        " gruvbox color scheme
+        if g:ysvim_color ==# 'gruvbox'
             " enable true colors support
             set termguicolors
 
@@ -223,22 +222,13 @@ scriptencoding utf8
                 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
             endif
 
-
-            " ayu color scheme
-            if g:ysvim_color ==# 'ayu'
-                let g:ayucolor='dark'   " for dark version of theme
-                colorscheme ayu
-            endif
-
             " gruvbox color scheme
-            if g:ysvim_color ==# 'gruvbox'
-                colorscheme gruvbox
-                let g:gruvbox_contrast_dark = 'hard'
-                let g:gruvbox_sign_column = 'bg0'
-                " A black background would be better for remote terminal
-                " due to the low FPS
-                hi Normal ctermbg=none
-            endif
+            colorscheme gruvbox
+            let g:gruvbox_contrast_dark = 'hard'
+            let g:gruvbox_sign_column = 'bg0'
+            " A black background would be better for remote terminal
+            " due to the low FPS
+            hi Normal ctermbg=none
         endif
 
         if !has('gui_running')
@@ -263,18 +253,18 @@ scriptencoding utf8
 
         syntax on
 
-        if g:colors_name ==# 'molokai'
+        if g:ysvim_color ==# 'molokai'
             silent! highlight Ignore ctermfg=black ctermbg=bg cterm=bold
 
             " Some custom spell-checking colors
-            highlight SpellBad     term=underline cterm=underline ctermbg=NONE ctermfg=205
-            highlight SpellCap     term=underline cterm=underline ctermbg=NONE ctermfg=33
-            highlight SpellRare    term=underline cterm=underline ctermbg=NONE ctermfg=217
-            highlight SpellLocal   term=underline cterm=underline ctermbg=NONE ctermfg=72
+            " highlight SpellBad     term=underline cterm=underline ctermbg=NONE ctermfg=205
+            " highlight SpellCap     term=underline cterm=underline ctermbg=NONE ctermfg=33
+            " highlight SpellRare    term=underline cterm=underline ctermbg=NONE ctermfg=217
+            " highlight SpellLocal   term=underline cterm=underline ctermbg=NONE ctermfg=72
 
             " Custom search colors
-            highlight clear Search
-            highlight Search term=NONE cterm=NONE ctermfg=white ctermbg=black
+            " highlight clear Search
+            " highlight Search term=NONE cterm=NONE ctermfg=white ctermbg=black
 
             " Make trailing spaces very visible
             highlight SpecialKey ctermbg=Yellow guibg=Yellow
@@ -283,30 +273,26 @@ scriptencoding utf8
             highlight PmenuSel ctermfg=black ctermbg=magenta
 
             " Markdown could be more fruit salady
-            highlight link markdownH1 PreProc
-            highlight link markdownH2 PreProc
-            highlight link markdownLink Character
-            highlight link markdownBold String
-            highlight link markdownItalic Statement
-            highlight link markdownCode Delimiter
-            highlight link markdownCodeBlock Delimiter
-            highlight link markdownListMarker Todo
+            " highlight link markdownH1 PreProc
+            " highlight link markdownH2 PreProc
+            " highlight link markdownLink Character
+            " highlight link markdownBold String
+            " highlight link markdownItalic Statement
+            " highlight link markdownCode Delimiter
+            " highlight link markdownCodeBlock Delimiter
+            " highlight link markdownListMarker Todo
 
             " Window splits & ruler are too bright, so change to white on grey (non-GUI)
-            highlight StatusLine       cterm=NONE ctermbg=blue ctermfg=white
-            highlight StatusLineTerm   cterm=NONE ctermbg=blue ctermfg=white
-            highlight StatusLineNC     cterm=NONE ctermbg=black ctermfg=white
-            highlight StatusLineTermNC cterm=NONE ctermbg=black ctermfg=white
-            highlight VertSplit        cterm=NONE ctermbg=black ctermfg=white
+            " highlight StatusLine       cterm=NONE ctermbg=blue ctermfg=white"
+            " highlight StatusLineTerm   cterm=NONE ctermbg=blue ctermfg=white
+            " highlight StatusLineNC     cterm=NONE ctermbg=black ctermfg=white
+            " highlight StatusLineTermNC cterm=NONE ctermbg=black ctermfg=white
+            " highlight VertSplit        cterm=NONE ctermbg=black ctermfg=white
         endif
 
         " set custom ignore color pattern
         if g:ysvim_color ==# 'gruvbox'
             silent! highlight Ignore guifg=#928374 ctermfg=244 guibg=NONE ctermbg=NONE gui=bold cterm=bold
-        endif
-
-        if g:ysvim_color ==# 'ayu'
-            silent! highlight Ignore guifg=#3E4B59 ctermfg=244 guibg=NONE ctermbg=NONE gui=bold cterm=bold
         endif
 
         " The Ignore color should be... ignorable
@@ -325,12 +311,12 @@ scriptencoding utf8
         highlight link SignColumn Ignore
 
         " Make hilighted matching parents less annoying
-        highlight clear MatchParen
-        highlight link MatchParen Search
+        " highlight clear MatchParen
+        " highlight link MatchParen Search
 
         " taglist.vim's filenames is linked to LineNr by default, which is too dark
-        highlight def link MyTagListFileName Statement
-        highlight def link MyTagListTagName Question
+        " highlight def link MyTagListFileName Statement
+        " highlight def link MyTagListTagName Question
 
         " }}} Color
 

@@ -163,7 +163,7 @@ scriptencoding utf8
                 call dein#begin(expand(g:ysvim_dein_home))
 
                 " Dein:
-                call dein#add('Shougo/dein.vim')
+                call dein#add('Shougo/dein.vim', {'hook_source': 'call ysvim#config#dein()'})
 
                 " Appearance {{{
 
@@ -186,17 +186,18 @@ scriptencoding utf8
                 " Enhancement {{{
 
                     " Operator:
-                    call dein#add('kana/vim-operator-user')
-                    call dein#add('kana/vim-textobj-function')
-                    call dein#add('kana/vim-textobj-user')
-                    call dein#add('kana/vim-operator-replace',
-                            \ {'on_map': '<Plug>', 'depends': 'vim-operator-user'})
-                    call dein#add('rhysd/vim-operator-surround',
-                            \ {'on_map': '<Plug>', 'depends': 'vim-operator-user'})
+                    " call dein#add('kana/vim-operator-user')
+                    " call dein#add('kana/vim-textobj-function')
+                    " call dein#add('kana/vim-textobj-user')
+                    " call dein#add('kana/vim-operator-replace',
+                    "         \ {'on_map': '<Plug>', 'depends': 'vim-operator-user'})
+                    " call dein#add('rhysd/vim-operator-surround',
+                    "         \ {'on_map': '<Plug>', 'depends': 'vim-operator-user'})
 
                     " Git:
                     " call dein#add('tpope/vim-fugitive')
                     " call dein#add('junegunn/gv.vim')
+                    call dein#add('lambdalisue/gina.vim', {'on_cmd': 'Gina', 'hook_source': "call ysvim#config#gina()"})
                     call dein#add('airblade/vim-gitgutter')
 
 
@@ -226,14 +227,18 @@ scriptencoding utf8
                 " Intellisense {{{
 
                     " Deoplete:
-                    call dein#add('Shougo/deoplete.nvim')
+                    call dein#add('Shougo/deoplete.nvim', {'hook_source': 'call ysvim#config#deoplete()'})
                     "" Deopleet Suorces:
                     call dein#add('Shougo/neco-vim', {'on_ft': ['vim'], 'on_source': ['deoplete.nvim']})
                     call dein#add('Shougo/neoinclude.vim', {'on_ft': ['c', 'cpp', 'objc', 'objcpp'], 'on_source': ['deoplete.nvim']})
                     call dein#add('Shougo/neosnippet-snippets')
-                    call dein#add('Shougo/neosnippet.vim', {'depends': ['neosnippet-snippets']})
+                    call dein#add('Shougo/neosnippet.vim', {'depends': ['neosnippet-snippets']}) 
+                    call dein#add('zchee/deoplete-jedi', {'on_ft': ['python', 'cython', 'pyrex']})
+                    call dein#add('zchee/deoplete-clang', {'on_ft': ['c', 'cpp', 'objc', 'objcpp']})
+                    call dein#add('zchee/deoplete-docker', {'on_ft': ['dockerfile']})
+                    call dein#add('zchee/deoplete-zsh', {'on_ft': ['sh', 'zsh']})
                     "" Deopleet Support:
-                    " call dein#add('Shougo/echodoc.vim', {'on_event': 'CompleteDone', 'hook_source': 'call echodoc#enable()'})
+                    call dein#add('Shougo/echodoc.vim', {'on_event': 'CompleteDone', 'hook_source': 'call echodoc#enable()'})
                     call dein#add('Shougo/neopairs.vim', {'on_event': 'CompleteDone', 'hook_add': 'let g:neopairs#enable = 1'})
 
                     " Denite:

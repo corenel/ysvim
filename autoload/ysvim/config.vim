@@ -258,6 +258,26 @@ scriptencoding utf8
 
         " }}} vim-nerdtree-syntax-highlight
 
+        " Gina {{{
+
+        function! ysvim#config#gina()
+          call gina#custom#command#option('commit', '-S|--signoff')
+          call gina#custom#execute(
+                \ '/\%(commit\)',
+                \ 'setlocal colorcolumn=69 expandtab shiftwidth=2 softtabstop=2 tabstop=2 winheight=35',
+                \)
+          call gina#custom#execute(
+                \ '/\%(status\|branch\|ls\|grep\|changes\|tag\)',
+                \ 'setlocal winfixheight',
+                \)
+          call gina#custom#mapping#nmap(
+                \ '/\%(commit\|status\|branch\|ls\|grep\|changes\|tag\)',
+                \ 'q', ':<C-u> q<CR>', {'noremap': 1, 'silent': 1},
+                \)
+        endfunction
+
+        " }}} Gina
+
     " }}} Enhancement
 
     " Intellisense {{{
@@ -372,6 +392,74 @@ scriptencoding utf8
         endfunction
 
         " }}} jedi.vim
+
+        " Deoplete {{{
+
+        function! ysvim#config#deoplete()
+          let g:deoplete#auto_complete_start_length = 1
+          let g:deoplete#enable_at_startup = 1
+          let g:deoplete#enable_smart_case = 1
+          call deoplete#custom#set('_', 'converters', ['converter_auto_paren', 'converter_remove_overlap'])
+          call deoplete#custom#set('_', 'min_pattern_length', 1)
+          call deoplete#custom#set('buffer', 'rank', 100)
+          call deoplete#custom#set('jedi', 'disabled_syntaxes', ['Comment'])
+          call deoplete#custom#set('jedi', 'matchers', ['matcher_fuzzy'])
+          call deoplete#custom#set('neosnippet', 'disabled_syntaxes', ['goComment'])"
+          call deoplete#custom#set('vim', 'disabled_syntaxes', ['Comment'])
+
+          imap <expr><TAB> pumvisible() ? "\<C-n>" : (neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>")
+          imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+          imap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>\<Plug>AutoPairsReturn"
+        endfunction
+
+        " }}} Deoplete
+
+        " Dein {{{
+
+        function! ysvim#config#dein()
+          call denite#custom#map('insert', '<Down>', '<denite:move_to_next_line>', 'noremap')
+          call denite#custom#map('insert', '<Up>', '<denite:move_to_previous_line>', 'noremap')
+
+          call denite#custom#source('line', 'command', ['pt', '--nocolor', '--nogroup', '--follow', '--hidden', '-g', ''])
+
+          call denite#custom#source('file_rec', 'matchers', ['matcher_cpsm'])
+          call denite#custom#source('file_rec', 'sorters', ['sorter_sublime'])
+          call denite#custom#var('file_rec', 'command', ['pt', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', ''])
+          call denite#custom#alias('source', 'file_rec/ag', 'file_rec')
+          call denite#custom#var('file_rec/ag', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+          call denite#custom#alias('source', 'file_rec/rg', 'file_rec')
+          call denite#custom#var('file_rec/rg', 'command', ['rg', '--files', '--glob', '!.git'])
+
+          call denite#custom#var('grep', 'command', ['pt'])
+          call denite#custom#var('grep', 'default_opts', ['--follow', '--hidden', '--nocolor', '--nogroup', '--ignore="_*"'])
+          call denite#custom#var('grep', 'recursive_opts', [])
+          call denite#custom#var('grep', 'pattern_opt', ['-e'])
+          call denite#custom#var('grep', 'separator', [])
+          call denite#custom#var('grep', 'final_opts', [])
+
+          call denite#custom#alias('source', 'grep/rg', 'grep')
+          call denite#custom#var('grep/rg', 'command', ['rg'])
+          call denite#custom#var('grep/rg', 'default_opts', ['--vimgrep', '--no-heading'])
+          call denite#custom#var('grep/rg', 'recursive_opts', [])
+          call denite#custom#var('grep/rg', 'pattern_opt', ['--regexp'])
+          call denite#custom#var('grep/rg', 'separator', ['--'])
+          call denite#custom#var('grep/rg', 'final_opts', [])
+
+          let s:menus = {}
+          let s:menus.zsh = {'description': 'Edit your import zsh configuration'}
+          let s:menus.zsh.file_candidates = [['~/.zshrc'], ['zshenv', '~/.zshenv']]
+          call denite#custom#var('menu', 'menus', s:menus)
+
+          " for feature use
+          let g:cpsm_highlight_mode = 'detailed'
+          let g:cpsm_match_empty_query = 0
+          let g:cpsm_max_threads = 9
+          let g:cpsm_query_inverting_delimiter = ''
+          let g:ctrlp_match_current_file = 0
+          let g:cpsm_unicode = 1
+        endfunction
+
+        " }}} Dein
 
     " }}} Intellisense
 
