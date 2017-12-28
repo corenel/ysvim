@@ -26,7 +26,6 @@ scriptencoding utf8
     function! ysvim#begin() abort
         " Load .ysvimrc
         call ysvim#util#source_file(g:ysvim_config)
-        call ysvim#util#load_plugin_config()
 
         " Download plugin manager if unavailable
         " Then use manager to load plugins

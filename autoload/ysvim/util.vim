@@ -51,14 +51,8 @@ endfunction
 
 function! ysvim#util#load_basic_config()
     " Load basic config
-    let l:ysvim_basic_config = g:ysvim_home . '/autoload/ysvim/basic.vim'
+    let l:ysvim_basic_config = g:ysvim_home . '/autoload/ysvim/config.vim'
     call ysvim#util#source_file(l:ysvim_basic_config)
-endfunction
-
-function! ysvim#util#load_plugin_config()
-    " Load basic config
-    let l:ysvim_plugin_config = g:ysvim_home . '/autoload/ysvim/config.vim'
-    call ysvim#util#source_file(l:ysvim_plugin_config)
 endfunction
 
 function! ysvim#util#source_file(filepath)
