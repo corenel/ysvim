@@ -98,6 +98,7 @@ scriptencoding utf8
                     call dein#add('Shougo/neco-vim', {'on_ft': ['vim'], 'on_source': ['deoplete.nvim']})
                     call dein#add('Shougo/neoinclude.vim', {'on_ft': ['c', 'cpp', 'objc', 'objcpp'], 'on_source': ['deoplete.nvim']})
                     call dein#add('Shougo/neosnippet-snippets')
+                    call dein#add('honza/vim-snippets')
                     call dein#add('Shougo/neosnippet.vim', {'depends': ['neosnippet-snippets']}) 
                     call dein#add('zchee/deoplete-jedi', {'on_ft': ['python', 'cython', 'pyrex']})
                     call dein#add('zchee/deoplete-clang', {'on_ft': ['c', 'cpp', 'objc', 'objcpp']})

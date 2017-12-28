@@ -503,7 +503,6 @@ scriptencoding utf8
           call deoplete#custom#set('buffer', 'rank', 100)
           call deoplete#custom#set('jedi', 'disabled_syntaxes', ['Comment'])
           call deoplete#custom#set('jedi', 'matchers', ['matcher_fuzzy'])
-          call deoplete#custom#set('neosnippet', 'disabled_syntaxes', ['goComment'])"
           call deoplete#custom#set('vim', 'disabled_syntaxes', ['Comment'])
         endfunction
 
