@@ -258,7 +258,6 @@ scriptencoding utf8
                     call dein#add('lambdalisue/gina.vim', {'on_cmd': 'Gina', 'hook_source': "call GinaHookFunc()"})
                     call dein#add('airblade/vim-gitgutter')
 
-
                     " File Manager:
                     " call dein#add('scrooloose/nerdtree')
                     " call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
@@ -267,6 +266,7 @@ scriptencoding utf8
                     " Tmux:
                     " Plug 'benmills/vimux'
                     call dein#add('christoomey/vim-tmux-navigator')
+                    call dein#add('roxma/vim-tmux-clipboard')
 
                     " Linter Formatter:
                     " call dein#add('neomake/neomake')
@@ -276,12 +276,11 @@ scriptencoding utf8
                     " Editing:
                     call dein#add('terryma/vim-multiple-cursors', {'on_map': {'n': ['<C-n>', '<C-p>'], 'x': '<C-n>'}})
                     call dein#add('haya14busa/vim-asterisk', {'on_map': '<Plug>'})
-                    call dein#add('tyru/caw.vim')
-                    " call dein#add('tpope/vim-commentary')
+                    " call dein#add('tyru/caw.vim')
+                    call dein#add('tpope/vim-commentary')
                     call dein#add('tpope/vim-repeat', {'on_map' : '.'})
                     call dein#add('tpope/vim-surround', {'on_map': {'n' : ['cs', 'ds', 'ys'], 'x' : 'S'}, 'depends' : 'vim-repeat'})
                     call dein#add('roxma/vim-paste-easy')
-                    call dein#add('roxma/vim-tmux-clipboard')
                     call dein#add('itchyny/vim-parenmatch', {'on_event': 'VimEnter'})
 
                     " Utils:
@@ -329,9 +328,9 @@ scriptencoding utf8
 
                     "" Python:
                     call dein#add('davidhalter/jedi-vim', {'lazy': 1, 'on_ft': ['python', 'cython', 'pyrex']})
-                    " call dein#add('hynek/vim-python-pep8-indent', {'on_ft': ['python', 'cython', 'pyrex']})
-                    " call dein#add('nvie/vim-flake8', {'on_ft': ['python', 'cython', 'pyrex']})
-                    " call dein#add('tweekmonster/impsort.vim', {'on_ft': ['python','cython', 'pyrex']})
+                    call dein#add('hynek/vim-python-pep8-indent', {'on_ft': ['python', 'cython', 'pyrex']})
+                    call dein#add('nvie/vim-flake8', {'on_ft': ['python', 'cython', 'pyrex']})
+                    call dein#add('tweekmonster/impsort.vim', {'on_ft': ['python','cython', 'pyrex']})
 
                     "" TypeScript:
                     " call dein#add('leafgarland/typescript-vim', {'on_ft': 'typescript'})

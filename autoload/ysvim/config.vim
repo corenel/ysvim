@@ -493,12 +493,10 @@ scriptencoding utf8
     " nmap \t :set expandtab tabstop=4 shiftwidth=4 softtabstop=4<CR>
     " nmap \u :setlocal list!<CR>:setlocal list?<CR>
     " nmap \w :setlocal wrap!<CR>:setlocal wrap?<CR>
-    nmap \A :set formatoptions+=a<CR>:echo "autowrap enabled"<CR>
-    nmap \a :set formatoptions-=a<CR>:echo "autowrap disabled"<CR>
+    " nmap \A :set formatoptions+=a<CR>:echo 'autowrap enabled'<CR>
+    " nmap \a :set formatoptions-=a<CR>:echo 'autowrap disabled'<CR>
     nmap \c :CLEAN<CR>:TEOL<CR>
-    nmap \e :NERDTreeToggle %:p:h<CR>
-    nmap \r :NERDTreeFind<CR>
-    nmap \f mt:Goyo<CR>'tzz
+    nmap \e :Vaffle<CR>
     nmap \g :Gstatus<CR>
     nmap \h :nohlsearch<CR>
     nmap \i vip:sort<CR>
@@ -635,12 +633,37 @@ scriptencoding utf8
 
         " Custom commands and functions {{{
 
-        " GlobalAutoCmd
+        " GlobalAutoCmd:
         augroup GlobalAutoCmd
           autocmd!
         augroup END
         command! -nargs=* Gautocmd   autocmd GlobalAutoCmd <args>
         command! -nargs=* Gautocmdft autocmd GlobalAutoCmd FileType <args>
+
+        " Global:
+        Gautocmd BufWinEnter *
+              \ if line("'\"") > 1 && line("'\"") <= line("$") && &filetype != 'gitcommit' |
+              \ execute "silent! keepjumps normal! g`\"zz"
+
+        " Vim:
+        " nested autoload
+        " Gautocmd BufWritePost $MYVIMRC,*.vim nested silent! source $MYVIMRC | setlocal colorcolumn=99
+
+        " Sh:
+        Gautocmdft sh let g:sh_noisk=1
+        Gautocmd BufWritePre *.sh\|bash Neomake
+
+        " Markdown:
+        Gautocmdft markdown let g:sh_noisk=1
+
+        " Neosnippet:
+        Gautocmdft neosnippet call dein#source('neosnippet.vim')
+        " Clear neosnippet markers when InsertLeave
+        Gautocmd InsertLeave * NeoSnippetClearMarkers
+
+        " Gitcommit:
+        Gautocmd BufEnter COMMIT_EDITMSG startinsert
+        Gautocmdft gina-commit startinsert
 
         " Trim spaces at EOL and retab. I run `:CLEAN` a lot to clean up files.
         command! TEOL %s/\s\+$//
@@ -669,6 +692,28 @@ scriptencoding utf8
             autocmd!
             autocmd BufEnter * call s:CloseIfOnlyControlWinLeft()
         augroup END
+
+        " macOS Frameworks and system header protection
+        Gautocmd BufNewFile,BufReadPost
+              \ /System/Library/*,/Applications/Xcode*,/usr/include*,/usr/lib*
+              \ setlocal readonly nomodified
+
+        " Quickfix:
+        " http://vim.wikia.com/wiki/Automatically_fitting_a_quickfix_window_height
+        function! AdjustWindowHeight(minheight, maxheight)
+          let s:l = 1
+          let s:n_lines = 0
+          let s:w_width = winwidth(0)
+          while s:l <= line('$')
+            " number to float for division
+            let s:l_len = strlen(getline(s:l)) + 0.0
+            let s:line_width = s:l_len/s:w_width
+            let s:n_lines += float2nr(ceil(s:line_width))
+            let s:l += 1
+          endw
+          exe max([min([s:n_lines, a:maxheight]), a:minheight]) . "wincmd _"
+        endfunction
+        Gautocmdft qf call AdjustWindowHeight(5, 10)
 
         " }}} Custom commands and functions
 
@@ -895,11 +940,11 @@ scriptencoding utf8
 
         " }}} vim-tmux-navigator
 
-        " NerdTree {{{
-
-          let g:NERDTreeQuitOnOpen=1
-
-        " }}} NerdTree
+        " " NerdTree {{{
+        "
+        "   let g:NERDTreeQuitOnOpen=1
+        "
+        " " }}} NerdTree
 
         " vim-nerdtree-syntax-highlight {{{
 
@@ -938,6 +983,18 @@ scriptencoding utf8
 
         " }}} Gina
 
+        " GitGutter {{{
+
+          let g:gitgutter_eager = 1
+          let g:gitgutter_enabled = 1
+          let g:gItgutter_highlight_lines = 0
+          let g:gitgutter_map_keys = 0
+          let g:gitgutter_max_signs = 1000
+          let g:gitgutter_realtime = 0
+          set signcolumn=yes
+
+        " }}} GitGutter
+
         " ale {{{
 
           let g:ale_sign_warning = '▲'
@@ -974,6 +1031,117 @@ scriptencoding utf8
           nnoremap <Leader>es :ALEToggle<CR>
 
         " }}} ale
+
+        " accelerated-jk {{{
+
+          let g:accelerated_jk_acceleration_limit = 50
+          let g:accelerated_jk_acceleration_table = [3, 15, 25, 35]
+
+        " }}} accelerated-jk
+
+        " Denite {{{
+
+        " }}} Denite
+
+        " neosnippet {{{
+
+          " Plugin key-mappings.
+          " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+          imap <C-s>     <Plug>(neosnippet_expand_or_jump)
+          smap <C-s>     <Plug>(neosnippet_expand_or_jump)
+          xmap <C-s>     <Plug>(neosnippet_expand_target)
+
+          " SuperTab like snippets behavior.
+          " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+          imap <C-s>     <Plug>(neosnippet_expand_or_jump)
+          "imap <expr><TAB>
+          " \ pumvisible() ? "\<C-n>" :
+          " \ neosnippet#expandable_or_jumpable() ?
+          " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+          smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+          \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+          " For conceal markers.
+          if has('conceal')
+            set conceallevel=2 concealcursor=niv
+          endif
+
+          " Enable snipMate compatibility feature.
+          let g:neosnippet#enable_snipmate_compatibility = 1
+
+          " Tell Neosnippet about the other snippets
+          let g:neosnippet#snippets_directory = g:ysvim_dein_home . '/repos/github.com/honza/vim-snippets/snippets'
+
+          let g:neosnippet#data_directory = g:ysvim_cache . '/neosnippet'
+          let g:neosnippet#enable_complete_done = 1
+          let g:neosnippet#enable_completed_snippet = 1
+          let g:neosnippet#expand_word_boundary = 0
+          let g:neosnippet_username = 'corenel'
+          let g:snips_author = 'Yusu Pan'
+          let g:neosnippet#disable_runtime_snippets = {
+            \   'c': 1,
+            \ 'cpp': 1,
+            \  'go': 1,
+            \ }
+          let g:neosnippet#snippets_directory = $XDG_CONFIG_HOME.'/nvim/neosnippets'
+
+        " }}} neosnippet
+
+        " neopairs {{{
+
+          let g:neopairs#enable = 1
+
+        " }}} neopairs
+
+        " Vaffle {{{
+
+          let g:vaffle_auto_cd = 1
+          let g:vaffle_force_delete = 1
+          let g:vaffle_show_hidden_files = 1
+
+        " }}} Vaffle
+
+        " QuickRun {{{
+
+          Gautocmd WinEnter *
+                \ if winnr('$') == 1 &&
+                \   getbufvar(winbufnr(winnr()), "&filetype") == "quickrun" |
+                \ q |
+                \ endif
+          let g:quickrun_config = get(g:, 'quickrun_config', {})
+          let g:quickrun_config._ = {
+                \ 'runner' : 'vimproc',
+                \ 'runner/vimproc/updatetime' : 50,
+                \ 'outputter' : 'quickfix',
+                \ 'outputter/quickfix/open_cmd' : 'copen 35',
+                \ 'outputter/buffer/running_mark' : ''
+                \ }
+          " Go
+          let g:quickrun_config.go = {
+                \ 'command': 'run',
+                \ 'cmdopt' : '',
+                \ 'exec': ['go %c %s %o -'],
+                \ 'outputter' : 'buffer',
+                \ 'outputter/buffer/split' : 'vertical botright 100',
+                \ 'outputter/buffer/close_on_empty' : 1,
+                \ }
+
+        " }}} QuickRun
+
+        " " Neomake {{{
+        "
+        "   let g:neomake_open_list = 2
+        "   let g:neomake_python_enabled_makers = ['pyflakes', 'flake8']
+        "
+        " " }}} Neomake
+
+        " SonicTemplate {{{
+
+          let g:sonictemplate_vim_template_dir = [
+                \ g:ysvim_home . '/template'
+                \]
+
+        " }}} SonicTemplate
 
     " }}} Enhancement
 
@@ -1067,10 +1235,15 @@ scriptencoding utf8
         " jedi.vim {{{
 
           " don't initialize
-          " let g:jedi#auto_initialization = 0
+          let g:jedi#auto_initialization = 0
           let g:jedi#auto_vim_configuration = 0
-          " let g:jedi#show_call_signatures = 0
-
+          let g:jedi#use_splits_not_buffers = ''
+          let g:jedi#completions_enabled = 0
+          let g:jedi#documentation_command = "K"
+          let g:jedi#max_doc_height = 150
+          let g:jedi#popup_select_first = 0
+          let g:jedi#show_call_signatures = 0
+          let g:jedi#smart_auto_mappings = 0
           let g:jedi#force_py_version = 3
 
           " key bindings
@@ -1086,20 +1259,25 @@ scriptencoding utf8
 
         " Deoplete {{{
 
-        let g:acp_enableAtStartup = 0
-        let g:deoplete#auto_complete_start_length = 1
-        " Use deoplete.
+        " let g:acp_enableAtStartup = 0
+        " let g:deoplete#auto_complete_start_length = 1
+        " let g:deoplete#sources#syntax#min_keyword_length = 3
+
+        let g:deoplete#auto_complete_delay = 0
         let g:deoplete#enable_at_startup = 1
-        " Use smartcase.
+        let g:deoplete#enable_camel_case = 0
+        let g:deoplete#enable_ignore_case = 0
+        let g:deoplete#enable_refresh_always = 0
+        let g:deoplete#auto_refresh_delay = 100
         let g:deoplete#enable_smart_case = 1
-        " Set minimum syntax keyword length.
-        let g:deoplete#sources#syntax#min_keyword_length = 3
+        let g:deoplete#file#enable_buffer_path = 1
+        let g:deoplete#max_list = 10000
 
         " Define keyword.
         if !exists('g:deoplete#keyword_patterns')
           let g:deoplete#keyword_patterns = {}
         endif
-        " let g:deoplete#keyword_patterns['default'] = '\h\w*'
+        let g:deoplete#keyword_patterns['default'] = '\h\w*'
 
         " Recommended key-mappings.
         " <CR>: close popup and save indent.
@@ -1118,56 +1296,133 @@ scriptencoding utf8
         " inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 
         " Enable omni completion.
-        autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-        autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-        autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-        autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+        Gautocmdft go,python,ruby setlocal omnifunc=
+        " autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+        " autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+        " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+        " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+        " autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
         " Enable heavy omni completion.
-        if !exists('g:deoplete#omni#input_patterns')
-          let g:deoplete#omni#input_patterns = {}
-        endif
+        " if !exists('g:deoplete#omni#input_patterns')
+        "   let g:deoplete#omni#input_patterns = {}
+        " endif
         "let g:deoplete#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
         "let g:deoplete#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
         "let g:deoplete#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
+        " Ignore:
+        let g:deoplete#ignore_sources = {} " Initialize
+        let g:deoplete#ignore_sources._ = ['around']
+        let g:deoplete#ignore_sources.go =
+              \ ['buffer', 'dictionary', 'member', 'omni', 'tag', 'syntax', 'around'] " wtf what around?
+        let g:deoplete#ignore_sources.python =
+              \ ['buffer', 'dictionary', 'member', 'omni', 'tag', 'syntax', 'around'] " file/include conflicting deoplete-jedi
+        let g:deoplete#ignore_sources.c =
+              \ ['dictionary', 'member', 'omni', 'tag', 'syntax', 'file/include', 'neosnippet', 'around']
+        let g:deoplete#ignore_sources.cpp    = g:deoplete#ignore_sources.c
+        let g:deoplete#ignore_sources.objc   = g:deoplete#ignore_sources.c
+
+        let g:deoplete#sources#clang#libclang_path = '/usr/local/lib/libclang.dylib'
+        let g:deoplete#sources#clang#clang_header = '/usr/local/lib/clang'
+        let g:deoplete#sources#clang#flags = [
+          \ '-I/usr/include',
+          \ '-I/usr/local/include',
+          \ ] " echo | clang -v -E -x c -
+          " \ '-isysroot', $XCODE_DIR.'/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk',
+        let g:deoplete#sources#jedi#statement_length = 0
+        let g:deoplete#sources#jedi#short_types = 0
+        let g:deoplete#sources#jedi#show_docstring = 1
+        let g:deoplete#sources#jedi#worker_threads = 2
+        let g:deoplete#sources#jedi#python_path = g:python3_host_prog
+
+
         " }}} Deoplete
 
-        " Denite {{{
+        " rtags {{{
 
-        " }}} Denite
+          let g:rtagsJumpStackMaxSize = 1000
+          let g:rtagsMaxSearchResultWindowHeight = 15
+          let g:rtagsMinCharsForCommandCompletion = 100
+          let g:rtagsUseDefaultMappings = 0
+          let g:rtagsUseLocationList = 1
 
-        " neosnippet {{{
+        " }}} rtags
 
-          " Plugin key-mappings.
-          " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-          imap <C-s>     <Plug>(neosnippet_expand_or_jump)
-          smap <C-s>     <Plug>(neosnippet_expand_or_jump)
-          xmap <C-s>     <Plug>(neosnippet_expand_target)
+        " vim-cpp-enhanced-highlight {{{
 
-          " SuperTab like snippets behavior.
-          " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-          imap <C-s>     <Plug>(neosnippet_expand_or_jump)
-          "imap <expr><TAB>
-          " \ pumvisible() ? "\<C-n>" :
-          " \ neosnippet#expandable_or_jumpable() ?
-          " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-          smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-          \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+          let g:cpp_class_scope_highlight = 1
+          let g:cpp_experimental_template_highlight = 1
+          let g:cpp_concepts_highlight = 1
 
-          " For conceal markers.
-          if has('conceal')
-            set conceallevel=2 concealcursor=niv
-          endif
+        " }}} vim-cpp-enhanced-highlight
 
-          " Enable snipMate compatibility feature.
-          let g:neosnippet#enable_snipmate_compatibility = 1
+        " clang-format {{{
 
-          " Tell Neosnippet about the other snippets
-          let g:neosnippet#snippets_directory = g:ysvim_dein_home . '/repos/github.com/honza/vim-snippets/snippets'
+          let g:clang_format#auto_format = 0
+          let g:clang_format#auto_format_on_insert_leave = 0
+          let g:clang_format#auto_formatexpr = 1
+          let g:clang_format#command = '/usr/local/bin/clang-format'
+          let g:clang_format#detect_style_file = 1
+          let g:clang_format#style_options = {
+                \ 'Standard' : 'C++11',
+                \ 'AllowShortIfStatementsOnASingleLine' : 'true',
+                \ 'AlwaysBreakTemplateDeclarations' : 'true',
+                \ 'AccessModifierOffset' : -4
+                \ }
 
-        " }}} neosnippet
+        " }}} clang-format
+
+        " vim-flake8 {{{
+
+          let g:python_highlight_all = 1
+          " let g:flake8_cmd = $HOME.'/.local/bin/flake8'
+          let g:flake8_show_in_gutter = 1
+
+        " }}} vim-flake8
+
+        " autopep8 {{{
+
+          let g:autopep8_aggressive = 1
+          let g:autopep8_disable_show_diff = 1
+
+        " }}} autopep8
+
+        " impsort {{{
+
+          let g:impsort_highlight_imported = 1
+          let g:impsort_highlight_star_imports = 1
+
+        " }}} impsort
+
+        " vim-markdownfmt {{{
+
+          let g:markdownfmt_autosave = 0
+          Gautocmd InsertLeave *.md,*.slide call vimproc#system("issw 'com.apple.keyboardlayout.Programmer Dvorak.keylayout.ProgrammerDvorak'")
+
+        " }}} vim-markdownfmt
+
+        " vim-gfm-syntax {{{
+
+          " http://mattn.kaoriya.net/software/vim/20140523124903.html
+          let g:markdown_fenced_languages = [
+                \ 'c',
+                \ 'cpp',
+                \ 'python',
+                \ 'sh',
+                \ 'vim',
+                \ 'asm',
+                \]
+          let g:slide_fenced_languages = [
+                \ 'sh',
+                \ 'c',
+                \ 'cpp',
+                \ 'python',
+                \ 'vim',
+                \ 'asm',
+                \]
+
+        " }}} vim-gfm-stntax
 
     " }}} Intellisense
 
