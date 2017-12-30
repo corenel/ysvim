@@ -6,7 +6,7 @@
 
 scriptencoding utf8
 
-" General {{{
+" General Settings {{{
 
     " Environment - Options, Encoding, Indent, Fold {{{
 
@@ -504,7 +504,6 @@ scriptencoding utf8
     nmap \i vip:sort<CR>
     nmap \l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
     nmap \o :set paste!<CR>:set paste?<CR>
-    nmap \p :ProseMode<CR>
     nmap \v :Startify<CR>
     nmap \x :cclose<CR>
     nmap \z :w<CR>:!open %<CR><CR>
@@ -636,13 +635,12 @@ scriptencoding utf8
 
         " Custom commands and functions {{{
 
-        " Debugging helpers
-        augroup debug
-            autocmd!
-            autocmd BufEnter *.py iabbr xxx print('XXX')
-            autocmd BufEnter *.py iabbr yyy print('YYY')
-            autocmd BufEnter *.py iabbr zzz print('ZZZ')
+        " GlobalAutoCmd
+        augroup GlobalAutoCmd
+          autocmd!
         augroup END
+        command! -nargs=* Gautocmd   autocmd GlobalAutoCmd <args>
+        command! -nargs=* Gautocmdft autocmd GlobalAutoCmd FileType <args>
 
         " Trim spaces at EOL and retab. I run `:CLEAN` a lot to clean up files.
         command! TEOL %s/\s\+$//
@@ -650,19 +648,6 @@ scriptencoding utf8
 
         " Close all buffers except this one
         command! BufCloseOthers %bd|e#
-
-        " Custom mode for distraction-free editing
-        function! ProseMode()
-            call goyo#execute(0, [])
-            set spell noci nosi noai nolist noshowmode noshowcmd
-            " set complete+=s
-            " set background=light
-            " if !has('gui_running')
-            "     let g:solarized_termcolors=256
-            " endif
-            " colors solarized
-        endfunction
-        command! ProseMode call ProseMode()
 
         " Exit if the last window is a controlling one (NERDTree, qf).
         function! s:CloseIfOnlyControlWinLeft()
@@ -701,7 +686,7 @@ scriptencoding utf8
 
     " }}} Misc
 
-" }}} General
+" }}} General Settings
 
 " Plugin Settings {{{
 
@@ -1061,12 +1046,6 @@ scriptencoding utf8
                   \ ],
                   \}
 
-          " Config for Deoplete.vim
-          if !exists('g:deoplete#omni#input_patterns')
-              let g:deoplete#omni#input_patterns = {}
-          endif
-          let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
-
           " If 'omnifunc' is the only available option, you may register it as a source for NCM.
           " augroup custom_cm_setup
           "     autocmd!
@@ -1156,47 +1135,6 @@ scriptencoding utf8
         " }}} Deoplete
 
         " Denite {{{
-
-        call denite#custom#map('insert', '<Down>', '<denite:move_to_next_line>', 'noremap')
-        call denite#custom#map('insert', '<Up>', '<denite:move_to_previous_line>', 'noremap')
-
-        call denite#custom#source('line', 'command', ['pt', '--nocolor', '--nogroup', '--follow', '--hidden', '-g', ''])
-
-        call denite#custom#source('file_rec', 'matchers', ['matcher_cpsm'])
-        call denite#custom#source('file_rec', 'sorters', ['sorter_sublime'])
-        call denite#custom#var('file_rec', 'command', ['pt', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', ''])
-        call denite#custom#alias('source', 'file_rec/ag', 'file_rec')
-        call denite#custom#var('file_rec/ag', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-        call denite#custom#alias('source', 'file_rec/rg', 'file_rec')
-        call denite#custom#var('file_rec/rg', 'command', ['rg', '--files', '--glob', '!.git'])
-
-        call denite#custom#var('grep', 'command', ['pt'])
-        call denite#custom#var('grep', 'default_opts', ['--follow', '--hidden', '--nocolor', '--nogroup', '--ignore="_*"'])
-        call denite#custom#var('grep', 'recursive_opts', [])
-        call denite#custom#var('grep', 'pattern_opt', ['-e'])
-        call denite#custom#var('grep', 'separator', [])
-        call denite#custom#var('grep', 'final_opts', [])
-
-        call denite#custom#alias('source', 'grep/rg', 'grep')
-        call denite#custom#var('grep/rg', 'command', ['rg'])
-        call denite#custom#var('grep/rg', 'default_opts', ['--vimgrep', '--no-heading'])
-        call denite#custom#var('grep/rg', 'recursive_opts', [])
-        call denite#custom#var('grep/rg', 'pattern_opt', ['--regexp'])
-        call denite#custom#var('grep/rg', 'separator', ['--'])
-        call denite#custom#var('grep/rg', 'final_opts', [])
-
-        let s:menus = {}
-        let s:menus.zsh = {'description': 'Edit your import zsh configuration'}
-        let s:menus.zsh.file_candidates = [['~/.zshrc'], ['zshenv', '~/.zshenv']]
-        call denite#custom#var('menu', 'menus', s:menus)
-
-        " for feature use
-        let g:cpsm_highlight_mode = 'detailed'
-        let g:cpsm_match_empty_query = 0
-        let g:cpsm_max_threads = 9
-        let g:cpsm_query_inverting_delimiter = ''
-        let g:ctrlp_match_current_file = 0
-        let g:cpsm_unicode = 1
 
         " }}} Denite
 
