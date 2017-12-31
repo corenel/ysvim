@@ -510,8 +510,10 @@ scriptencoding utf8
     " line wrapping on, this can cause the cursor to actually skip a few lines on the screen because
     " it's moving from line N to line N+1 in the file. I want this to act more visually -- I want `down'
     " to mean the next line on the screen
-    nmap j gj
-    nmap k gk
+    " nmap j gj
+    " nmap k gk
+    nmap j <Plug>(accelerated_jk_gj_position)
+    nmap k <Plug>(accelerated_jk_gk_position)
 
     " Map jk to enter normal mode
     imap jk <Esc>
@@ -1043,56 +1045,6 @@ scriptencoding utf8
 
         " }}} Denite
 
-        " neosnippet {{{
-
-          " Plugin key-mappings.
-          " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-          imap <C-s>     <Plug>(neosnippet_expand_or_jump)
-          smap <C-s>     <Plug>(neosnippet_expand_or_jump)
-          xmap <C-s>     <Plug>(neosnippet_expand_target)
-
-          " SuperTab like snippets behavior.
-          " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-          imap <C-s>     <Plug>(neosnippet_expand_or_jump)
-          "imap <expr><TAB>
-          " \ pumvisible() ? "\<C-n>" :
-          " \ neosnippet#expandable_or_jumpable() ?
-          " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-          smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-          \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-          " For conceal markers.
-          if has('conceal')
-            set conceallevel=2 concealcursor=niv
-          endif
-
-          " Enable snipMate compatibility feature.
-          let g:neosnippet#enable_snipmate_compatibility = 1
-
-          " Tell Neosnippet about the other snippets
-          let g:neosnippet#snippets_directory = g:ysvim_dein_home . '/repos/github.com/honza/vim-snippets/snippets'
-
-          let g:neosnippet#data_directory = g:ysvim_cache . '/neosnippet'
-          let g:neosnippet#enable_complete_done = 1
-          let g:neosnippet#enable_completed_snippet = 1
-          let g:neosnippet#expand_word_boundary = 0
-          let g:neosnippet_username = 'corenel'
-          let g:snips_author = 'Yusu Pan'
-          let g:neosnippet#disable_runtime_snippets = {
-            \   'c': 1,
-            \ 'cpp': 1,
-            \  'go': 1,
-            \ }
-          let g:neosnippet#snippets_directory = $XDG_CONFIG_HOME.'/nvim/neosnippets'
-
-        " }}} neosnippet
-
-        " neopairs {{{
-
-          let g:neopairs#enable = 1
-
-        " }}} neopairs
-
         " Vaffle {{{
 
           let g:vaffle_auto_cd = 1
@@ -1178,6 +1130,7 @@ scriptencoding utf8
 
           "tex preview config
           let g:texflavor = 'latex'
+          let g:tex_flavor = 'latex'
           let g:vimtex_view_method = 'skim'
           let g:vimtex_view_enabled = 1
           let g:vimtex_view_general_viewer = 'open'
@@ -1288,7 +1241,7 @@ scriptencoding utf8
           return pumvisible() ? "\<C-y>" : "\<CR>"
         endfunction
         " <TAB>: completion.
-        inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+        " inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
         " <C-h>, <BS>: close popup and delete backword char.
         inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
         inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
@@ -1338,6 +1291,56 @@ scriptencoding utf8
 
 
         " }}} Deoplete
+
+        " neosnippet {{{
+
+          " Plugin key-mappings.
+          " Note: It must be 'imap' and 'smap'.  It uses <Plug> mappings.
+          imap <C-o>     <Plug>(neosnippet_expand_or_jump)
+          smap <C-o>     <Plug>(neosnippet_expand_or_jump)
+          xmap <C-o>     <Plug>(neosnippet_expand_target)
+
+          " SuperTab like snippets behavior.
+          " Note: It must be 'imap' and 'smap'.  It uses <Plug> mappings.
+          imap <C-o>     <Plug>(neosnippet_expand_or_jump)
+          imap <expr><TAB>
+           \ pumvisible() ? "\<C-n>" :
+           \ neosnippet#expandable_or_jumpable() ?
+           \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+          smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+          \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+          " For conceal markers.
+          if has('conceal')
+            set conceallevel=2 concealcursor=niv
+          endif
+
+          " Enable snipMate compatibility feature.
+          " let g:neosnippet#enable_snipmate_compatibility = 1
+          " Tell Neosnippet about the other snippets
+          let g:neosnippet#snippets_directory = g:ysvim_home . '/neosnippets'
+          let g:neosnippet#snippets_directory .= ', ' . g:ysvim_dein_home . '/repos/github.com/Shougo/neosnippet-snippets/neosnippets'
+          " let g:neosnippet#snippets_directory .= ', ' . g:ysvim_dein_home . '/repos/github.com/honza/vim-snippets/snippets'
+
+          let g:neosnippet#data_directory = g:ysvim_cache . '/neosnippet'
+          let g:neosnippet#enable_complete_done = 1
+          let g:neosnippet#enable_completed_snippet = 1
+          let g:neosnippet#expand_word_boundary = 0
+          let g:neosnippet_username = 'corenel'
+          let g:snips_author = 'Yusu Pan'
+          let g:neosnippet#disable_runtime_snippets = {
+            \   'c': 1,
+            \ 'cpp': 1,
+            \  'go': 1,
+            \ }
+
+        " }}} neosnippet
+
+        " neopairs {{{
+
+          let g:neopairs#enable = 1
+
+        " }}} neopairs
 
         " rtags {{{
 
