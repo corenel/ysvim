@@ -1,0 +1,155 @@
+snippet part
+abbr    Part with label and end comment
+alias   part prt
+options head
+    \part{${1:part name}}\label{prt:${2:label_name}}
+        ${0}
+    % part $1 (end)
+
+snippet part*
+abbr    Part* with label and end comment
+alias   part* prt*
+options head
+    \part*{${1:part name}}\label{prt:${2:label_name}}
+        ${0}
+    % part* $1 (end)
+
+snippet chapter
+abbr    Chapter with label and end comment
+alias   chapter cha
+options head
+    \chapter{${1:chapter name}}\label{cha:${2:label_name}}
+        ${0}
+    % chapter $1 (end)
+
+snippet section
+abbr    Section with label and end comment
+alias   sec
+options head
+    \section{${1:section name}}\label{sec:${2:label_name}}
+        ${0}
+    % section $1 (end)
+
+snippet section*
+abbr    Section* with label and end comment
+alias   sec*
+options head
+    \section*{${1:section name}}\label{sec:${2:label_name}}
+        ${0}
+    % section* $1 (end)
+
+snippet subsection
+abbr    Subsection with label and end comment
+alias   sub
+options head
+    \subsection{${1:subsection name}}\label{sub:${2:label_name}}
+        ${0}
+    % subsection $1 (end)
+
+snippet subsection*
+abbr    Subsection* with label and end comment
+alias   sub*
+options head
+    \subsection*{${1:subsection name}}\label{sub:${2:label_name}}
+        ${0}
+    % subsection* $1 (end)
+
+snippet subsubsection
+abbr    Subsubsection with label and end comment
+alias   ssub
+options head
+    \subsubsection{${1:subsubsection name}}\label{ssub:${2:label_name}}
+        ${0}
+    % subsubsection $1 (end)
+
+snippet subsubsection*
+abbr    Subsubsection* with label and end comment
+alias   ssub*
+options head
+    \subsubsection*{${1:subsubsection name}}\label{ssub:${2:label_name}}
+        ${0}
+    % subsubsection* $1 (end)
+
+snippet paragraph
+abbr    Paragraph with label and end comment
+alias   par
+options head
+    \paragraph{${1:paragraph name}}\label{par:${2:label_name}}
+        ${0}
+    % par $1 (end)
+
+snippet subparagraph
+abbr    subparagraph with label and end comment
+alias   spar
+options head
+    \subparagraph{${1:subparagraph name}}\label{spar:${2:label_name}}
+        ${0}
+    % subparagraph $1 (end)
+
+snippet resizebox
+abbr    Resizebox with textwidth
+alias   rbox
+    \resizebox{\textwidth}{!}{%
+        ${0}
+    }%
+
+snippet theorem
+abbr    Theorom environment
+options head
+    \begin{theorem}
+        ${0}
+    \end{theorem}
+
+snippet definition
+abbr    Definition environment
+alias   def
+options head
+    \begin{definition}
+        ${0}
+    \end{definition}
+
+snippet lemma
+abbr    Lemma environment
+options head
+    \begin{lemma}
+        ${0}
+    \end{lemma}
+
+snippet corollary
+abbr    Corollary environment
+options head
+    \begin{corollary}
+        ${0}
+    \end{corollary}
+
+snippet eqnalign
+abbr    Equation environment with aligned
+options head
+    \begin{equation}
+        \begin{aligned}
+            ${0}
+        \end{aligned}
+    \end{equation}
+
+snippet eqngroup
+abbr    Equation group environment
+options head
+    \begin{equation}
+        \left\\{
+        \begin{aligned}
+            ${0}
+        \end{aligned}
+        \right.
+    \end{equation}
+
+snippet mds
+alias   mds
+    \mathds{${0}}
+
+snippet mbf
+alias   mbf
+    \mathbf{${0}}
+
+snippet tbf
+alias   tbf
+    \textbf{${0}}

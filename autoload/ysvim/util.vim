@@ -1,5 +1,5 @@
 " Name:     ys-vim: sensible vim and neovim configuration
-" Desc:     My custom config for Vim8 and NeoVim, partly referred to ashfinal/vimrc-config, statico/dotfiles and liuchengxu/space-vim.
+" Desc:     My custom config for NeoVim, partly referred to ashfinal/vimrc-config, statico/dotfiles and liuchengxu/space-vim.
 " Author:   corenel <xxdsox@gmail.com>
 " URL:      https://github.com/corenel/ysvim
 " License:  MIT license
@@ -32,9 +32,12 @@ function! ysvim#util#check_vim_plug(plug_path)
 endfunction
 
 function! ysvim#util#check_dein(dein_path)
-    if empty(glob(a:dein_path))
-        echo '==> Downloading Dein.vim ......'
-        execute '!git clone https://github.com/Shougo/dein.vim ' . a:dein_path
+    if &runtimepath !~ '/dein.vim'
+        if !isdirectory(a:dein_path)
+            echo '==> Downloading Dein.vim ......'
+            call mkdir(fnamemodify(a:dein_path, ':h'), 'p')
+            execute '!git clone https://github.com/Shougo/dein.vim' a:dein_path
+        endif
     endif
 endfunction
 
@@ -46,14 +49,10 @@ function! ysvim#util#check_pathogen(pathogen_path)
     endif
 endfunction
 
-function! ysvim#util#load_config()
+function! ysvim#util#load_basic_config()
     " Load basic config
-    let l:ysvim_basic_config = g:ysvim_home . '/autoload/ysvim/basic.vim'
+    let l:ysvim_basic_config = g:ysvim_home . '/autoload/ysvim/config.vim'
     call ysvim#util#source_file(l:ysvim_basic_config)
-
-    " Load plugin settings
-    let l:ysvim_plugin_setting = g:ysvim_home . '/autoload/ysvim/setting.vim'
-    call ysvim#util#source_file(l:ysvim_plugin_setting)
 endfunction
 
 function! ysvim#util#source_file(filepath)
