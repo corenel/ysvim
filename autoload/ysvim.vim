@@ -56,11 +56,6 @@ scriptencoding utf8
             call ysvim#util#err('Error occurs in CustomConfig() in .ysvimrc!')
             echoerr v:exception
         endtry
-
-        " Some plugin seems to search for something at startup, so this fixes that.
-        silent! nohlsearch
-
-        " vim:set tw=100:
     endfunction
 
 " }}} End

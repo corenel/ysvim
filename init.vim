@@ -14,12 +14,18 @@
         echo 'Not tested on Windows.'
     endif
 
+    " Specify python host path
     if g:ysvim_macos
-        let g:python_host_prog  = '/usr/local/bin/python2.7'
-        let g:python3_host_prog = '/usr/local/bin/python3.6'
+        let g:python_host_prog  = '/usr/local/bin/python2'
+        let g:python3_host_prog = '/usr/local/bin/python3'
     elseif g:ysvim_linux
-        let g:python3_host_prog = '/usr/bin/python3.6'
-        let g:python_host_prog  = '/usr/bin/python2.7'
+        if isdirectory('/home/linuxbrew/.linuxbrew/')
+            let g:python_host_prog  = '/home/linuxbrew/.linuxbrew/bin/python2'
+            let g:python3_host_prog = '/home/linuxbrew/.linuxbrew/bin/python3'
+        else
+            let g:python_host_prog  = '/usr/bin/python2'
+            let g:python3_host_prog = '/usr/bin/python3'
+        endif
     endif
 
 " }}} Platform-specific Initialization
