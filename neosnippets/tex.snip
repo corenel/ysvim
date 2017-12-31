@@ -143,13 +143,17 @@ options head
     \end{equation}
 
 snippet mds
-alias   mds
+abbr    Mathds environment
     \mathds{${0}}
 
 snippet mbf
-alias   mbf
+abbr    Mathbf environment
     \mathbf{${0}}
 
 snippet tbf
-alias   tbf
+abbr    Bold Text environment
     \textbf{${0}}
+
+snippet multicolumn
+abbr    Multi-column table cell
+    \multicolumn{${1:2}}{${2:c}}{${0}}
