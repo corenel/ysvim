@@ -362,16 +362,16 @@ scriptencoding utf8
         " Navigation {{{
 
         " Make cursor always on center of screen by default
-        if !exists('noalwayscenter')
-            " Calculate proper scrolloff
-            augroup centercursor:
-              autocmd!
-              autocmd VimEnter,WinEnter,VimResized,InsertLeave * :let &scrolloff = float2nr(floor(winheight(0)/2)+1)
-              autocmd InsertEnter * :let &scrolloff = float2nr(floor(winheight(0)/2))
-            augroup END
-            " Use <Enter> to keep center in insert mode, need proper scrolloff
-            inoremap <CR> <CR><C-o>zz
-        endif
+        " if !exists('noalwayscenter')
+        "     " Calculate proper scrolloff
+        "     augroup centercursor:
+        "       autocmd!
+        "       autocmd VimEnter,WinEnter,VimResized,InsertLeave * :let &scrolloff = float2nr(floor(winheight(0)/2)+1)
+        "       autocmd InsertEnter * :let &scrolloff = float2nr(floor(winheight(0)/2))
+        "     augroup END
+        "     " Use <Enter> to keep center in insert mode, need proper scrolloff
+        "     inoremap <CR> <CR><C-o>zz
+        " endif
 
         set scroll=4                " Number of lines to scroll with ^U/^D
         set scrolloff=15            " Keep cursor away from this many chars top/bot
@@ -497,7 +497,7 @@ scriptencoding utf8
     " nmap \A :set formatoptions+=a<CR>:echo 'autowrap enabled'<CR>
     " nmap \a :set formatoptions-=a<CR>:echo 'autowrap disabled'<CR>
     nmap \c :CLEAN<CR>:TEOL<CR>
-    nmap \e :Vaffle<CR>
+    nmap \e :call ToggleVaffle()<CR>
     nmap \f :Neoformat<CR>
     nmap \g :Gstatus<CR>
     nmap \h :nohlsearch<CR>
@@ -718,6 +718,27 @@ scriptencoding utf8
           exe max([min([s:n_lines, a:maxheight]), a:minheight]) . "wincmd _"
         endfunction
         Gautocmdft qf call AdjustWindowHeight(5, 10)
+
+        function! ToggleVaffle()
+            if exists("t:explorer_buf_num")
+                let l:explorer_win_num = bufwinnr(t:explorer_buf_num)
+                if l:explorer_win_num != -1
+                    let l:cur_win_num = winnr()
+                    exec l:explorer_win_num . 'wincmd w'
+                    close
+                    exec l:cur_win_num . 'wincmd w'
+                    unlet t:explorer_buf_num
+                else
+                    unlet t:explorer_buf_num
+                endif
+            else
+                exec 'wincmd v'
+                exec '1wincmd w'
+                Vaffle
+                vertical resize 32
+                let t:explorer_buf_num = bufnr('%')
+            endif
+        endfunction
 
         " }}} Custom commands and functions
 
