@@ -656,7 +656,7 @@ scriptencoding utf8
 
         " Sh:
         Gautocmdft sh let g:sh_noisk=1
-        Gautocmd BufWritePre *.sh\|bash Neomake
+        " Gautocmd BufWritePre *.sh\|bash Neomake
 
         " Markdown:
         Gautocmdft markdown let g:sh_noisk=1
