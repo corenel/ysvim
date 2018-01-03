@@ -98,6 +98,7 @@ scriptencoding utf8
         filetype on
         filetype plugin on
         filetype plugin indent on
+        syntax enable
 
         set wrap
         " set iskeyword+=-
@@ -1095,6 +1096,12 @@ scriptencoding utf8
                 \]
 
         " }}} SonicTemplate
+
+        " Wakatime {{{
+
+          let g:wakatime_PythonBinary = g:python3_host_prog
+
+        " }}} Wakatime
 
     " }}} Enhancement
 

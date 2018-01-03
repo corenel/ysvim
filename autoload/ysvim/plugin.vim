@@ -255,7 +255,7 @@ scriptencoding utf8
                     " Git:
                     " call dein#add('tpope/vim-fugitive')
                     " call dein#add('junegunn/gv.vim')
-                    call dein#add('lambdalisue/gina.vim', {'on_cmd': 'Gina', 'hook_source': "call GinaHookFunc()"})
+                    call dein#add('lambdalisue/gina.vim', {'on_cmd': 'Gina', 'hook_source': 'call GinaHookFunc()'})
                     call dein#add('airblade/vim-gitgutter')
 
                     " File Manager:
@@ -292,6 +292,8 @@ scriptencoding utf8
                     call dein#add('tyru/open-browser-github.vim', {'on_cmd': ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq']})
                     call dein#add('rhysd/accelerated-jk', {'on_map': '<Plug>'})
                     call dein#add('mbbill/undotree')
+
+                    " Lifelog:
                     call dein#add('wakatime/vim-wakatime')
 
                     " Denite:
@@ -305,7 +307,7 @@ scriptencoding utf8
                 " Intellisense {{{
 
                     " Deoplete:
-                    call dein#add('Shougo/deoplete.nvim', {'hook_add': "call DeopleteHookFunc()"})
+                    call dein#add('Shougo/deoplete.nvim', {'hook_add': 'call DeopleteHookFunc()'})
                     "" Deoplete Suorces:
                     call dein#add('Shougo/neco-vim', {'on_ft': ['vim'], 'on_source': ['deoplete.nvim']})
                     call dein#add('Shougo/neoinclude.vim', {'on_ft': ['c', 'cpp', 'objc', 'objcpp'], 'on_source': ['deoplete.nvim']})
