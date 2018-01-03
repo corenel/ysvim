@@ -292,6 +292,7 @@ scriptencoding utf8
                     call dein#add('tyru/open-browser-github.vim', {'on_cmd': ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq']})
                     call dein#add('rhysd/accelerated-jk', {'on_map': '<Plug>'})
                     call dein#add('mbbill/undotree')
+                    call dein#add('wakatime/vim-wakatime')
 
                     " Denite:
                     call dein#add('Shougo/denite.nvim', {'hook_add': 'call DeniteHookFunc()'})
