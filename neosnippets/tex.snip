@@ -1,32 +1,56 @@
 snippet part
+abbr    Part and end comment
+alias   prt
+options head
+    \part{${1:part name}}
+        ${0}
+    % part $1 (end)
+
+snippet part*
+abbr    Part* and end comment
+alias   prt*
+options head
+    \part*{${1:part name}}
+        ${0}
+    % part* $1 (end)
+
+snippet partl
 abbr    Part with label and end comment
-alias   part prt
+alias   prtl
 options head
     \part{${1:part name}}\label{prt:${2:label_name}}
         ${0}
     % part $1 (end)
 
-snippet part*
+snippet partl*
 abbr    Part* with label and end comment
-alias   part* prt*
+alias   prtl*
 options head
     \part*{${1:part name}}\label{prt:${2:label_name}}
         ${0}
     % part* $1 (end)
 
 snippet chapter
+abbr    Chapter and end comment
+alias   cha
+options head
+    \chapter{${1:chapter name}}
+        ${0}
+    % chapter $1 (end)
+
+snippet chapterl
 abbr    Chapter with label and end comment
-alias   chapter cha
+alias   chal
 options head
     \chapter{${1:chapter name}}\label{cha:${2:label_name}}
         ${0}
     % chapter $1 (end)
 
 snippet section
-abbr    Section with label and end comment
+abbr    Section and end comment
 alias   sec
 options head
-    \section{${1:section name}}\label{sec:${2:label_name}}
+    \section{${1:section name}}
         ${0}
     % section $1 (end)
 
@@ -34,11 +58,43 @@ snippet section*
 abbr    Section* with label and end comment
 alias   sec*
 options head
+    \section*{${1:section name}}
+        ${0}
+    % section* $1 (end)
+
+snippet sectionl
+abbr    Section with label and end comment
+alias   secl
+options head
+    \section{${1:section name}}\label{sec:${2:label_name}}
+        ${0}
+    % section $1 (end)
+
+snippet sectionl*
+abbr    Section* with label and end comment
+alias   secl*
+options head
     \section*{${1:section name}}\label{sec:${2:label_name}}
         ${0}
     % section* $1 (end)
 
 snippet subsection
+abbr    Subsection and end comment
+alias   sub
+options head
+    \subsection{${1:subsection name}}
+        ${0}
+    % subsection $1 (end)
+
+snippet subsection*
+abbr    Subsection* and end comment
+alias   sub*
+options head
+    \subsection*{${1:subsection name}}
+        ${0}
+    % subsection* $1 (end)
+
+snippet subsectionl
 abbr    Subsection with label and end comment
 alias   sub
 options head
@@ -46,7 +102,7 @@ options head
         ${0}
     % subsection $1 (end)
 
-snippet subsection*
+snippet subsectionl*
 abbr    Subsection* with label and end comment
 alias   sub*
 options head
