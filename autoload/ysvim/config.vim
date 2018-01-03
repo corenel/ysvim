@@ -497,7 +497,8 @@ scriptencoding utf8
     " nmap \A :set formatoptions+=a<CR>:echo 'autowrap enabled'<CR>
     " nmap \a :set formatoptions-=a<CR>:echo 'autowrap disabled'<CR>
     nmap \c :CLEAN<CR>:TEOL<CR>
-    nmap \e :call ToggleVaffle()<CR>
+    " nmap \e :call ToggleVaffle()<CR>
+    nmap \e :Vaffle<CR>
     nmap \f :Neoformat<CR>
     nmap \g :Gstatus<CR>
     nmap \h :nohlsearch<CR>
