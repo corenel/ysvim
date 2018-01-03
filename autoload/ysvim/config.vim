@@ -1131,6 +1131,7 @@ scriptencoding utf8
 
           "tex preview config
           let g:texflavor = 'latex'
+          let g:tex_conceal = ""
           let g:tex_flavor = 'latex'
           let g:vimtex_view_method = 'skim'
           let g:vimtex_view_enabled = 1
