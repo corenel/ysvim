@@ -1,132 +1,138 @@
-snippet part
-abbr    Part and end comment
-alias   prt
+snippet prt
+abbr    Part with end comment
 options head
     \part{${1:part name}}
         ${0}
     % part $1 (end)
 
-snippet part*
-abbr    Part* and end comment
-alias   prt*
+snippet prt*
+abbr    Part* with end comment
 options head
     \part*{${1:part name}}
         ${0}
     % part* $1 (end)
 
-snippet partl
+snippet prtl
 abbr    Part with label and end comment
-alias   prtl
 options head
     \part{${1:part name}}\label{prt:${2:label_name}}
         ${0}
     % part $1 (end)
 
-snippet partl*
+snippet prtl*
 abbr    Part* with label and end comment
-alias   prtl*
 options head
     \part*{${1:part name}}\label{prt:${2:label_name}}
         ${0}
     % part* $1 (end)
 
-snippet chapter
-abbr    Chapter and end comment
-alias   cha
+snippet cha
+abbr    Chapter with end comment
 options head
     \chapter{${1:chapter name}}
         ${0}
     % chapter $1 (end)
 
-snippet chapterl
+snippet chal
 abbr    Chapter with label and end comment
-alias   chal
 options head
     \chapter{${1:chapter name}}\label{cha:${2:label_name}}
         ${0}
     % chapter $1 (end)
 
-snippet section
-abbr    Section and end comment
-alias   sec
+snippet sec
+abbr    Section with end comment
 options head
     \section{${1:section name}}
         ${0}
     % section $1 (end)
 
-snippet section*
-abbr    Section* with label and end comment
-alias   sec*
+snippet sec*
+abbr    Section* with end comment
 options head
     \section*{${1:section name}}
         ${0}
     % section* $1 (end)
 
-snippet sectionl
+snippet secl
 abbr    Section with label and end comment
-alias   secl
 options head
     \section{${1:section name}}\label{sec:${2:label_name}}
         ${0}
     % section $1 (end)
 
-snippet sectionl*
+snippet secl*
 abbr    Section* with label and end comment
-alias   secl*
 options head
     \section*{${1:section name}}\label{sec:${2:label_name}}
         ${0}
     % section* $1 (end)
 
-snippet subsection
-abbr    Subsection and end comment
-alias   sub
+snippet sub
+abbr    Subsection with end comment
 options head
     \subsection{${1:subsection name}}
         ${0}
     % subsection $1 (end)
 
-snippet subsection*
-abbr    Subsection* and end comment
-alias   sub*
+snippet sub*
+abbr    Subsection* with end comment
 options head
     \subsection*{${1:subsection name}}
         ${0}
     % subsection* $1 (end)
 
-snippet subsectionl
+snippet subl
 abbr    Subsection with label and end comment
-alias   sub
 options head
     \subsection{${1:subsection name}}\label{sub:${2:label_name}}
         ${0}
     % subsection $1 (end)
 
-snippet subsectionl*
+snippet subl*
 abbr    Subsection* with label and end comment
-alias   sub*
 options head
     \subsection*{${1:subsection name}}\label{sub:${2:label_name}}
         ${0}
     % subsection* $1 (end)
 
-snippet subsubsection
+snippet ssub
+abbr    Subsubsection with end comment
+options head
+    \subsubsection{${1:subsubsection name}}
+        ${0}
+    % subsubsection $1 (end)
+
+snippet ssub*
+abbr    Subsubsection* with end comment
+options head
+    \subsubsection*{${1:subsubsection name}}
+        ${0}
+    % subsubsection* $1 (end)
+
+snippet ssubl
 abbr    Subsubsection with label and end comment
-alias   ssub
 options head
     \subsubsection{${1:subsubsection name}}\label{ssub:${2:label_name}}
         ${0}
     % subsubsection $1 (end)
 
-snippet subsubsection*
+snippet ssubl*
 abbr    Subsubsection* with label and end comment
-alias   ssub*
 options head
     \subsubsection*{${1:subsubsection name}}\label{ssub:${2:label_name}}
         ${0}
     % subsubsection* $1 (end)
 
-snippet paragraph
+snippet par
+abbr    Paragraph with end comment
+alias   par
+options head
+    \paragraph{${1:paragraph name}}\label{par:${2:label_name}}
+        ${0}
+    % par $1 (end)
+
+snippet parl
 abbr    Paragraph with label and end comment
 alias   par
 options head
@@ -134,7 +140,15 @@ options head
         ${0}
     % par $1 (end)
 
-snippet subparagraph
+snippet spar
+abbr    subparagraph with end comment
+alias   spar
+options head
+    \subparagraph{${1:subparagraph name}}\label{spar:${2:label_name}}
+        ${0}
+    % subparagraph $1 (end)
+
+snippet sparl
 abbr    subparagraph with label and end comment
 alias   spar
 options head
