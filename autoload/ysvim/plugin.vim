@@ -347,8 +347,7 @@ scriptencoding utf8
                     call dein#add('rhysd/vim-gfm-syntax', {'on_ft': 'markdown'})
 
                     "" Vim:
-                    call dein#add('vim-jp/vimdoc-ja', {'on_ft': 'vim'})
-                    call dein#add('vim-jp/syntax-vim-ex', {'on_ft': 'vim'})
+                    " call dein#add('vim-jp/syntax-vim-ex', {'on_ft': 'vim'})
 
                     "" Shell:
                     call dein#add('chrisbra/vim-sh-indent', {'on_ft': ['sh']})
