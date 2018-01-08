@@ -227,3 +227,12 @@ abbr    Bold Text environment
 snippet multicolumn
 abbr    Multi-column table cell
     \multicolumn{${1:2}}{${2:c}}{${0}}
+
+snippet sfig
+abbr    Subfigure environment
+options head
+    \begin{subfigure}[${1:htbp}]{${2:\\textwidth}}
+        \centering
+        \includegraphics[${3:width=\\textwidth}]{${4:path to image}}
+        \caption{${5:caption text}}\label{sfig:${6:label text}}
+    \end{subfigure}
