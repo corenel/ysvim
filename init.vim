@@ -8,6 +8,7 @@
 
     let g:ysvim_macos = has('macunix')
     let g:ysvim_linux = has('unix') && !has('macunix') && !has('win32unix')
+    let g:ysvim_chromeos = isdirectory('/home/chronos')
     let g:ysvim_windows= has('win32') || has('win64')
 
     if g:ysvim_windows
@@ -15,7 +16,7 @@
     endif
 
     " Specify python host path
-    if g:ysvim_macos
+    if g:ysvim_chromeos || g:ysvim_macos
         let g:python_host_prog  = '/usr/local/bin/python2'
         let g:python3_host_prog = '/usr/local/bin/python3'
     elseif g:ysvim_linux
