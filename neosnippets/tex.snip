@@ -236,3 +236,20 @@ options head
         \includegraphics[${3:width=\\textwidth}]{${4:path to image}}
         \caption{${5:caption text}}\label{sfig:${6:label text}}
     \end{subfigure}
+
+snippet itemizeit
+abbr    Itemize environment with leftmargin and textit
+options head
+    \begin{itemize}[leftmargin=${1:4em}]
+    \item \textit{${2}}: ${3}
+    \end{itemize}
+
+snippet itemit
+abbr    Item with textit
+options head
+    \item textit{${0}}
+
+snippet itembf
+abbr    Item with textbf
+options head
+    \item textbf{${0}}
