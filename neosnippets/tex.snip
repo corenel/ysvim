@@ -241,15 +241,15 @@ snippet itemizeit
 abbr    Itemize environment with leftmargin and textit
 options head
     \begin{itemize}[leftmargin=${1:4em}]
-    \item \textit{${2}}: ${3}
+        \item \textit{${2}}: ${3}
     \end{itemize}
 
 snippet itemit
 abbr    Item with textit
 options head
-    \item textit{${0}}
+    \item \textit{${1}}: ${2}
 
 snippet itembf
 abbr    Item with textbf
 options head
-    \item textbf{${0}}
+    \item \textbf{${1}}: ${2}
