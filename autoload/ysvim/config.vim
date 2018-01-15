@@ -503,8 +503,9 @@ scriptencoding utf8
     nmap \g :Gstatus<CR>
     nmap \h :nohlsearch<CR>
     nmap \i vip:sort<CR>
-    nmap \l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
+    nmap \l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=2 concealcursor=niv"<CR>
     nmap \o :set paste!<CR>:set paste?<CR>
+    nmap \p :Pydocstring<CR>
     nmap \v :Startify<CR>
     nmap \x :cclose<CR>
     nmap \z :w<CR>:!open %<CR><CR>
@@ -1457,6 +1458,14 @@ scriptencoding utf8
                 \]
 
         " }}} vim-gfm-stntax
+
+        " vim-pydocstring {{{
+
+          let g:pydocstring_enable_mapping = 0
+          let g:pydocstring_templates_dir =  g:ysvim_home . '/template/pydocstring/'
+          " nmap <silent> <C-_> <Plug>(pydocstring)
+
+        " }}} vim-pydocstring
 
     " }}} Intellisense
 

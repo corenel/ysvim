@@ -334,6 +334,7 @@ scriptencoding utf8
                     call dein#add('hynek/vim-python-pep8-indent', {'on_ft': ['python', 'cython', 'pyrex']})
                     call dein#add('nvie/vim-flake8', {'on_ft': ['python', 'cython', 'pyrex']})
                     call dein#add('tweekmonster/impsort.vim', {'on_ft': ['python','cython', 'pyrex']})
+                    call dein#add('heavenshell/vim-pydocstring', {'on_ft': ['python','cython', 'pyrex']})
 
                     "" TypeScript:
                     " call dein#add('leafgarland/typescript-vim', {'on_ft': 'typescript'})

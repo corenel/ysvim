@@ -126,15 +126,13 @@ options head
 
 snippet par
 abbr    Paragraph with end comment
-alias   par
 options head
-    \paragraph{${1:paragraph name}}\label{par:${2:label_name}}
+    \paragraph{${1:paragraph name}}
         ${0}
     % paragraph $1 (end)
 
 snippet parl
 abbr    Paragraph with label and end comment
-alias   par
 options head
     \paragraph{${1:paragraph name}}\label{par:${2:label_name}}
         ${0}
@@ -142,7 +140,6 @@ options head
 
 snippet spar
 abbr    subparagraph with end comment
-alias   spar
 options head
     \subparagraph{${1:subparagraph name}}\label{spar:${2:label_name}}
         ${0}
@@ -150,7 +147,6 @@ options head
 
 snippet sparl
 abbr    subparagraph with label and end comment
-alias   spar
 options head
     \subparagraph{${1:subparagraph name}}\label{spar:${2:label_name}}
         ${0}
@@ -158,7 +154,6 @@ options head
 
 snippet resizebox
 abbr    Resizebox with textwidth
-alias   rbox
     \resizebox{\textwidth}{!}{%
         ${0}
     }%

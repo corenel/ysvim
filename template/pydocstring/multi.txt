@@ -1,0 +1,10 @@
+"""
+{{_indent_}}Parameters
+{{_indent_}}----------------
+
+{{_arg_}} : vartype{{_lf_}}{{_indent_}}    {{_arg_}} is
+
+{{_indent_}}Returns
+{{_indent_}}----------------
+
+"""
