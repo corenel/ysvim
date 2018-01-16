@@ -505,9 +505,10 @@ scriptencoding utf8
     nmap \i vip:sort<CR>
     nmap \l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=2 concealcursor=niv"<CR>
     nmap \o :set paste!<CR>:set paste?<CR>
-    nmap \p :Pydocstring<CR>
+    nmap \d :Pydocstring<CR>
     nmap \v :Startify<CR>
     nmap \x :cclose<CR>
+    nmap \t :tabnew<CR>
     nmap \z :w<CR>:!open %<CR><CR>
 
     " Turn off linewise keys. Normally, the `j' and `k' keys move the cursor down one entire line. with
@@ -1224,7 +1225,7 @@ scriptencoding utf8
           let g:jedi#auto_vim_configuration = 0
           let g:jedi#use_splits_not_buffers = ''
           let g:jedi#completions_enabled = 0
-          let g:jedi#documentation_command = "K"
+          let g:jedi#documentation_command = 'K'
           let g:jedi#max_doc_height = 150
           let g:jedi#popup_select_first = 0
           let g:jedi#show_call_signatures = 0
@@ -1462,7 +1463,7 @@ scriptencoding utf8
         " vim-pydocstring {{{
 
           let g:pydocstring_enable_mapping = 0
-          " let g:pydocstring_templates_dir =  g:ysvim_home . '/template/pydocstring/'
+          let g:pydocstring_templates_dir =  g:ysvim_home . '/template/pydocstring/'
           " nmap <silent> <C-_> <Plug>(pydocstring)
 
         " }}} vim-pydocstring

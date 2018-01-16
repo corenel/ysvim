@@ -1,0 +1,13 @@
+snippet     defs
+abbr        method definition with docstring.
+options     head
+	def ${1:#:name}(${2:arg}):
+		"""${3:#:Summary line.}
+
+		Args:
+			$2 (${4:#:arg type}): ${5:#:Description of arg1}
+
+		Returns:
+			${6:#:return type}: ${7:#:Description of return value}
+		"""
+		${8:pass}
