@@ -20,7 +20,7 @@
         let g:python_host_prog  = '/usr/local/bin/python2'
         let g:python3_host_prog = '/usr/local/bin/python3'
     elseif g:ysvim_linux
-        if isdirectory('/home/linuxbrew/.linuxbrew/')
+        if filereadable('/home/linuxbrew/.linuxbrew/bin/python3')
             let g:python_host_prog  = '/home/linuxbrew/.linuxbrew/bin/python2'
             let g:python3_host_prog = '/home/linuxbrew/.linuxbrew/bin/python3'
         else
