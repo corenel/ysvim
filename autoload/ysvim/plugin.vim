@@ -315,7 +315,7 @@ scriptencoding utf8
                     " call dein#add('honza/vim-snippets')
                     call dein#add('Shougo/neosnippet.vim', {'depends': ['neosnippet-snippets']})
                     call dein#add('zchee/deoplete-jedi', {'on_ft': ['python', 'cython', 'pyrex']})
-                    call dein#add('zchee/deoplete-clang', {'on_ft': ['c', 'cpp', 'objc', 'objcpp']})
+                    " call dein#add('zchee/deoplete-clang', {'on_ft': ['c', 'cpp', 'objc', 'objcpp']})
                     call dein#add('zchee/deoplete-docker', {'on_ft': ['dockerfile']})
                     call dein#add('zchee/deoplete-zsh', {'on_ft': ['sh', 'zsh']})
                     "" Deoplete Support:
@@ -328,6 +328,7 @@ scriptencoding utf8
                     call dein#add('octol/vim-cpp-enhanced-highlight', {'on_ft': ['c', 'cpp', 'objc']})
                     call dein#add('lyuts/vim-rtags', {'on_ft': ['c', 'cpp', 'objc']})
                     call dein#add('CoatiSoftware/vim-coati', {'on_ft': ['c', 'cpp', 'objc']})
+                    call dein#add('vim-scripts/DoxygenToolkit.vim', {'on_ft': ['c', 'cpp', 'objc']})
 
                     "" Python:
                     call dein#add('davidhalter/jedi-vim', {'lazy': 1, 'on_ft': ['python', 'cython', 'pyrex']})
