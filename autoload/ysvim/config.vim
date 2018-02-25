@@ -1462,7 +1462,7 @@ scriptencoding utf8
         " vim-pydocstring {{{
 
           let g:pydocstring_enable_mapping = 0
-          let g:pydocstring_templates_dir =  g:ysvim_home . '/template/pydocstring/'
+          " let g:pydocstring_templates_dir =  g:ysvim_home . '/template/pydocstring/'
           " nmap <silent> <C-_> <Plug>(pydocstring)
 
         " }}} vim-pydocstring
