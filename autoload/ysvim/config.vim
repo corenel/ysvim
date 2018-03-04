@@ -505,7 +505,6 @@ scriptencoding utf8
     nmap \i vip:sort<CR>
     nmap \l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=2 concealcursor=niv"<CR>
     nmap \o :set paste!<CR>:set paste?<CR>
-    nmap \d :Pydocstring<CR>
     nmap \v :Startify<CR>
     nmap \x :cclose<CR>
     nmap \t :tabnew<CR>
@@ -1463,10 +1462,36 @@ scriptencoding utf8
         " vim-pydocstring {{{
 
           let g:pydocstring_enable_mapping = 0
-          let g:pydocstring_templates_dir =  g:ysvim_home . '/template/pydocstring/'
+          " let g:pydocstring_templates_dir =  g:ysvim_home . '/template/pydocstring/'
           " nmap <silent> <C-_> <Plug>(pydocstring)
 
         " }}} vim-pydocstring
+
+        " DoxygenToolkit.vim {{{
+
+        let g:DoxygenToolkit_briefTag_funcName = 'yes'
+
+        " for C++ style, change the '@' to '\'
+        " let g:DoxygenToolkit_commentType = 'C++'
+        " let g:DoxygenToolkit_briefTag_pre = "\\brief "
+        " let g:DoxygenToolkit_templateParamTag_pre = "\\tparam "
+        " let g:DoxygenToolkit_paramTag_pre = "\\param "
+        " let g:DoxygenToolkit_returnTag = "\\return "
+        " let g:DoxygenToolkit_throwTag_pre = "\\throw " " @exception is also valid
+        " let g:DoxygenToolkit_fileTag = "\\file "
+        " let g:DoxygenToolkit_dateTag = "\\date "
+        " let g:DoxygenToolkit_authorTag = "\\author "
+        " let g:DoxygenToolkit_versionTag = "\\version "
+        " let g:DoxygenToolkit_blockTag = "\\name "
+        " let g:DoxygenToolkit_classTag = "\\class "
+        let g:DoxygenToolkit_authorName = 'Yusu Pan <xxdsox@gmail.com>'
+        let g:DoxygenToolkit_companyName = 'ZJUDancer'
+        " let g:doxygen_enhanced_color = 1
+        "let g:load_doxygen_syntax = 1
+        " let g:DoxygenToolKit_startCommentBlock = '/// '
+        " let g:DoxygenToolKit_interCommentBlock = '/// '
+
+        " }}} DoxygenToolkit.vim
 
     " }}} Intellisense
 
