@@ -244,13 +244,13 @@ scriptencoding utf8
                 " Enhancement {{{
 
                     " Operator:
-                    call dein#add('kana/vim-operator-user')
-                    call dein#add('kana/vim-textobj-function')
-                    call dein#add('kana/vim-textobj-user')
-                    call dein#add('kana/vim-operator-replace',
-                            \ {'on_map': '<Plug>', 'depends': 'vim-operator-user'})
-                    call dein#add('rhysd/vim-operator-surround',
-                            \ {'on_map': '<Plug>', 'depends': 'vim-operator-user'})
+                    " call dein#add('kana/vim-operator-user')
+                    " call dein#add('kana/vim-textobj-function')
+                    " call dein#add('kana/vim-textobj-user')
+                    " call dein#add('kana/vim-operator-replace',
+                    "         \ {'on_map': '<Plug>', 'depends': 'vim-operator-user'})
+                    " call dein#add('rhysd/vim-operator-surround',
+                    "         \ {'on_map': '<Plug>', 'depends': 'vim-operator-user'})
 
                     " Git:
                     " call dein#add('tpope/vim-fugitive')
@@ -274,7 +274,7 @@ scriptencoding utf8
                     call dein#add('sbdchd/neoformat', {'on_cmd': 'Neoformat'})
 
                     " Editing:
-                    call dein#add('terryma/vim-multiple-cursors', {'on_map': {'n': ['<C-n>', '<C-p>'], 'x': '<C-n>'}})
+                    " call dein#add('terryma/vim-multiple-cursors', {'on_map': {'n': ['<C-n>', '<C-p>'], 'x': '<C-n>'}})
                     call dein#add('haya14busa/vim-asterisk', {'on_map': '<Plug>'})
                     " call dein#add('tyru/caw.vim')
                     call dein#add('tpope/vim-commentary')
@@ -284,12 +284,12 @@ scriptencoding utf8
                     call dein#add('itchyny/vim-parenmatch', {'on_event': 'VimEnter'})
 
                     " Utils:
-                    call dein#add('thinca/vim-quickrun', {'on_cmd': 'QuickRun'})
-                    call dein#add('majutsushi/tagbar')
+                    " call dein#add('thinca/vim-quickrun', {'on_cmd': 'QuickRun'})
+                    " call dein#add('majutsushi/tagbar')
                     call dein#add('haya14busa/dein-command.vim', {'on_cmd': 'Dein'})
                     call dein#add('mattn/sonictemplate-vim', {'on_cmd': 'Template'})
-                    call dein#add('tyru/open-browser.vim')
-                    call dein#add('tyru/open-browser-github.vim', {'on_cmd': ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq']})
+                    " call dein#add('tyru/open-browser.vim')
+                    " call dein#add('tyru/open-browser-github.vim', {'on_cmd': ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq']})
                     call dein#add('rhysd/accelerated-jk', {'on_map': '<Plug>'})
                     call dein#add('mbbill/undotree')
 
