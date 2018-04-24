@@ -306,7 +306,7 @@ scriptencoding utf8
                     "" Denite Suorces:
 
                     " LeaderF:
-                    call dein#add('Yggdroot/LeaderF')
+                    call dein#add('Yggdroot/LeaderF',  {'build': 'sh -c "./install.sh"'})
 
                 " }}} Enhancement
 
