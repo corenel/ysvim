@@ -1564,6 +1564,12 @@ scriptencoding utf8
 
         " }}} vim-gutentags
 
+        " a.vim {{{
+
+          let g:alternateSearchPath = 'sfr:../source,sfr:../src,sfr:../../src,sfr:../include,sfr:../../include,sfr:../inc'
+
+        " }}} a.vim
+
     " }}} Intellisense
 
 " }}} Plugin Settings
