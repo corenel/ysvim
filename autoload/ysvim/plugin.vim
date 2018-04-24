@@ -237,25 +237,28 @@ scriptencoding utf8
                     " Icons:
                     " load nerdtree-git-plugin before VimDevIcons loads.
                     " call dein#add('Xuyuanp/nerdtree-git-plugin')
-                    call dein#add('ryanoasis/vim-devicons')
+                    " call dein#add('ryanoasis/vim-devicons')
 
                 " }}} Appearance
 
                 " Enhancement {{{
 
                     " Operator:
-                    " call dein#add('kana/vim-operator-user')
-                    " call dein#add('kana/vim-textobj-function')
-                    " call dein#add('kana/vim-textobj-user')
-                    " call dein#add('kana/vim-operator-replace',
-                    "         \ {'on_map': '<Plug>', 'depends': 'vim-operator-user'})
-                    " call dein#add('rhysd/vim-operator-surround',
-                    "         \ {'on_map': '<Plug>', 'depends': 'vim-operator-user'})
+                    call dein#add('kana/vim-operator-user')
+                    call dein#add('kana/vim-textobj-function')
+                    call dein#add('kana/vim-textobj-user')
+                    call dein#add('kana/vim-textobj-indent')
+                    call dein#add('sgur/vim-textobj-parameter')
+                    call dein#add('kana/vim-operator-replace',
+                            \ {'on_map': '<Plug>', 'depends': 'vim-operator-user'})
+                    call dein#add('rhysd/vim-operator-surround',
+                            \ {'on_map': '<Plug>', 'depends': 'vim-operator-user'})
+                    call dein#add('tpope/vim-unimpaired')
 
                     " Git:
                     " call dein#add('tpope/vim-fugitive')
                     " call dein#add('junegunn/gv.vim')
-                    call dein#add('lambdalisue/gina.vim', {'on_cmd': 'Gina', 'hook_source': 'call GinaHookFunc()'})
+                    " call dein#add('lambdalisue/gina.vim', {'on_cmd': 'Gina', 'hook_source': 'call GinaHookFunc()'})
                     call dein#add('airblade/vim-gitgutter')
 
                     " File Manager:
@@ -280,14 +283,14 @@ scriptencoding utf8
                     call dein#add('tpope/vim-commentary')
                     call dein#add('tpope/vim-repeat', {'on_map' : '.'})
                     call dein#add('tpope/vim-surround', {'on_map': {'n' : ['cs', 'ds', 'ys'], 'x' : 'S'}, 'depends' : 'vim-repeat'})
-                    call dein#add('roxma/vim-paste-easy')
-                    call dein#add('itchyny/vim-parenmatch', {'on_event': 'VimEnter'})
+                    " call dein#add('roxma/vim-paste-easy')
+                    " call dein#add('itchyny/vim-parenmatch', {'on_event': 'VimEnter'})
 
                     " Utils:
                     " call dein#add('thinca/vim-quickrun', {'on_cmd': 'QuickRun'})
                     " call dein#add('majutsushi/tagbar')
                     call dein#add('haya14busa/dein-command.vim', {'on_cmd': 'Dein'})
-                    call dein#add('mattn/sonictemplate-vim', {'on_cmd': 'Template'})
+                    " call dein#add('mattn/sonictemplate-vim', {'on_cmd': 'Template'})
                     " call dein#add('tyru/open-browser.vim')
                     " call dein#add('tyru/open-browser-github.vim', {'on_cmd': ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq']})
                     call dein#add('rhysd/accelerated-jk', {'on_map': '<Plug>'})
@@ -297,10 +300,13 @@ scriptencoding utf8
                     call dein#add('wakatime/vim-wakatime')
 
                     " Denite:
-                    call dein#add('Shougo/denite.nvim', {'hook_add': 'call DeniteHookFunc()'})
+                    " call dein#add('Shougo/denite.nvim', {'hook_add': 'call DeniteHookFunc()'})
                     "" Dependency:
-                    call dein#add('nixprime/cpsm')
+                    " call dein#add('nixprime/cpsm')
                     "" Denite Suorces:
+
+                    " LeaderF:
+                    call dein#add('Yggdroot/LeaderF')
 
                 " }}} Enhancement
 
@@ -324,11 +330,12 @@ scriptencoding utf8
 
                     " Language Plugin:
                     "" C Family:
-                    call dein#add('vim-jp/vim-cpp', {'on_ft': ['c', 'cpp', 'objc']})
-                    call dein#add('octol/vim-cpp-enhanced-highlight', {'on_ft': ['c', 'cpp', 'objc']})
-                    call dein#add('lyuts/vim-rtags', {'on_ft': ['c', 'cpp', 'objc']})
-                    call dein#add('CoatiSoftware/vim-coati', {'on_ft': ['c', 'cpp', 'objc']})
-                    call dein#add('vim-scripts/DoxygenToolkit.vim', {'on_ft': ['c', 'cpp', 'objc']})
+                    " call dein#add('vim-jp/vim-cpp', {'on_ft': ['c', 'cpp', 'objc', 'objcpp']})
+                    call dein#add('octol/vim-cpp-enhanced-highlight', {'on_ft': ['c', 'cpp', 'objc', 'objcpp']})
+                    " call dein#add('lyuts/vim-rtags', {'on_ft': ['c', 'cpp', 'objc', 'objcpp']})
+                    call dein#add('vim-scripts/DoxygenToolkit.vim', {'on_ft': ['c', 'cpp', 'objc', 'objcpp']})
+                    call dein#add('ludovicchabant/vim-gutentags', {'on_ft': ['c', 'cpp', 'objc', 'objcpp']})
+                    call dein#add('vim-scripts/a.vim', {'on_ft': ['c', 'cpp', 'objc', 'objcpp']})
 
                     "" Python:
                     call dein#add('davidhalter/jedi-vim', {'lazy': 1, 'on_ft': ['python', 'cython', 'pyrex']})

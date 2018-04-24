@@ -48,6 +48,9 @@ scriptencoding utf8
         " set viminfo
         let &viminfo.='100,n'.g:ysvim_home.'/files/info/viminfo'
 
+        " set ctags
+        set tags=./.tags;,.tags
+
         " }}} Options
 
         " Encoding {{{
@@ -148,7 +151,7 @@ scriptencoding utf8
         set wildignore+=*.o,*.obj,*.exe,*.dll,*.so,*.out,*.class  " compiler
         set wildignore+=*.swp,*.swo,*.swn,*.bak                   " vim
         set wildignore+=*/.git,*/.hg,*/.svn                       " vcs
-        set wildignore+=tags,*.tags                               " tags
+        set wildignore+=tags,*.tags,.tags                         " tags
         set wildignore+=*.pyc,*.pyo                               " Python
         set wildignore+=*/.DS_Store                               " macOS
         set wildignore+=node_modules                              " NodeJS
@@ -669,7 +672,7 @@ scriptencoding utf8
 
         " Gitcommit:
         Gautocmd BufEnter COMMIT_EDITMSG startinsert
-        Gautocmdft gina-commit startinsert
+        " Gautocmdft gina-commit startinsert
 
         " Trim spaces at EOL and retab. I run `:CLEAN` a lot to clean up files.
         command! TEOL %s/\s\+$//
@@ -801,11 +804,12 @@ scriptencoding utf8
           set guioptions-=e  " Don't use GUI tabline
 
           function! LightlineFileformat()
-              return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+              " return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+              return winwidth(0) > 70 ? &fileformat : ''
           endfunction
 
           function! LightlineFiletype()
-              return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+              return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
           endfunction
 
           function! LightlineLinterWarnings() abort
@@ -879,29 +883,29 @@ scriptencoding utf8
 
       " }}} vim-startify
 
-      " vim-devicons {{{
+      " " vim-devicons {{{
 
-        " loading the plugin
-        let g:webdevicons_enable = 1
-        " adding the flags to NERDTree
-        let g:webdevicons_enable_nerdtree = 1
-        " turn on/off file node glyph decorations (not particularly useful)
-        let g:WebDevIconsUnicodeDecorateFileNodes = 1
-        let g:DevIconsEnableFoldersOpenClose = 1
-        " use double-width(1) or single-width(0) glyphs
-        " only manipulates padding, has no effect on terminal or set(guifont) font
-        let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
-        " whether or not to show the nerdtree brackets around flags
-        let g:webdevicons_conceal_nerdtree_brackets = 1
-        " the amount of space to use after the glyph character (default ' ')
-        let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
-        " Force extra padding in NERDTree so that the filetype icons line up vertically
-        let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
-        " specify OS to decide an icon for unix fileformat (not defined by default)
-        " this is useful for avoiding unnecessary system() call.
-        " let g:WebDevIconsOS = 'Darwin'
+      "   " loading the plugin
+      "   let g:webdevicons_enable = 1
+      "   " adding the flags to NERDTree
+      "   let g:webdevicons_enable_nerdtree = 1
+      "   " turn on/off file node glyph decorations (not particularly useful)
+      "   let g:WebDevIconsUnicodeDecorateFileNodes = 1
+      "   let g:DevIconsEnableFoldersOpenClose = 1
+      "   " use double-width(1) or single-width(0) glyphs
+      "   " only manipulates padding, has no effect on terminal or set(guifont) font
+      "   let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
+      "   " whether or not to show the nerdtree brackets around flags
+      "   let g:webdevicons_conceal_nerdtree_brackets = 1
+      "   " the amount of space to use after the glyph character (default ' ')
+      "   let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+      "   " Force extra padding in NERDTree so that the filetype icons line up vertically
+      "   let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
+      "   " specify OS to decide an icon for unix fileformat (not defined by default)
+      "   " this is useful for avoiding unnecessary system() call.
+      "   " let g:WebDevIconsOS = 'Darwin'
 
-        " }}} vim-devicons
+      "   " }}} vim-devicons
 
     " }}} Appearance
 
@@ -911,7 +915,7 @@ scriptencoding utf8
 
           let g:undotree_SplitWidth = 40
           let g:undotree_SetFocusWhenToggle = 1
-          nmap <silent> <Leader>u :UndotreeToggle<CR>
+          nmap <silent> <Leader>su :UndotreeToggle<CR>
 
           call ysvim#util#check_dir(g:ysvim_cache . '/undotree')
           if has('persistent_undo')
@@ -941,13 +945,45 @@ scriptencoding utf8
 
         " }}} vim-multiple-cursors
 
-        " tagbar {{{
+        " " tagbar {{{
 
-          nmap \s :TagbarToggle<CR>
-          " The tags are not sorted according to their name
-          let g:tagbar_sort = 0
+        "   nmap \s :TagbarToggle<CR>
+        "   " The tags are not sorted according to their name
+        "   let g:tagbar_sort = 0
 
-        " }}} tagbar
+        " " }}} tagbar
+
+        " LeaderF {{{
+
+          let g:Lf_ShortcutF = '<c-p>'
+          let g:Lf_ShortcutB = '<m-n>'
+          noremap <Leader>sf :LeaderfFunction<CR>
+          noremap <Leader>fm :LeaderfMru<cr>
+          noremap <Leader>ff :LeaderfFunction<cr>
+          noremap <Leader>fb :LeaderfBuffer<cr>
+          noremap <Leader>ft :LeaderfTag<cr>
+          let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
+          
+          let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
+          let g:Lf_WorkingDirectoryMode = 'Ac'
+          let g:Lf_WindowHeight = 0.30
+          let g:Lf_CacheDirectory = expand('~/.vim/cache')
+          let g:Lf_ShowRelativePath = 0
+          let g:Lf_HideHelp = 1
+          let g:Lf_StlColorscheme = 'powerline'
+          
+          let g:Lf_NormalMap = {
+              \ 'File':   [['<ESC>', ':exec g:Lf_py "fileExplManager.quit()"<CR>'],
+              \            ['<F6>', ':exec g:Lf_py "fileExplManager.quit()"<CR>'] ],
+              \ 'Buffer': [['<ESC>', ':exec g:Lf_py "bufExplManager.quit()"<CR>'],
+              \            ['<F6>', ':exec g:Lf_py "bufExplManager.quit()"<CR>'] ],
+              \ 'Mru':    [['<ESC>', ':exec g:Lf_py "mruExplManager.quit()"<CR>']],
+              \ 'Tag':    [['<ESC>', ':exec g:Lf_py "tagExplManager.quit()"<CR>']],
+              \ 'Function':    [['<ESC>', ':exec g:Lf_py "functionExplManager.quit()"<CR>']],
+              \ 'Colorscheme':    [['<ESC>', ':exec g:Lf_py "colorschemeExplManager.quit()"<CR>']],
+              \ }
+
+        " }}} LeaderF
 
         " vim-tmux-navigator {{{
 
@@ -1006,9 +1042,9 @@ scriptencoding utf8
 
         " }}} vim-nerdtree-syntax-highlight
 
-        " Gina {{{
+        " " Gina {{{
 
-        " }}} Gina
+        " " }}} Gina
 
         " GitGutter {{{
 
@@ -1023,12 +1059,19 @@ scriptencoding utf8
         " }}} GitGutter
 
         " ale {{{
+          let g:ale_linters_explicit = 1
+          let g:ale_completion_delay = 500
+          let g:ale_echo_delay = 20
+          let g:ale_lint_delay = 500
+          " let g:ale_echo_msg_format = '[%linter%] %code: %%s'
+          let g:ale_echo_msg_format = '[%linter%] %code: %s [%severity%]'
+          let g:ale_lint_on_text_changed = 'normal'
+          let g:ale_lint_on_insert_leave = 1
 
           let g:ale_sign_warning = '▲'
           let g:ale_sign_error = '✗'
           highlight link ALEWarningSign String
           highlight link ALEErrorSign Title
-          let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
           let g:ale_linters = {
           \   'sh' : ['shellcheck'],
@@ -1053,6 +1096,12 @@ scriptencoding utf8
           let g:ale_python_yapf_executable = 'python3'
           let g:ale_python_yapf_options = '-m yapf'
 
+          " for c family
+          let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
+          let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
+          let g:ale_c_cppcheck_options = ''
+          let g:ale_cpp_cppcheck_options = ''
+
           nmap <Leader>en <Plug>(ale_next)
           nmap <Leader>ep <Plug>(ale_previous)
           nnoremap <Leader>es :ALEToggle<CR>
@@ -1066,9 +1115,9 @@ scriptencoding utf8
 
         " }}} accelerated-jk
 
-        " Denite {{{
+        " " Denite {{{
 
-        " }}} Denite
+        " " }}} Denite
 
         " Vaffle {{{
 
@@ -1078,32 +1127,32 @@ scriptencoding utf8
 
         " }}} Vaffle
 
-        " QuickRun {{{
+        " " QuickRun {{{
 
-          Gautocmd WinEnter *
-                \ if winnr('$') == 1 &&
-                \   getbufvar(winbufnr(winnr()), "&filetype") == "quickrun" |
-                \ q |
-                \ endif
-          let g:quickrun_config = get(g:, 'quickrun_config', {})
-          let g:quickrun_config._ = {
-                \ 'runner' : 'vimproc',
-                \ 'runner/vimproc/updatetime' : 50,
-                \ 'outputter' : 'quickfix',
-                \ 'outputter/quickfix/open_cmd' : 'copen 35',
-                \ 'outputter/buffer/running_mark' : ''
-                \ }
-          " Go
-          let g:quickrun_config.go = {
-                \ 'command': 'run',
-                \ 'cmdopt' : '',
-                \ 'exec': ['go %c %s %o -'],
-                \ 'outputter' : 'buffer',
-                \ 'outputter/buffer/split' : 'vertical botright 100',
-                \ 'outputter/buffer/close_on_empty' : 1,
-                \ }
+        "   Gautocmd WinEnter *
+        "         \ if winnr('$') == 1 &&
+        "         \   getbufvar(winbufnr(winnr()), "&filetype") == "quickrun" |
+        "         \ q |
+        "         \ endif
+        "   let g:quickrun_config = get(g:, 'quickrun_config', {})
+        "   let g:quickrun_config._ = {
+        "         \ 'runner' : 'vimproc',
+        "         \ 'runner/vimproc/updatetime' : 50,
+        "         \ 'outputter' : 'quickfix',
+        "         \ 'outputter/quickfix/open_cmd' : 'copen 35',
+        "         \ 'outputter/buffer/running_mark' : ''
+        "         \ }
+        "   " Go
+        "   let g:quickrun_config.go = {
+        "         \ 'command': 'run',
+        "         \ 'cmdopt' : '',
+        "         \ 'exec': ['go %c %s %o -'],
+        "         \ 'outputter' : 'buffer',
+        "         \ 'outputter/buffer/split' : 'vertical botright 100',
+        "         \ 'outputter/buffer/close_on_empty' : 1,
+        "         \ }
 
-        " }}} QuickRun
+        " " }}} QuickRun
 
         " " Neomake {{{
         "
@@ -1112,13 +1161,13 @@ scriptencoding utf8
         "
         " " }}} Neomake
 
-        " SonicTemplate {{{
+        " " SonicTemplate {{{
 
-          let g:sonictemplate_vim_template_dir = [
-                \ g:ysvim_home . '/template'
-                \]
+        "   let g:sonictemplate_vim_template_dir = [
+        "         \ g:ysvim_home . '/template'
+        "         \]
 
-        " }}} SonicTemplate
+        " " }}} SonicTemplate
 
         " Wakatime {{{
 
@@ -1492,6 +1541,28 @@ scriptencoding utf8
         " let g:DoxygenToolKit_interCommentBlock = '/// '
 
         " }}} DoxygenToolkit.vim
+
+        " vim-gutentags {{{
+
+            " Recurse to project directory
+            let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+
+            " Define ctags file name
+            let g:gutentags_ctags_tagfile = '.tags'
+
+            " Save tag file to temp directory
+            let s:vim_tags = expand('~/.cache/tags')
+            if !isdirectory(s:vim_tags)
+                silent! call mkdir(s:vim_tags, 'p')
+            endif
+            let g:gutentags_cache_dir = s:vim_tags
+
+            " ctags parameters
+            let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+            let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+            let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+
+        " }}} vim-gutentags
 
     " }}} Intellisense
 
