@@ -1357,8 +1357,13 @@ scriptencoding utf8
         let g:deoplete#ignore_sources.cpp    = g:deoplete#ignore_sources.c
         let g:deoplete#ignore_sources.objc   = g:deoplete#ignore_sources.c
 
-        let g:deoplete#sources#clang#libclang_path = '/usr/local/lib/libclang.dylib'
-        let g:deoplete#sources#clang#clang_header = '/usr/local/lib/clang'
+        if g:ysvim_macos
+            let g:deoplete#sources#clang#libclang_path = '/usr/local/lib/libclang.dylib'
+            let g:deoplete#sources#clang#clang_header = '/usr/local/lib/clang'
+        elseif g:ysvim_linux
+            let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang.so.1'
+            let g:deoplete#sources#clang#clang_header = '/usr/lib/llvm-3.8/lib/clang'
+        endif
         let g:deoplete#sources#clang#flags = [
           \ '-I/usr/include',
           \ '-I/usr/local/include',

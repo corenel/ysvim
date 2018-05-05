@@ -168,26 +168,6 @@ scriptencoding utf8
 
   " }}} Denite
 
-  " Gina {{{
-
-    function! GinaHookFunc()
-        call gina#custom#command#option('commit', '-S|--signoff')
-        call gina#custom#execute(
-              \ '/\%(commit\)',
-              \ 'setlocal colorcolumn=69 expandtab shiftwidth=2 softtabstop=2 tabstop=2 winheight=35',
-              \)
-        call gina#custom#execute(
-              \ '/\%(status\|branch\|ls\|grep\|changes\|tag\)',
-              \ 'setlocal winfixheight',
-              \)
-        call gina#custom#mapping#nmap(
-              \ '/\%(commit\|status\|branch\|ls\|grep\|changes\|tag\)',
-              \ 'q', ':<C-u> q<CR>', {'noremap': 1, 'silent': 1},
-              \)
-    endfunction
-
-  " }}} Gina
-
   " Vimtex {{{
 
     function! VimtexHookFunc()
@@ -258,7 +238,6 @@ scriptencoding utf8
                     " Git:
                     " call dein#add('tpope/vim-fugitive')
                     " call dein#add('junegunn/gv.vim')
-                    " call dein#add('lambdalisue/gina.vim', {'on_cmd': 'Gina', 'hook_source': 'call GinaHookFunc()'})
                     call dein#add('airblade/vim-gitgutter')
 
                     " File Manager:
@@ -291,8 +270,6 @@ scriptencoding utf8
                     " call dein#add('majutsushi/tagbar')
                     call dein#add('haya14busa/dein-command.vim', {'on_cmd': 'Dein'})
                     " call dein#add('mattn/sonictemplate-vim', {'on_cmd': 'Template'})
-                    " call dein#add('tyru/open-browser.vim')
-                    " call dein#add('tyru/open-browser-github.vim', {'on_cmd': ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq']})
                     call dein#add('rhysd/accelerated-jk', {'on_map': '<Plug>'})
                     call dein#add('mbbill/undotree')
 
@@ -321,7 +298,7 @@ scriptencoding utf8
                     " call dein#add('honza/vim-snippets')
                     call dein#add('Shougo/neosnippet.vim', {'depends': ['neosnippet-snippets']})
                     call dein#add('zchee/deoplete-jedi', {'on_ft': ['python', 'cython', 'pyrex']})
-                    " call dein#add('zchee/deoplete-clang', {'on_ft': ['c', 'cpp', 'objc', 'objcpp']})
+                    call dein#add('zchee/deoplete-clang', {'on_ft': ['c', 'cpp', 'objc', 'objcpp']})
                     call dein#add('zchee/deoplete-docker', {'on_ft': ['dockerfile']})
                     call dein#add('zchee/deoplete-zsh', {'on_ft': ['sh', 'zsh']})
                     "" Deoplete Support:
