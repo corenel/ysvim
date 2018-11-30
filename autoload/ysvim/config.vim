@@ -963,7 +963,7 @@ scriptencoding utf8
           noremap <Leader>fb :LeaderfBuffer<cr>
           noremap <Leader>ft :LeaderfTag<cr>
           let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
-          
+
           let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
           let g:Lf_WorkingDirectoryMode = 'Ac'
           let g:Lf_WindowHeight = 0.30
@@ -971,7 +971,7 @@ scriptencoding utf8
           let g:Lf_ShowRelativePath = 0
           let g:Lf_HideHelp = 1
           let g:Lf_StlColorscheme = 'powerline'
-          
+
           let g:Lf_NormalMap = {
               \ 'File':   [['<ESC>', ':exec g:Lf_py "fileExplManager.quit()"<CR>'],
               \            ['<F6>', ':exec g:Lf_py "fileExplManager.quit()"<CR>'] ],
@@ -1184,6 +1184,7 @@ scriptencoding utf8
           " general settings
           let g:pymode_python = 'python3'
           let g:pymode_paths = [
+              \ '/usr/local/lib/python3.7/site-packages',
               \ '/usr/local/lib/python3.6/site-packages',
               \ '/usr/local/lib/python3.5/dist-packages'
               \ ]
@@ -1214,9 +1215,12 @@ scriptencoding utf8
           let g:tex_flavor = 'latex'
           let g:vimtex_view_method = 'skim'
           let g:vimtex_view_enabled = 1
+          " let g:vimtex_view_automatic = 1
           let g:vimtex_view_general_viewer = 'open'
-          let g:vimtex_fold_enabled = 1
           let g:vimtex_view_general_options = '-r @line @pdf @tex'
+          " let g:vimtex_view_skim_activate = 0
+          " let g:vimtex_view_skim_reading_bar = 1
+          let g:vimtex_fold_enabled = 1
           let g:vimtex_quickfix_mode = 2
           let g:vimtex_quickfix_open_on_warning = 0
           let g:vimtex_quickfix_latexlog = {
@@ -1358,8 +1362,8 @@ scriptencoding utf8
         let g:deoplete#ignore_sources.objc   = g:deoplete#ignore_sources.c
 
         if g:ysvim_macos
-            let g:deoplete#sources#clang#libclang_path = '/usr/local/lib/libclang.dylib'
-            let g:deoplete#sources#clang#clang_header = '/usr/local/lib/clang'
+            let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/6.0.0/lib/libclang.dylib'
+            let g:deoplete#sources#clang#clang_header = '/usr/local/Cellar/llvm/6.0.0/lib/clang'
         elseif g:ysvim_linux
             let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang.so.1'
             let g:deoplete#sources#clang#clang_header = '/usr/lib/llvm-3.8/lib/clang'
