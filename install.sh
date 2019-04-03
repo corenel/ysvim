@@ -46,7 +46,7 @@ update_repo() {
   else
     echo "Checking out dotfiles using git..."
     rm -rf "$YSVIM_HOME"
-    git clone --quiet --depth=1 -b ${YSVIM_BRANCH}$ "$YSVIM_URL" "$YSVIM_HOME"
+    git clone --quiet --depth=1 -b ${YSVIM_BRANCH} "$YSVIM_URL" "$YSVIM_HOME"
   fi
 }
 
