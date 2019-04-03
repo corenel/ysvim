@@ -179,4 +179,5 @@ check "git"
 update_repo
 init_ysvimrc
 install
+mkdir -p $YSVIM_HOME/files/info/viminfo
 echo "$YSVIM_NAME installed successfully!"
