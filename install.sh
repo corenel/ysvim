@@ -13,6 +13,7 @@ YSVIM_NAME="ysvim"
 YSVIM_HOME="$HOME/.ysvim"
 YSVIM_CFG="$HOME/.ysvimrc"
 YSVIM_URL="https://github.com/corenel/ysvim.git"
+YSVIM_BRANCH="master"
 
 YSVIM_PLUG=0
 YSVIM_DEIN=1
@@ -41,11 +42,11 @@ update_repo() {
   if [ -d $YSVIM_HOME/.git ]; then
     echo "Updating dotfiles using existing git..."
     cd "$YSVIM_HOME"
-    git pull --quiet --rebase origin master
+    git pull --quiet --rebase origin ${YSVIM_BRANCH}
   else
     echo "Checking out dotfiles using git..."
     rm -rf "$YSVIM_HOME"
-    git clone --quiet --depth=1 "$YSVIM_URL" "$YSVIM_HOME"
+    git clone --quiet --depth=1 -b ${YSVIM_BRANCH}$ "$YSVIM_URL" "$YSVIM_HOME"
   fi
 }
 
