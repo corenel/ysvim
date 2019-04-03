@@ -13,7 +13,7 @@ YSVIM_NAME="ysvim"
 YSVIM_HOME="$HOME/.ysvim"
 YSVIM_CFG="$HOME/.ysvimrc"
 YSVIM_URL="https://github.com/corenel/ysvim.git"
-YSVIM_BRANCH="master"
+YSVIM_BRANCH="lite"
 
 YSVIM_PLUG=0
 YSVIM_DEIN=1

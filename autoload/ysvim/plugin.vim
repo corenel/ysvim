@@ -274,7 +274,7 @@ scriptencoding utf8
                     call dein#add('mbbill/undotree')
 
                     " Lifelog:
-                    call dein#add('wakatime/vim-wakatime')
+                    " call dein#add('wakatime/vim-wakatime')
 
                     " Denite:
                     " call dein#add('Shougo/denite.nvim', {'hook_add': 'call DeniteHookFunc()'})
@@ -283,7 +283,7 @@ scriptencoding utf8
                     "" Denite Suorces:
 
                     " LeaderF:
-                    call dein#add('Yggdroot/LeaderF',  {'build': 'sh -c "./install.sh"'})
+                    " call dein#add('Yggdroot/LeaderF',  {'build': 'sh -c "./install.sh"'})
 
                 " }}} Enhancement
 
@@ -292,15 +292,15 @@ scriptencoding utf8
                     " Deoplete:
                     call dein#add('Shougo/deoplete.nvim', {'hook_add': 'call DeopleteHookFunc()'})
                     "" Deoplete Suorces:
-                    call dein#add('Shougo/neco-vim', {'on_ft': ['vim'], 'on_source': ['deoplete.nvim']})
-                    call dein#add('Shougo/neoinclude.vim', {'on_ft': ['c', 'cpp', 'objc', 'objcpp'], 'on_source': ['deoplete.nvim']})
+                    " call dein#add('Shougo/neco-vim', {'on_ft': ['vim'], 'on_source': ['deoplete.nvim']})
+                    " call dein#add('Shougo/neoinclude.vim', {'on_ft': ['c', 'cpp', 'objc', 'objcpp'], 'on_source': ['deoplete.nvim']})
                     call dein#add('Shougo/neosnippet-snippets')
                     " call dein#add('honza/vim-snippets')
                     call dein#add('Shougo/neosnippet.vim', {'depends': ['neosnippet-snippets']})
                     call dein#add('zchee/deoplete-jedi', {'on_ft': ['python', 'cython', 'pyrex']})
                     call dein#add('zchee/deoplete-clang', {'on_ft': ['c', 'cpp', 'objc', 'objcpp']})
-                    call dein#add('zchee/deoplete-docker', {'on_ft': ['dockerfile']})
-                    call dein#add('zchee/deoplete-zsh', {'on_ft': ['sh', 'zsh']})
+                    " call dein#add('zchee/deoplete-docker', {'on_ft': ['dockerfile']})
+                    " call dein#add('zchee/deoplete-zsh', {'on_ft': ['sh', 'zsh']})
                     "" Deoplete Support:
                     call dein#add('Shougo/echodoc.vim', {'on_event': 'CompleteDone', 'hook_source': 'call echodoc#enable()'})
                     call dein#add('Shougo/neopairs.vim', {'on_event': 'CompleteDone', 'hook_add': 'let g:neopairs#enable = 1'})
@@ -310,16 +310,16 @@ scriptencoding utf8
                     " call dein#add('vim-jp/vim-cpp', {'on_ft': ['c', 'cpp', 'objc', 'objcpp']})
                     call dein#add('octol/vim-cpp-enhanced-highlight', {'on_ft': ['c', 'cpp', 'objc', 'objcpp']})
                     " call dein#add('lyuts/vim-rtags', {'on_ft': ['c', 'cpp', 'objc', 'objcpp']})
-                    call dein#add('vim-scripts/DoxygenToolkit.vim', {'on_ft': ['c', 'cpp', 'objc', 'objcpp']})
-                    call dein#add('ludovicchabant/vim-gutentags', {'on_ft': ['c', 'cpp', 'objc', 'objcpp']})
-                    call dein#add('vim-scripts/a.vim', {'on_ft': ['c', 'cpp', 'objc', 'objcpp']})
+                    " call dein#add('vim-scripts/DoxygenToolkit.vim', {'on_ft': ['c', 'cpp', 'objc', 'objcpp']})
+                    " call dein#add('ludovicchabant/vim-gutentags', {'on_ft': ['c', 'cpp', 'objc', 'objcpp']})
+                    " call dein#add('vim-scripts/a.vim', {'on_ft': ['c', 'cpp', 'objc', 'objcpp']})
 
                     "" Python:
                     call dein#add('davidhalter/jedi-vim', {'lazy': 1, 'on_ft': ['python', 'cython', 'pyrex']})
                     call dein#add('hynek/vim-python-pep8-indent', {'on_ft': ['python', 'cython', 'pyrex']})
-                    call dein#add('nvie/vim-flake8', {'on_ft': ['python', 'cython', 'pyrex']})
-                    call dein#add('tweekmonster/impsort.vim', {'on_ft': ['python','cython', 'pyrex']})
-                    call dein#add('heavenshell/vim-pydocstring', {'on_ft': ['python','cython', 'pyrex']})
+                    " call dein#add('nvie/vim-flake8', {'on_ft': ['python', 'cython', 'pyrex']})
+                    " call dein#add('tweekmonster/impsort.vim', {'on_ft': ['python','cython', 'pyrex']})
+                    " call dein#add('heavenshell/vim-pydocstring', {'on_ft': ['python','cython', 'pyrex']})
 
                     "" TypeScript:
                     " call dein#add('leafgarland/typescript-vim', {'on_ft': 'typescript'})
@@ -329,20 +329,20 @@ scriptencoding utf8
                     " call dein#add('othree/yajs.vim', {'on_ft': 'javascript'})
 
                     "" Markdown:
-                    call dein#add('moorereason/vim-markdownfmt', {'on_ft': 'markdown'})
-                    call dein#add('rhysd/vim-gfm-syntax', {'on_ft': 'markdown'})
+                    " call dein#add('moorereason/vim-markdownfmt', {'on_ft': 'markdown'})
+                    " call dein#add('rhysd/vim-gfm-syntax', {'on_ft': 'markdown'})
 
                     "" Vim:
                     " call dein#add('vim-jp/syntax-vim-ex', {'on_ft': 'vim'})
 
                     "" Shell:
-                    call dein#add('chrisbra/vim-sh-indent', {'on_ft': ['sh']})
+                    " call dein#add('chrisbra/vim-sh-indent', {'on_ft': ['sh']})
 
                     "" Tex:
-                    call dein#add('lervag/vimtex', {'on_ft': ['tex', 'latex'], 'hook_post_source': 'call VimtexHookFunc()'})
+                    " call dein#add('lervag/vimtex', {'on_ft': ['tex', 'latex'], 'hook_post_source': 'call VimtexHookFunc()'})
 
                     "" Json:
-                    call dein#add('elzr/vim-json', {'on_ft': 'json'})
+                    " call dein#add('elzr/vim-json', {'on_ft': 'json'})
 
                     "" Tmux:
                     call dein#add('tmux-plugins/vim-tmux')
