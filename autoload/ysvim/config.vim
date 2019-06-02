@@ -522,6 +522,9 @@ scriptencoding utf8
     nmap j <Plug>(accelerated_jk_gj_position)
     nmap k <Plug>(accelerated_jk_gk_position)
 
+    " Marks should go to the column, not just the line. Why isn't this the default?
+    nnoremap ' `
+
     " Map jk to enter normal mode
     imap jk <Esc>
 
@@ -596,6 +599,8 @@ scriptencoding utf8
 
     " Alt-W to delete a buffer and remove it from the list but keep the window via bufkill.vim
     nmap <Esc>w :BD<CR>
+    nmap <M-w>  :BD<CR>
+    nmap ∑      :BD<CR>
 
     " Fix annoyances in the QuickFix window, like scrolling too much
     augroup quickfix
