@@ -141,7 +141,7 @@ scriptencoding utf8
         set concealcursor=niv       " Conceal neosnippet markers
         set conceallevel=2
 
-        set cmdheight=2             " Limit Height of the command bar
+        set cmdheight=1             " Limit Height of the command bar
         set wildmenu                " Show possible completions on command line
         " List all options and complete
         set wildmode=longest,list:full  " http://stackoverflow.com/a/526940/5228839
