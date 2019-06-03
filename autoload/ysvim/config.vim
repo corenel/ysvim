@@ -1495,7 +1495,7 @@ scriptencoding utf8
         " vim-markdownfmt {{{
 
           let g:markdownfmt_autosave = 0
-          Gautocmd InsertLeave *.md,*.slide call vimproc#system("issw 'com.apple.keyboardlayout.Programmer Dvorak.keylayout.ProgrammerDvorak'")
+          " Gautocmd InsertLeave *.md,*.slide call vimproc#system("issw 'com.apple.keyboardlayout.Programmer Dvorak.keylayout.ProgrammerDvorak'")
 
         " }}} vim-markdownfmt
 
