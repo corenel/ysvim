@@ -1215,6 +1215,7 @@ scriptencoding utf8
           let g:polyglot_disabled = ['latex']
 
           "tex preview config
+          " let g:vimtex_compiler_progname = 'nvr'
           let g:texflavor = 'latex'
           let g:tex_conceal = 'abdmg'
           let g:tex_flavor = 'latex'
@@ -1397,10 +1398,10 @@ scriptencoding utf8
 
           " SuperTab like snippets behavior.
           " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-          imap <expr><TAB>
-           \ pumvisible() ? "\<C-n>" :
-           \ neosnippet#expandable_or_jumpable() ?
-           \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+          " imap <expr><TAB>
+          "  \ pumvisible() ? "\<C-n>" :
+          "  \ neosnippet#expandable_or_jumpable() ?
+          "  \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
           smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
           \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
@@ -1417,9 +1418,9 @@ scriptencoding utf8
           " let g:neosnippet#snippets_directory .= ', ' . g:ysvim_dein_home . '/repos/github.com/honza/vim-snippets/snippets'
 
           let g:neosnippet#data_directory = g:ysvim_cache . '/neosnippet'
-          let g:neosnippet#enable_complete_done = 1
-          let g:neosnippet#enable_completed_snippet = 1
-          let g:neosnippet#expand_word_boundary = 0
+          " let g:neosnippet#enable_complete_done = 1
+          " let g:neosnippet#enable_completed_snippet = 1
+          " let g:neosnippet#expand_word_boundary = 0
           let g:neosnippet_username = 'corenel'
           let g:snips_author = 'Yusu Pan'
           let g:neosnippet#disable_runtime_snippets = {
