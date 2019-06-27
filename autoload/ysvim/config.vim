@@ -1406,9 +1406,9 @@ scriptencoding utf8
           \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
           " For conceal markers.
-          if has('conceal')
-            set conceallevel=2 concealcursor=niv
-          endif
+          " if has('conceal')
+          "   set conceallevel=2 concealcursor=niv
+          " endif
 
           " Enable snipMate compatibility feature.
           let g:neosnippet#enable_snipmate_compatibility = 1
