@@ -47,6 +47,7 @@ update_repo() {
     echo "Checking out dotfiles using git..."
     rm -rf "$YSVIM_HOME"
     git clone --quiet --depth=1 -b ${YSVIM_BRANCH} "$YSVIM_URL" "$YSVIM_HOME"
+    mkdir -p $YSVIM_HOME/files/info/viminfo
   fi
 }
 
@@ -180,5 +181,4 @@ check "git"
 update_repo
 init_ysvimrc
 install
-mkdir -p $YSVIM_HOME/files/info/viminfo
 echo "$YSVIM_NAME installed successfully!"
