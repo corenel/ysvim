@@ -778,14 +778,13 @@ scriptencoding utf8
           \ 'colorscheme': 'wombat',
           \ 'active': {
           \   'left': [ [ 'mode', 'paste' ],
-          \             [ 'gitbranch', 'filename', 'modified' ] ],
+          \             [ 'filename', 'modified' ] ],
           \   'right': [ [ 'lineinfo' ],
           \              [ 'percent' ],
           \              [ 'readonly', 'linter_warnings', 'linter_errors', 'linter_ok' ],
           \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
           \ },
           \ 'component_function': {
-          \   'gitbranch': 'fugitive#head',
           \   'fileformat': 'LightlineFileformat',
           \   'filetype': 'LightlineFiletype',
           \ },

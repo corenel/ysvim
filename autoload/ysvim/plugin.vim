@@ -11,37 +11,13 @@ scriptencoding utf8
   " Deoplete {{{
 
     function! DeopleteHookFunc()
-        " Use head matcher instead of fuzzy matcher
-        call deoplete#custom#source('_',
-        \ 'matchers', ['matcher_head'])
-
-        " Use auto delimiter feature
-        call deoplete#custom#source('_', 'converters',
-        \ ['converter_auto_delimiter', 'remove_overlap'])
-
-        call deoplete#custom#source('buffer',
-        \ 'min_pattern_length', 9999)
-
-        " Change the source rank
-        call deoplete#custom#source('buffer', 'rank', 9999)
-
-        " Enable buffer source in C/C++ files only.
-        call deoplete#custom#source('buffer',
-        \ 'filetypes', ['c', 'cpp'])
-
-        " Disable the candidates in Comment/String syntaxes.
-        call deoplete#custom#source('_',
-        \ 'disabled_syntaxes', ['Comment', 'String'])
-
-        " Change the source mark.
-        call deoplete#custom#source('buffer', 'mark', '*')
-        " Disable the source mark.
-        call deoplete#custom#source('omni', 'mark', '')
-
-        " Enable jedi source debug messages
-        " call deoplete#custom#option('profile', v:true)
-        " call deoplete#enable_logging('DEBUG', 'deoplete.log')
-        " call deoplete#custom#source('jedi', 'is_debug_enabled', 1)
+        call deoplete#custom#source('_', 'converters', ['converter_auto_paren', 'converter_remove_overlap'])
+        call deoplete#custom#source('_', 'min_pattern_length', 1)
+        call deoplete#custom#source('buffer', 'rank', 100)
+        call deoplete#custom#source('jedi', 'disabled_syntaxes', ['Comment'])
+        call deoplete#custom#source('jedi', 'matchers', ['matcher_fuzzy'])
+        call deoplete#custom#source('neosnippet', 'disabled_syntaxes', ['goComment'])"
+        call deoplete#custom#source('vim', 'disabled_syntaxes', ['Comment'])
     endfunction
 
   " }}} Deoplete
@@ -182,7 +158,7 @@ scriptencoding utf8
                     call dein#add('octol/vim-cpp-enhanced-highlight', {'on_ft': ['c', 'cpp', 'objc', 'objcpp']})
                     " call dein#add('lyuts/vim-rtags', {'on_ft': ['c', 'cpp', 'objc', 'objcpp']})
                     call dein#add('vim-scripts/DoxygenToolkit.vim', {'on_ft': ['c', 'cpp', 'objc', 'objcpp']})
-                    call dein#add('ludovicchabant/vim-gutentags', {'on_ft': ['c', 'cpp', 'objc', 'objcpp']})
+                    call dein#add('ludovicchabant/vim-gutentags', {'on_ft': ['c', 'cpp', 'objc', 'objcpp', 'tex', 'latex']})
                     call dein#add('vim-scripts/a.vim', {'on_ft': ['c', 'cpp', 'objc', 'objcpp']})
 
                     "" Python:
