@@ -139,7 +139,7 @@ scriptencoding utf8
         set mousehide               " Hide mouse pointer when typing characters
         set guicursor+=a:blinkon0   " No cursor blink
         set concealcursor=niv       " Conceal neosnippet markers
-        set conceallevel=2
+        set conceallevel=0
 
         set cmdheight=1             " Limit Height of the command bar
         set wildmenu                " Show possible completions on command line
@@ -839,16 +839,16 @@ scriptencoding utf8
           endfunction
 
           " Update and show lightline but only if it's visible (e.g., not in Goyo)
-          augroup ale
-              autocmd!
-              autocmd User ALELint call s:MaybeUpdateLightline()
-          augroup END
-
           function! s:MaybeUpdateLightline()
               if exists('#lightline')
                   call lightline#update()
               end
           endfunction
+
+          augroup ale
+              autocmd!
+              autocmd User ALELint call s:MaybeUpdateLightline()
+          augroup END
 
         " }}} Lightline.vim
 

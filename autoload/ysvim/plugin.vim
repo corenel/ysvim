@@ -11,159 +11,40 @@ scriptencoding utf8
   " Deoplete {{{
 
     function! DeopleteHookFunc()
-        call deoplete#custom#source('_', 'converters', ['converter_auto_paren', 'converter_remove_overlap'])
-        call deoplete#custom#source('_', 'min_pattern_length', 1)
-        call deoplete#custom#source('buffer', 'rank', 100)
-        call deoplete#custom#source('jedi', 'disabled_syntaxes', ['Comment'])
-        call deoplete#custom#source('jedi', 'matchers', ['matcher_fuzzy'])
-        call deoplete#custom#source('neosnippet', 'disabled_syntaxes', ['goComment'])"
-        call deoplete#custom#source('vim', 'disabled_syntaxes', ['Comment'])
+        " Use head matcher instead of fuzzy matcher
+        call deoplete#custom#source('_',
+        \ 'matchers', ['matcher_head'])
+
+        " Use auto delimiter feature
+        call deoplete#custom#source('_', 'converters',
+        \ ['converter_auto_delimiter', 'remove_overlap'])
+
+        call deoplete#custom#source('buffer',
+        \ 'min_pattern_length', 9999)
+
+        " Change the source rank
+        call deoplete#custom#source('buffer', 'rank', 9999)
+
+        " Enable buffer source in C/C++ files only.
+        call deoplete#custom#source('buffer',
+        \ 'filetypes', ['c', 'cpp'])
+
+        " Disable the candidates in Comment/String syntaxes.
+        call deoplete#custom#source('_',
+        \ 'disabled_syntaxes', ['Comment', 'String'])
+
+        " Change the source mark.
+        call deoplete#custom#source('buffer', 'mark', '*')
+        " Disable the source mark.
+        call deoplete#custom#source('omni', 'mark', '')
+
+        " Enable jedi source debug messages
+        " call deoplete#custom#option('profile', v:true)
+        " call deoplete#enable_logging('DEBUG', 'deoplete.log')
+        " call deoplete#custom#source('jedi', 'is_debug_enabled', 1)
     endfunction
 
   " }}} Deoplete
-
-  " Denite {{{
-
-    function! DeniteHookFunc()
-        " Change file_rec command.
-        call denite#custom#var('file_rec', 'command',
-        \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-        " For ripgrep
-        " Note: It is slower than ag
-        call denite#custom#var('file_rec', 'command',
-        \ ['rg', '--files', '--glob', '!.git'])
-        " For Pt(the platinum searcher)
-        " NOTE: It also supports windows.
-        call denite#custom#var('file_rec', 'command',
-        \ ['pt', '--follow', '--nocolor', '--nogroup',
-        \  (has('win32') ? '-g:' : '-g='), ''])
-        "For python script scantree.py (works if python 3.5+ in path)
-        "Read bellow on this file to learn more about scantree.py
-        call denite#custom#var('file_rec', 'command', ['scantree.py'])
-
-        " Change mappings.
-        call denite#custom#map(
-              \ 'insert',
-              \ '<C-j>',
-              \ '<denite:move_to_next_line>',
-              \ 'noremap'
-              \)
-        call denite#custom#map(
-              \ 'insert',
-              \ '<C-k>',
-              \ '<denite:move_to_previous_line>',
-              \ 'noremap'
-              \)
-
-        " Change matchers.
-        call denite#custom#source(
-        \ 'file_mru', 'matchers', ['matcher_fuzzy', 'matcher_project_files'])
-        call denite#custom#source(
-        \ 'file_rec', 'matchers', ['matcher_cpsm'])
-
-        " Change sorters.
-        call denite#custom#source(
-        \ 'file_rec', 'sorters', ['sorter_sublime'])
-
-        " Add custom menus
-        let s:menus = {}
-
-        let s:menus.zsh = {
-          \ 'description': 'Edit your import zsh configuration'
-          \ }
-        let s:menus.zsh.file_candidates = [
-          \ ['zshrc', '~/.config/zsh/.zshrc'],
-          \ ['zshenv', '~/.zshenv'],
-          \ ]
-
-        let s:menus.my_commands = {
-          \ 'description': 'Example commands'
-          \ }
-        let s:menus.my_commands.command_candidates = [
-          \ ['Split the window', 'vnew'],
-          \ ['Open zsh menu', 'Denite menu:zsh'],
-          \ ]
-
-        call denite#custom#var('menu', 'menus', s:menus)
-
-        " Ag command on grep source
-        call denite#custom#var('grep', 'command', ['ag'])
-        call denite#custom#var('grep', 'default_opts',
-            \ ['-i', '--vimgrep'])
-        call denite#custom#var('grep', 'recursive_opts', [])
-        call denite#custom#var('grep', 'pattern_opt', [])
-        call denite#custom#var('grep', 'separator', ['--'])
-        call denite#custom#var('grep', 'final_opts', [])
-
-        " Ack command on grep source
-        call denite#custom#var('grep', 'command', ['ack'])
-        call denite#custom#var('grep', 'default_opts',
-            \ ['--ackrc', $HOME.'/.ackrc', '-H',
-            \  '--nopager', '--nocolor', '--nogroup', '--column'])
-        call denite#custom#var('grep', 'recursive_opts', [])
-        call denite#custom#var('grep', 'pattern_opt', ['--match'])
-        call denite#custom#var('grep', 'separator', ['--'])
-        call denite#custom#var('grep', 'final_opts', [])
-
-        " Ripgrep command on grep source
-        call denite#custom#var('grep', 'command', ['rg'])
-        call denite#custom#var('grep', 'default_opts',
-            \ ['--vimgrep', '--no-heading'])
-        call denite#custom#var('grep', 'recursive_opts', [])
-        call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-        call denite#custom#var('grep', 'separator', ['--'])
-        call denite#custom#var('grep', 'final_opts', [])
-
-        " Pt command on grep source
-        call denite#custom#var('grep', 'command', ['pt'])
-        call denite#custom#var('grep', 'default_opts',
-            \ ['--nogroup', '--nocolor', '--smart-case'])
-        call denite#custom#var('grep', 'recursive_opts', [])
-        call denite#custom#var('grep', 'pattern_opt', [])
-        call denite#custom#var('grep', 'separator', ['--'])
-        call denite#custom#var('grep', 'final_opts', [])
-
-        " jvgrep command on grep source
-        call denite#custom#var('grep', 'command', ['jvgrep'])
-        call denite#custom#var('grep', 'default_opts', [])
-        call denite#custom#var('grep', 'recursive_opts', ['-R'])
-        call denite#custom#var('grep', 'pattern_opt', [])
-        call denite#custom#var('grep', 'separator', [])
-        call denite#custom#var('grep', 'final_opts', [])
-
-        " Define alias
-        call denite#custom#alias('source', 'file_rec/git', 'file_rec')
-        call denite#custom#var('file_rec/git', 'command',
-              \ ['git', 'ls-files', '-co', '--exclude-standard'])
-
-        call denite#custom#alias('source', 'file_rec/py', 'file_rec')
-        call denite#custom#var('file_rec/py', 'command',['scantree.py'])
-
-        " Change default prompt
-        call denite#custom#option('default', 'prompt', '>')
-
-        " Change ignore_globs
-        call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
-              \ [ '.git/', '.ropeproject/', '__pycache__/',
-              \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
-
-        " Custom action
-        call denite#custom#action('file', 'test',
-              \ {context -> execute('let g:foo = 1')})
-        call denite#custom#action('file', 'test2',
-              \ {context -> denite#do_action(
-              \  context, 'open', context['targets'])})
-
-        " for feature use
-        let g:cpsm_highlight_mode = 'detailed'
-        let g:cpsm_match_empty_query = 0
-        let g:cpsm_max_threads = 9
-        let g:cpsm_query_inverting_delimiter = ''
-        let g:ctrlp_match_current_file = 0
-        let g:cpsm_unicode = 1
-    endfunction
-
-  " }}} Denite
 
   " Vimtex {{{
 
@@ -271,14 +152,8 @@ scriptencoding utf8
                     " Lifelog:
                     call dein#add('wakatime/vim-wakatime')
 
-                    " Denite:
-                    " call dein#add('Shougo/denite.nvim', {'hook_add': 'call DeniteHookFunc()'})
-                    "" Dependency:
-                    " call dein#add('nixprime/cpsm')
-                    "" Denite Suorces:
-
                     " LeaderF:
-                    call dein#add('Yggdroot/LeaderF',  {'build': 'sh -c "./install.sh"'})
+                    " call dein#add('Yggdroot/LeaderF',  {'build': 'sh -c "./install.sh"'})
 
                 " }}} Enhancement
 
