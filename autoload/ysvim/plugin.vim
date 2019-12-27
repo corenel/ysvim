@@ -101,6 +101,7 @@ scriptencoding utf8
                     " Plug 'benmills/vimux'
                     call dein#add('christoomey/vim-tmux-navigator')
                     call dein#add('roxma/vim-tmux-clipboard')
+                    call dein#add('tmux-plugins/vim-tmux-focus-events')
 
                     " Linter Formatter:
                     " call dein#add('neomake/neomake')

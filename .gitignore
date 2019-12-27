@@ -19,3 +19,4 @@ bundle
 dein
 .tmp
 cache
+.tags
