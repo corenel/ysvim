@@ -125,6 +125,7 @@ scriptencoding utf8
                     " call dein#add('mattn/sonictemplate-vim', {'on_cmd': 'Template'})
                     call dein#add('rhysd/accelerated-jk', {'on_map': '<Plug>'})
                     call dein#add('mbbill/undotree')
+                    call dein#add('tpope/vim-obsession')
 
                     " Lifelog:
                     call dein#add('wakatime/vim-wakatime')
