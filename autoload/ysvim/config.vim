@@ -500,7 +500,6 @@ scriptencoding utf8
     " nmap \A :set formatoptions+=a<CR>:echo 'autowrap enabled'<CR>
     " nmap \a :set formatoptions-=a<CR>:echo 'autowrap disabled'<CR>
     nmap \c :CLEAN<CR>:TEOL<CR>
-    " nmap \e :call ToggleVaffle()<CR>
     nmap \e :Vaffle<CR>
     nmap \f :Neoformat<CR>
     nmap \g :Gstatus<CR>
@@ -512,6 +511,21 @@ scriptencoding utf8
     nmap \x :cclose<CR>
     nmap \t :tabnew<CR>
     nmap \z :w<CR>:!open %<CR><CR>
+
+    " Map BS to \ for HHKB layout
+    " nnoremap <BS> \
+    nmap <BS>c \c
+    nmap <BS>e \e
+    nmap <BS>f \f
+    nmap <BS>g \g
+    nmap <BS>h \h
+    nmap <BS>i \i
+    nmap <BS>l \l
+    nmap <BS>o \o
+    nmap <BS>t \t
+    nmap <BS>v \v
+    nmap <BS>x \x
+    nmap <BS>z \z
 
     " Turn off linewise keys. Normally, the `j' and `k' keys move the cursor down one entire line. with
     " line wrapping on, this can cause the cursor to actually skip a few lines on the screen because
