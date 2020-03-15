@@ -1289,6 +1289,15 @@ scriptencoding utf8
 
         " }}} vimtex
 
+        " plantuml-previewer {{{
+
+          nmap <silent> <Leader>po :PlantumlOpen<CR>
+          nmap <silent> <Leader>ps :PlantumlSave<CR>
+          nmap <silent> <Leader>pp :PlantumlStart<CR>
+          nmap <silent> <Leader>pt :PlantumlStop<CR>
+
+        " }}} plantuml-previewer
+
         " jedi.vim {{{
 
           " don't initialize

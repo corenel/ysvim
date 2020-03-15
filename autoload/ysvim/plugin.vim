@@ -196,6 +196,11 @@ scriptencoding utf8
                     "" Tmux:
                     call dein#add('tmux-plugins/vim-tmux')
 
+                    "" PlantUML
+                    call dein#add('aklt/plantuml-syntax')
+                    call dein#add('tyru/open-browser.vim', {'on_ft': 'plantuml'})
+                    call dein#add('weirongxu/plantuml-previewer.vim', {'on_ft': 'plantuml'})
+
                 " }}} Intellisense
 
                 call dein#end()
