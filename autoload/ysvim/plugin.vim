@@ -8,20 +8,6 @@ scriptencoding utf8
 
 " Dein Hook Function {{{
 
-  " Deoplete {{{
-
-    function! DeopleteHookFunc()
-        call deoplete#custom#source('_', 'converters', ['converter_auto_paren', 'converter_remove_overlap'])
-        call deoplete#custom#source('_', 'min_pattern_length', 1)
-        call deoplete#custom#source('buffer', 'rank', 100)
-        call deoplete#custom#source('jedi', 'disabled_syntaxes', ['Comment'])
-        call deoplete#custom#source('jedi', 'matchers', ['matcher_fuzzy'])
-        call deoplete#custom#source('neosnippet', 'disabled_syntaxes', ['goComment'])"
-        call deoplete#custom#source('vim', 'disabled_syntaxes', ['Comment'])
-    endfunction
-
-  " }}} Deoplete
-
   " Vimtex {{{
 
     function! VimtexHookFunc()
@@ -138,7 +124,7 @@ scriptencoding utf8
                 " Intellisense {{{
 
                     " Deoplete:
-                    call dein#add('Shougo/deoplete.nvim', {'hook_add': 'call DeopleteHookFunc()'})
+                    call dein#add('Shougo/deoplete.nvim')
                     "" Deoplete Suorces:
                     call dein#add('Shougo/neco-vim', {'on_ft': ['vim'], 'on_source': ['deoplete.nvim']})
                     call dein#add('Shougo/neco-syntax', {'on_source': ['deoplete.nvim']})

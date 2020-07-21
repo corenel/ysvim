@@ -1325,19 +1325,7 @@ scriptencoding utf8
 
         " Deoplete {{{
 
-        " let g:acp_enableAtStartup = 0
-        " let g:deoplete#auto_complete_start_length = 1
-        " let g:deoplete#sources#syntax#min_keyword_length = 3
-
-        let g:deoplete#auto_complete_delay = 0
         let g:deoplete#enable_at_startup = 1
-        let g:deoplete#enable_camel_case = 0
-        let g:deoplete#enable_ignore_case = 0
-        let g:deoplete#enable_refresh_always = 0
-        let g:deoplete#auto_refresh_delay = 100
-        let g:deoplete#enable_smart_case = 1
-        let g:deoplete#file#enable_buffer_path = 1
-        let g:deoplete#max_list = 10000
 
         " Define keyword.
         if !exists('g:deoplete#keyword_patterns')
@@ -1346,67 +1334,91 @@ scriptencoding utf8
         let g:deoplete#keyword_patterns['default'] = '\h\w*'
 
         " Recommended key-mappings.
-        " <CR>: close popup and save indent.
-        inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-        function! s:my_cr_function()
-          " return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-          " For no inserting <CR> key.
-          return pumvisible() ? "\<C-y>" : "\<CR>"
-        endfunction
-        " <TAB>: completion.
-        " inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-        " <C-h>, <BS>: close popup and delete backword char.
-        inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-        inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
-        " Close popup by <Space>.
-        " inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+        inoremap <silent><expr><CR>     pumvisible() ? deoplete#close_popup() : "\<CR>"
+        inoremap <silent><expr><BS>     pumvisible() ? deoplete#close_popup()."\<C-h>" : "\<C-h>"
+        inoremap <silent><expr><C-h>    pumvisible() ? deoplete#close_popup()."\<C-h>" : "\<C-h>"
+        inoremap <silent><expr><Up>     pumvisible() ? "\<C-p>"  : "\<Up>"
+        inoremap <silent><expr><Down>   pumvisible() ? "\<C-n>"  : "\<Down>"
+        inoremap <silent><expr><C-z>    pumvisible() ? "\<C-z>" : deoplete#mappings#undo_completion()
 
-        " Enable omni completion.
-        Gautocmdft go,python,ruby setlocal omnifunc=
-        " autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-        " autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-        " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-        " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-        " autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+        let s:default_ignore_sources = ['around', 'dictionary', 'member', 'omni', 'tag', 'ale', 'LanguageClient']
+        let s:deoplete_custom_option = {
+            \ 'auto_complete': v:true,
+            \ 'auto_complete_delay': 0,
+            \ 'auto_refresh_delay': 200,
+            \ 'camel_case': v:false,
+            \ 'check_stderr': v:true,
+            \ 'ignore_case': v:false,
+            \ 'ignore_sources': {
+            \   '_': s:default_ignore_sources,
+            \   'c': s:default_ignore_sources+['buffer', 'neosnippet'],
+            \   'cpp': s:default_ignore_sources+['buffer', 'neosnippet'],
+            \   'dockerfile': s:default_ignore_sources,
+            \   'go': s:default_ignore_sources,
+            \   'javascript': s:default_ignore_sources,
+            \   'lua': s:default_ignore_sources,
+            \   'tex': s:default_ignore_sources,
+            \   'latex': s:default_ignore_sources,
+            \   'objc': s:default_ignore_sources+['buffer', 'neosnippet'],
+            \   'python': s:default_ignore_sources,
+            \   'rust': s:default_ignore_sources,
+            \   'sh': s:default_ignore_sources,
+            \   'swift': s:default_ignore_sources,
+            \   'typescript': s:default_ignore_sources,
+            \   'yaml': s:default_ignore_sources,
+            \   'yaml.docker-compose': s:default_ignore_sources+['buffer'],
+            \   'zsh': s:default_ignore_sources+['buffer'],
+            \ },
+            \ 'max_list': 10000,
+            \ 'num_processes': -1,
+            \ 'refresh_always': v:false,
+            \ 'smart_case': v:true,
+            \ }
+            "\ 'candidate_marks': [],
+            "\ 'skip_chars': ['(', ')', '<', '>'],
+            "\ 'keyword_patterns': {
+            "\   '_': '[a-zA-Z_]\k*',
+            "\   'tex': '\\?[a-zA-Z_]\w*',
+            "\ },
+            "\ 'omni_patterns': {},
+            "\ 'keyword_patterns': {},
+            "\ 'sources':{},
+        call deoplete#custom#option(s:deoplete_custom_option)
+        call deoplete#custom#source('_', 'converters', ['converter_auto_paren', 'converter_remove_overlap'])
+        " call deoplete#custom#source('_', 'matchers', ['matcher_cpsm'])  " matcher_fuzzy, matcher_full_fuzzy, matcher_cpsm, matcher_head, matcher_length
+        call deoplete#custom#source('_', 'sorters', ['sorter_word'])  " sorter_rand
+        call deoplete#custom#source('_', 'disabled_syntaxes', ['goComment', 'Comment'])
 
-        " Enable heavy omni completion.
-        " if !exists('g:deoplete#omni#input_patterns')
-        "   let g:deoplete#omni#input_patterns = {}
-        " endif
-        "let g:deoplete#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-        "let g:deoplete#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-        "let g:deoplete#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+        call deoplete#custom#source('buffer', 'rank', 200)
+        call deoplete#custom#source('file', 'rank', 300)
+        call deoplete#custom#source('file', 'force_completion_length', 1)
 
-        " Ignore:
-        let g:deoplete#ignore_sources = {} " Initialize
-        let g:deoplete#ignore_sources._ = ['around']
-        let g:deoplete#ignore_sources.go =
-              \ ['buffer', 'dictionary', 'member', 'omni', 'tag', 'syntax', 'around'] " wtf what around?
-        let g:deoplete#ignore_sources.python =
-              \ ['buffer', 'dictionary', 'member', 'omni', 'tag', 'syntax', 'around'] " file/include conflicting deoplete-jedi
-        let g:deoplete#ignore_sources.c =
-              \ ['dictionary', 'member', 'omni', 'tag', 'syntax', 'file/include', 'neosnippet', 'around']
-        let g:deoplete#ignore_sources.cpp    = g:deoplete#ignore_sources.c
-        let g:deoplete#ignore_sources.objc   = g:deoplete#ignore_sources.c
+        " call deoplete#custom#source('neosnippet', 'disabled_syntaxes', ['Comment'])
+        call deoplete#custom#source('neosnippet', 'rank', 2000)
 
-        if g:ysvim_macos
-            let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/6.0.0/lib/libclang.dylib'
-            let g:deoplete#sources#clang#clang_header = '/usr/local/Cellar/llvm/6.0.0/lib/clang'
-        elseif g:ysvim_linux
-            let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang.so.1'
-            let g:deoplete#sources#clang#clang_header = '/usr/lib/llvm-3.8/lib/clang'
-        endif
-        let g:deoplete#sources#clang#flags = [
-          \ '-I/usr/include',
-          \ '-I/usr/local/include',
-          \ ] " echo | clang -v -E -x c -
-          " \ '-isysroot', $XCODE_DIR.'/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk',
+        "" clang
+        "let s:clang_flags = [
+        "    \ '-I/usr/local/include',
+        "    \ '-I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include',
+        "    \ '-I' . s:llvm_base_path . '/include/c++/v1',
+        "    \ '-I/usr/include',
+        "    \ '-F/System/Library/Frameworks',
+        "    \ '-F/Library/Frameworks',
+        "    \ '-isystem' . s:llvm_base_path . '/lib/clang/' . s:llvm_clang_version,
+        "    \ '-isysroot/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk',
+        "    \ ]  " clang++ -v -E -x c++ - -v < /dev/null
+        "    "\ '-I' . s:llvm_base_path . '/include/c++/v1',
+        "let g:deoplete#sources#clang#clang_header = s:llvm_base_path . '/lib/clang'
+        "let g:deoplete#sources#clang#libclang_path = s:llvm_base_path . '/lib/libclang.dylib'
+        "let g:deoplete#sources#clang#flags = s:clang_flags
+        "" jedi
         let g:deoplete#sources#jedi#statement_length = 0
         let g:deoplete#sources#jedi#short_types = 0
         let g:deoplete#sources#jedi#show_docstring = 1
-        let g:deoplete#sources#jedi#worker_threads = 2
+        let g:deoplete#sources#jedi#enable_typeinfo = 1
+        let g:deoplete#sources#jedi#ignore_errors = 1
+        let g:deoplete#sources#jedi#extra_path = []
         let g:deoplete#sources#jedi#python_path = g:python3_host_prog
-
 
         " }}} Deoplete
 
@@ -1424,8 +1436,9 @@ scriptencoding utf8
           "  \ pumvisible() ? "\<C-n>" :
           "  \ neosnippet#expandable_or_jumpable() ?
           "  \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-          smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-          \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+          " smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+          " \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+          smap <silent><expr><C-k> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<C-k>"
 
           " For conceal markers.
           " if has('conceal')
@@ -1440,9 +1453,12 @@ scriptencoding utf8
           " let g:neosnippet#snippets_directory .= ', ' . g:ysvim_dein_home . '/repos/github.com/honza/vim-snippets/snippets'
 
           let g:neosnippet#data_directory = g:ysvim_cache . '/neosnippet'
-          " let g:neosnippet#enable_complete_done = 1
-          " let g:neosnippet#enable_completed_snippet = 1
-          " let g:neosnippet#expand_word_boundary = 0
+          let g:neosnippet#disable_runtime_snippets = {}
+          let g:neosnippet#disable_select_mode_mappings = 0
+          let g:neosnippet#enable_auto_clear_markers = 1
+          let g:neosnippet#enable_complete_done = 0
+          let g:neosnippet#enable_completed_snippet = 0
+          let g:neosnippet#expand_word_boundary = 1
           let g:neosnippet_username = 'corenel'
           let g:snips_author = 'Yusu Pan'
           let g:neosnippet#disable_runtime_snippets = {
