@@ -193,14 +193,15 @@ set list
 
 " Unicode chars for diffs/folds, and rely on colors for window borders
 if has('nvim')
-    set fillchars=vert:\ ,eob:\ ,stl:\ ,stlnc:\ ,fold:-,diff:┄
+    set fillchars=vert:\ ,eob:\ ,
+    " set fillchars=vert:\ ,eob:\ ,stl:\ ,stlnc:\ ,fold:-,diff:┄
 else
     set fillchars=vert:\ ,
 endif
 
 " Use these symbols for invisible chars
-" set listchars=tab:¦\ ,eol:¬,trail:⋅,extends:»,precedes:«
-set listchars=tab:»\ ,eol:¬,extends:›,precedes:‹,nbsp:·,trail:·
+set listchars=tab:¦\ ,eol:¬,trail:⋅,extends:»,precedes:«
+" set listchars=tab:»\ ,eol:¬,extends:›,precedes:‹,nbsp:·,trail:·
 
 set foldlevel=0               " Fold all by default
 set foldcolumn=0
@@ -277,13 +278,12 @@ endif
 set colorcolumn=79
 
 " font setting
-if g:ysvim_linux
-    set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline\ Nerd\ Font\ Complete\ 14
-endif
-
-if g:ysvim_macos || g:ysvim_windows
-    set guifont=MesloLGMDZ\ Nerd\ Font:h14
-endif
+" if g:ysvim_linux
+"     set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline\ Nerd\ Font\ Complete\ 14
+" endif
+" if g:ysvim_macos || g:ysvim_windows
+"     set guifont=MesloLGMDZ\ Nerd\ Font:h14
+" endif
 
 " }}} Highlight
 
@@ -332,7 +332,8 @@ if g:ysvim_color ==# 'gruvbox'
     endif
 
     " gruvbox color scheme
-    colorscheme gruvbox
+    " colorscheme gruvbox
+    autocmd vimenter * ++nested colorscheme gruvbox
     let g:gruvbox_contrast_dark = 'hard'
     let g:gruvbox_sign_column = 'bg0'
     " A black background would be better for remote terminal
@@ -908,9 +909,9 @@ Gautocmdft sh let g:sh_noisk=1
 Gautocmdft markdown let g:sh_noisk=1
 
 " Neosnippet:
-Gautocmdft neosnippet call dein#source('neosnippet.vim')
+" Gautocmdft neosnippet call dein#source('neosnippet.vim')
 " Clear neosnippet markers when InsertLeave
-Gautocmd InsertLeave * NeoSnippetClearMarkers
+" Gautocmd InsertLeave * NeoSnippetClearMarkers
 
 " Gitcommit:
 Gautocmd BufEnter COMMIT_EDITMSG startinsert
@@ -1148,6 +1149,7 @@ if g:rc_use_plug_manager
 
         Plug 'chrisbra/vim-sh-indent'
         Plug 'tmux-plugins/vim-tmux'
+        Plug 'morhetz/gruvbox'
 
         if filereadable(expand("~/.ysvim/vimrc.plug"))
             source $HOME/.ysvim/vimrc.plug
@@ -1425,7 +1427,7 @@ if g:rc_use_plug_manager && filereadable(expand("~/.ysvim/autoload/plug.vim"))
         nmap gm <Plug>(coc-rename)
         " Show documentation in preview window
         nmap <silent> gh :call CocAction('doHover')<CR>
-        nmap <silent> gc :CocList diagnostics<CR>
+        nmap <silent> gdd :CocList diagnostics<CR>
         nmap <silent> go :CocList outline<CR>
         nmap <silent> gs :CocList -I symbols<CR>
     endif
