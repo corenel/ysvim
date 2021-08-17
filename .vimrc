@@ -1119,6 +1119,7 @@ if g:rc_use_plug_manager
 
         Plug 'mhinz/vim-startify'
         Plug 'morhetz/gruvbox'
+        Plug 'cocopon/vaffle.vim'
 
         Plug 'kana/vim-operator-user'
         Plug 'kana/vim-textobj-function'
@@ -1128,16 +1129,6 @@ if g:rc_use_plug_manager
         Plug 'kana/vim-operator-replace'
         Plug 'rhysd/vim-operator-surround'
         Plug 'tpope/vim-unimpaired'
-
-        Plug 'cocopon/vaffle.vim'
-
-        Plug 'christoomey/vim-tmux-navigator'
-        Plug 'roxma/vim-tmux-clipboard'
-        Plug 'tmux-plugins/vim-tmux-focus-events'
-
-        Plug 'w0rp/ale'
-        Plug 'sbdchd/neoformat'
-
         Plug 'haya14busa/vim-asterisk'
         Plug 'tpope/vim-commentary'
         Plug 'tpope/vim-repeat'
@@ -1145,11 +1136,17 @@ if g:rc_use_plug_manager
         Plug 'tpope/vim-obsession'
         Plug 'rhysd/accelerated-jk'
 
-        Plug 'wakatime/vim-wakatime'
-
-        Plug 'chrisbra/vim-sh-indent'
+        Plug 'christoomey/vim-tmux-navigator'
+        Plug 'roxma/vim-tmux-clipboard'
+        Plug 'tmux-plugins/vim-tmux-focus-events'
         Plug 'tmux-plugins/vim-tmux'
-        Plug 'morhetz/gruvbox'
+
+        Plug 'w0rp/ale'
+        Plug 'sbdchd/neoformat'
+        Plug 'mtdl9/vim-log-highlighting'
+        Plug 'chrisbra/vim-sh-indent'
+
+        Plug 'wakatime/vim-wakatime'
 
         if filereadable(expand("~/.ysvim/vimrc.plug"))
             source $HOME/.ysvim/vimrc.plug
