@@ -20,3 +20,8 @@ dein
 .tmp
 cache
 .tags
+
+.last.session
+.nvimlog
+autoload/plug.vim
+undotree/

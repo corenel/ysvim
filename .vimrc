@@ -726,6 +726,8 @@ nmap \o :set paste!<CR>:set paste?<CR>
 nmap \v :Startify<CR>
 nmap \x :cclose<CR>
 nmap \t :tabnew<CR>
+vnoremap \y :OSCYank<CR>
+nmap \y <Plug>OSCYank
 nmap \z :w<CR>:!open %<CR><CR>
 
 " Map BS to \ for HHKB layout
@@ -1140,6 +1142,7 @@ if g:rc_use_plug_manager
         Plug 'roxma/vim-tmux-clipboard'
         Plug 'tmux-plugins/vim-tmux-focus-events'
         Plug 'tmux-plugins/vim-tmux'
+        Plug 'ojroques/vim-oscyank'
 
         Plug 'w0rp/ale'
         Plug 'sbdchd/neoformat'
