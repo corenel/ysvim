@@ -1070,7 +1070,8 @@ endif
 
 " Plugin List {{{ "
 " Use plug.vim by default
-if !exists('g:rc_use_plug_manager') | let g:rc_use_plug_manager = 1 | endif
+let g:rc_use_plug_manager = 1
+if !exists("g:rc_use_plug_manager") | let g:rc_use_plug_manager = 1 | endif
 if g:rc_use_plug_manager
     if filereadable(expand("~/.ysvim/autoload/plug.vim"))
         call plug#begin('~/.ysvim/plugged')
